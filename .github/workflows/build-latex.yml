@@ -1,0 +1,38 @@
+name: Build LaTeX Documentation
+
+on:
+  push:
+    paths:
+      - 'doc/src/**/*.tex'
+      - 'doc/bib/**/*.bib'
+      - 'doc/.latexmkrc'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-xetex texlive-latex-base texlive-latex-extra \
+            texlive-fonts-recommended texlive-latex-recommended texlive-bibtex-extra \
+            latexmk
+      
+      - name: Build PDF
+        working-directory: doc
+        run: |
+          mkdir -p pdfs
+          latexmk -pdf -outdir=build src/Project_Plan_and_Review.tex
+          cp build/Project_Plan_and_Review.pdf pdfs/
+      
+      - name: Commit PDF
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add doc/pdfs/*.pdf
+          git diff --staged --quiet || git commit -m "chore: rebuild PDF documentation [skip ci]"
+          git push
+
