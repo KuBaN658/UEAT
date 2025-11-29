@@ -1,0 +1,177 @@
+\documentclass[12pt, a4paper]{article}
+
+% Page layout
+\usepackage[left=25mm, right=10mm, top=20mm, bottom=20mm]{geometry}
+
+% Fonts and Language
+\usepackage{fontspec}
+% According to HSE standards, Times New Roman is required
+% If not available, use Liberation Serif (free alternative) or DejaVu Serif
+\IfFontExistsTF{Times New Roman}{%
+  \setmainfont{Times New Roman}
+}{%
+  \IfFontExistsTF{Liberation Serif}{%
+    \setmainfont{Liberation Serif}
+  }{%
+    \setmainfont{DejaVu Serif}
+  }%
+}
+\usepackage[english, russian]{babel}
+
+% Spacing and Indentation
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+% Lists
+\usepackage{enumitem}
+\setlist{nolistsep} % Reduce space between list items
+
+% Headings
+\usepackage{titlesec}
+\titleformat{\section}
+  {\normalfont\fontsize{14}{14}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\fontsize{12}{12}\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\fontsize{12}{12}\bfseries}{\thesubsubsection}{1em}{}
+
+% Graphics
+\usepackage{graphicx}
+
+% Table of contents formatting
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\setcounter{tocdepth}{3}  % Show sections, subsections, and subsubsections
+
+% Bibliography - ГОСТ 7.0.5-2008
+\usepackage[numbers, sort&compress]{natbib}
+
+\begin{document}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+\section{Календарный план работы над ВКР}
+
+\noindent \textbf{Тема:} Генерация персонализированных учебных конспектов по предметам ЕГЭ на основе языковых моделей и пользовательской аналитики
+
+\noindent \textbf{Студенты:} Ахундов Алексей Назимович, Жарковский Дмитрий Андреевич
+
+\noindent \textbf{Руководитель:} Ахтямов Павел Ибрагимович
+
+\noindent \textbf{Срок выполнения:} 2025–2026 учебный год 
+
+
+\subsection{Этап 1: Подготовительный и проектирование (Ноябрь — Декабрь 2025)}
+
+\noindent \textbf{Цель:} Утверждение концепции и техническое проектирование системы.
+
+\noindent \textbf{Задачи:}
+\begin{itemize}[leftmargin=*]
+    \item Согласование детального плана работы и темы с научным руководителем (до 01.12.2025).
+    \item Сбор и анализ научной и технической литературы по теме (LLM в образовании, MCP, персонализация обучения).
+    \item Изучение спецификации Model Context Protocol (MCP) от Anthropic.
+    \item Проектирование архитектуры (схема LLM - MCP Server - Database, модель данных профиля ученика).
+    \item Подготовка тестовых данных: эталонные конспекты и обезличенные профили учеников.
+\end{itemize}
+
+\noindent \textbf{Результат этапа:} Утвержденный план, черновик Введения/Обзора, схема БД и API.
+
+\subsection{Этап 2: Разработка MVP и MCP-сервера (Январь — Февраль 2026)}
+
+\noindent \textbf{Цель:} Создание работающего прототипа.
+
+\noindent \textbf{Задачи:}
+\begin{itemize}[leftmargin=*]
+    \item Реализация MCP-сервера на Python (Resources: доступ к профилю, Tools: запрос статистики).
+    \item Разработка логики генерации и системных промптов с использованием контекста MCP.
+    \item Создание веб-сервиса (интерфейс для генерации и просмотра конспектов).
+    \item Первичное тестирование.
+\end{itemize}
+
+\noindent \textbf{Результат этапа:} Рабочий прототип (MVP), генерирующий уникальные конспекты под профиль.
+
+\subsection{Этап 3: Эксперименты и доработка (Март — Апрель 2026)}
+
+\noindent \textbf{Цель:} Оценка качества и написание текста ВКР.
+
+\noindent \textbf{Задачи:}
+\begin{itemize}[leftmargin=*]
+    \item Сравнительный эксперимент (Группы: А - Методист, Б - Система, В - Чистая LLM).
+    \item Сбор метрик (фактологическая точность, персонализация, читаемость).
+    \item Оптимизация системы по итогам тестов.
+    \item Написание глав ВКР: Архитектура, Реализация, Эксперименты.
+\end{itemize}
+
+\noindent \textbf{Результат этапа:} Готовый продукт, графики/таблицы экспериментов, черновик ВКР.
+
+\subsection{Этап 4: Оформление и защита (Май — Июнь 2026)}
+
+\noindent \textbf{Цель:} Финализация и защита.
+
+\noindent \textbf{Задачи:}
+\begin{itemize}[leftmargin=*]
+    \item Сборка полного текста ВКР, нормоконтроль, антиплагиат.
+    \item Подготовка презентации и демо-стенда.
+    \item Предзащита и финальные правки.
+    \item Защита ВКР.
+\end{itemize}
+
+\noindent \textbf{Результат этапа:} Защищенная ВКР.
+
+\newpage
+
+\section{Обзор литературы}
+
+\noindent \textbf{Тема:} Генерация персонализированных учебных конспектов по предметам ЕГЭ на основе языковых моделей и пользовательской аналитики
+
+\subsection{Краткий обзор литературы и существующих решений}
+
+\noindent Несмотря на бум генеративного ИИ в образовании, интеграция технологий в учебный процесс только начинается. Рынок делят гиганты: Khanmigo \cite{khanmigo}, Q-Chat \cite{qchat} и клоны GPT-4. Как отмечают Hu et al. (2025), тренд смещается от простых ответов к «Сократическим площадкам», где ИИ направляет ученика \cite{hu2025}.
+
+Однако существующие системы имеют критичные для подготовки к ЕГЭ недостатки:
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Формат чат-бота.} Диалог «вопрос-ответ» хорош для точечных проблем, но не подходит для системного изучения тем. Чат-боты не дают целостных, структурированных материалов (лонгридов).
+    \item \textbf{Нет «памяти» (Context Awareness).} LLM обычно не имеют доступа к истории успеваемости за год. Адаптивность часто сводится к подбору задач, а не теории \cite{li2024}. Модель не знает о хронических ошибках ученика, если ей об этом не сказать.
+    \item \textbf{Отсутствие стандартов.} Универсальные модели без жестких ограничений могут генерировать верные, но избыточные или не соответствующие кодификатору ЕГЭ объяснения, путая школьника.
+\end{enumerate}
+
+\noindent \textbf{Вывод:} Нужен инструмент, генерирующий не реплики в чате, а полноценные методички (конспекты), жестко привязанные к ФИПИ и адаптированные под историю ошибок конкретного ученика.
+
+\subsection{Ключевые ожидаемые результаты (Новизна и Уникальность)}
+
+\noindent Разрабатываемая система решает эти проблемы и обладает следующей новизной:
+
+\subsubsection{Технологическая новизна: Model Context Protocol (MCP)}
+\noindent Вместо громоздких RAG-схем используется MCP от Anthropic \cite{anthropic2025}.
+\begin{itemize}[leftmargin=*]
+    \item LLM становится активным агентом, запрашивающим данные профиля ученика через стандартизированный протокол.
+    \item Это дает глубокую персонализацию: модель видит именно те пробелы, которые нужно закрыть в текущей теме, без лишнего шума.
+\end{itemize}
+
+\subsubsection{Методическая уникальность: Динамические лонгриды}
+\noindent Фокус на генерации связных учебных текстов, а не диалогов.
+\begin{itemize}[leftmargin=*]
+    \item Конспект собирается «на лету»: для проблемных тем теория расширяется и упрощается, для усвоенных — дается в формате краткого обзора (recap).
+    \item Ученик получает персональную главу учебника по его потребностям.
+\end{itemize}
+
+\subsubsection{Интеграция с ЕГЭ}
+\noindent Проект — инструмент для экзамена.
+\begin{itemize}[leftmargin=*]
+    \item Генерация ограничена Кодификатором ЕГЭ через системные промпты и валидацию MCP.
+    \item Это снижает риск галлюцинаций и гарантирует, что время тратится только на проверяемый материал.
+\end{itemize}
+
+\newpage
+
+\renewcommand{\bibname}{Список литературы}
+\bibliographystyle{plainnat}  % Используем plainnat, записи отформатированы по ГОСТ
+\bibliography{references}
+
+\end{document}
+

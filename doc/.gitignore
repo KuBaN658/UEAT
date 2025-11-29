@@ -1,0 +1,43 @@
+# Build artifacts
+build/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.idx
+*.ind
+*.ilg
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.nav
+*.snm
+*.vrb
+*.bcf
+*.run.xml
+
+# Editor files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/settings.json
+!.vscode/extensions.json
+
+# Temporary files
+*.tmp
+*.bak
+
