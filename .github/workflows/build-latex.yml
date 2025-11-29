@@ -6,6 +6,11 @@ on:
       - 'doc/src/**/*.tex'
       - 'doc/bib/**/*.bib'
       - 'doc/.latexmkrc'
+  pull_request:
+    paths:
+      - 'doc/src/**/*.tex'
+      - 'doc/bib/**/*.bib'
+      - 'doc/.latexmkrc'
   workflow_dispatch:
 
 jobs:
