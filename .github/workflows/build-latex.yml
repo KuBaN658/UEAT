@@ -6,6 +6,13 @@ on:
       - 'doc/src/**/*.tex'
       - 'doc/bib/**/*.bib'
       - 'doc/.latexmkrc'
+  push:
+    branches:
+      - main
+    paths:
+      - 'doc/src/**/*.tex'
+      - 'doc/bib/**/*.bib'
+      - 'doc/.latexmkrc'
   workflow_dispatch:
 
 jobs:
@@ -19,19 +26,47 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y texlive-xetex texlive-latex-base texlive-latex-extra \
             texlive-fonts-recommended texlive-latex-recommended texlive-bibtex-extra \
-            latexmk
+            texlive-lang-cyrillic latexmk
       
       - name: Build PDF
         working-directory: doc
         run: |
-          mkdir -p pdfs
+          mkdir -p pdfs build
+          # Copy bibliography file to build directory for bibtex
+          cp bib/references.bib build/references.bib
+          # Build with latexmk (will run xelatex -> bibtex -> xelatex -> xelatex)
           latexmk -pdf -outdir=build src/Project_Plan_and_Review.tex
           cp build/Project_Plan_and_Review.pdf pdfs/
       
-      - name: Upload PDF artifact
+      - name: Upload PDF artifact (PRs only)
+        if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: pdf-documentation
           path: doc/pdfs/*.pdf
           retention-days: 7
+      
+      - name: Comment PDF on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const workflowRunUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `## 📄 Built PDF Documentation\n\nPDF успешно собран! Скачать можно в [артефактах workflow run](${workflowRunUrl}).`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+      
+      - name: Commit PDF to main branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add doc/pdfs/*.pdf
+          git diff --staged --quiet || git commit -m "chore: rebuild PDF documentation [skip ci]"
+          git push
 
