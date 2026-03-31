@@ -45,9 +45,9 @@ jobs:
           cp bib/references.bib build/references.bib
           latexmk -pdfxe -outdir=build src/Project_Plan_and_Review.tex
           cp build/Project_Plan_and_Review.pdf pdfs/
-          # VKR coursework: pdflatex + biber (biblatex); run from src/vkr so title_vkr and graphics resolve
-          (cd src/vkr && latexmk -pdf -outdir=../../build/vkr coursework.tex)
-          cp build/vkr/coursework.pdf pdfs/
+          # VKR diplomawork: pdflatex + biber (biblatex); run from src/vkr so title_vkr and graphics resolve
+          (cd src/vkr && latexmk -pdf -outdir=../../build/vkr diplomawork.tex)
+          cp build/vkr/diplomawork.pdf pdfs/
       
       - name: Upload PDF artifact (PRs only)
         if: github.event_name == 'pull_request'
