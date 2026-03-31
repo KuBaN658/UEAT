@@ -40,8 +40,4 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.bak
-*.pdf
-
-!pdfs/
-!pdfs/*.pdf
-
+src/vkr/diplomawork.pdf
