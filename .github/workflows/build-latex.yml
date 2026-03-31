@@ -4,7 +4,8 @@ on:
   pull_request:
     paths:
       - 'doc/src/**/*.tex'
-      - 'doc/bib/**/*.bib'
+      - 'doc/**/*.bib'
+      - 'doc/src/vkr/graphics/**'
       - 'doc/.latexmkrc'
       - '.github/workflows/build-latex.yml'
   push:
@@ -12,7 +13,8 @@ on:
       - main
     paths:
       - 'doc/src/**/*.tex'
-      - 'doc/bib/**/*.bib'
+      - 'doc/**/*.bib'
+      - 'doc/src/vkr/graphics/**'
       - 'doc/.latexmkrc'
       - '.github/workflows/build-latex.yml'
   workflow_dispatch:
@@ -33,17 +35,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y texlive-xetex texlive-latex-base texlive-latex-extra \
             texlive-fonts-recommended texlive-latex-recommended texlive-bibtex-extra \
-            texlive-lang-cyrillic latexmk
+            texlive-lang-cyrillic latexmk biber
       
       - name: Build PDF
         working-directory: doc
         run: |
-          mkdir -p pdfs build
-          # Copy bibliography file to build directory for bibtex
+          mkdir -p pdfs build build/vkr
+          # Project plan: xelatex + bibtex (natbib), see doc/.latexmkrc
           cp bib/references.bib build/references.bib
-          # Build with latexmk (will run xelatex -> bibtex -> xelatex -> xelatex)
           latexmk -pdf -outdir=build src/Project_Plan_and_Review.tex
           cp build/Project_Plan_and_Review.pdf pdfs/
+          # VKR coursework: pdflatex + biber (biblatex); run from src/vkr so title_vkr and graphics resolve
+          (cd src/vkr && latexmk -pdf -outdir=../../build/vkr coursework.tex)
+          cp build/vkr/coursework.pdf pdfs/
       
       - name: Upload PDF artifact (PRs only)
         if: github.event_name == 'pull_request'
