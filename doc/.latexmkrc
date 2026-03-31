@@ -1,5 +1,5 @@
 $pdf_mode = 5;  # Use XeLaTeX
-$pdflatex = 'xelatex -synctex=1 -interaction=nonstopmode -file-line-error -output-directory=build %O %S';
+$xelatex = 'xelatex -synctex=1 -interaction=nonstopmode -file-line-error %O %S';
 $bibtex_use = 2;  # Use bibtex for bibliography
 
 # Build directory
