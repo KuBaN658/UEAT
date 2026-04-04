@@ -1,0 +1,20 @@
+graph TB
+  User(["Ученик"])
+  WebUI["Веб-интерфейс\nЕГЭПрорыв"]
+  Orch["Оркестратор\n(Backend)"]
+  Analytics["Аналитический\nмодуль"]
+  Profile["Профиль\nученика"]
+  Agent["Агентный\nпайплайн"]
+  KB["База знаний\n(атомы)"]
+  Qdrant[("Qdrant\nвекторная БД")]
+  LLM["LLM\n(Groq / OpenRouter)"]
+
+  User --> WebUI
+  WebUI --> Orch
+  Orch --> Analytics
+  Analytics --> Profile
+  Profile --> Agent
+  KB -.->|"индексация"| Qdrant
+  Agent -->|"retrieval"| Qdrant
+  Agent -->|"генерация"| LLM
+  Agent -->|"конспект"| WebUI
