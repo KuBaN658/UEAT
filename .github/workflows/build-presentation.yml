@@ -38,7 +38,7 @@ jobs:
       - name: Build presentation PDF
         working-directory: doc/presentation
         env:
-          PDF_OUT: ../../docs/presentation.pdf
+          PDF_OUT: ../../doc/pdfs/presentation.pdf
         run: |
           npm ci
           npx playwright install --with-deps chromium
@@ -49,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pdf-presentation
-          path: docs/presentation.pdf
+          path: doc/pdfs/presentation.pdf
           retention-days: 7
 
       - name: Comment PDF on PR
@@ -95,7 +95,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add docs/presentation.pdf
+          git add doc/pdfs/presentation.pdf
           git diff --staged --quiet || git commit -m "chore: rebuild presentation PDF [skip ci]"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           git push origin HEAD:main
