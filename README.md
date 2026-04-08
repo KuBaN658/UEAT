@@ -32,7 +32,7 @@ Monorepo для проекта генерации персонализирова
 ## Структура
 
 - `doc/` — LaTeX документы ВКР (план, обзор литературы)
-  - `doc/pdfs/` — автоматически собранные PDF (GitHub Actions)
+  - `doc/pdfs/` — автоматически собранные PDF: `build-latex.yml` и `build-presentation.yml`
 
 ## Быстрый старт
 

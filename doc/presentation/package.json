@@ -1,0 +1,11 @@
+{
+  "name": "vkr-presentation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "export:pdf": "node export-pdf.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.59.1"
+  }
+}

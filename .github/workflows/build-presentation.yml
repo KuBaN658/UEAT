@@ -1,22 +1,16 @@
-name: Build LaTeX documentation
+name: Build presentation PDF
 
 on:
   pull_request:
     paths:
-      - 'doc/src/**/*.tex'
-      - 'doc/**/*.bib'
-      - 'doc/src/vkr/graphics/**'
-      - 'doc/.latexmkrc'
-      - '.github/workflows/build-latex.yml'
+      - 'doc/presentation/**'
+      - '.github/workflows/build-presentation.yml'
   push:
     branches:
       - main
     paths:
-      - 'doc/src/**/*.tex'
-      - 'doc/**/*.bib'
-      - 'doc/src/vkr/graphics/**'
-      - 'doc/.latexmkrc'
-      - '.github/workflows/build-latex.yml'
+      - 'doc/presentation/**'
+      - '.github/workflows/build-presentation.yml'
   workflow_dispatch:
 
 concurrency:
@@ -34,29 +28,28 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install TeX Live
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-xetex texlive-latex-base texlive-latex-extra \
-            texlive-fonts-recommended texlive-latex-recommended texlive-bibtex-extra \
-            texlive-lang-cyrillic latexmk biber
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: doc/presentation/package-lock.json
 
-      - name: Build PDF
-        working-directory: doc
+      - name: Build presentation PDF
+        working-directory: doc/presentation
+        env:
+          PDF_OUT: ../pdfs/diplomawork-presentation.pdf
         run: |
-          mkdir -p pdfs build build/vkr
-          cp bib/references.bib build/references.bib
-          latexmk -pdfxe -outdir=build src/Project_Plan_and_Review.tex
-          cp build/Project_Plan_and_Review.pdf pdfs/
-          (cd src/vkr && latexmk -pdf -outdir=../../build/vkr diplomawork.tex)
-          cp build/vkr/diplomawork.pdf pdfs/
+          npm ci
+          npx playwright install --with-deps chromium
+          npm run export:pdf
 
       - name: Upload PDF artifact (PRs only)
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
-          name: pdf-latex
-          path: doc/pdfs/*.pdf
+          name: pdf-presentation
+          path: doc/pdfs/diplomawork-presentation.pdf
           retention-days: 7
 
       - name: Comment PDF on PR
@@ -65,7 +58,7 @@ jobs:
         with:
           script: |
             const workflowRunUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const body = `## 📄 LaTeX PDF\n\nСборка LaTeX завершена. Скачать можно в [артефактах workflow run](${workflowRunUrl}).`;
+            const body = `## 📄 Presentation PDF\n\nHTML-презентация экспортирована в PDF. Скачать можно в [артефактах workflow run](${workflowRunUrl}).`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
@@ -81,7 +74,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add doc/pdfs/
-          git diff --staged --quiet || git commit -m "chore: rebuild LaTeX PDFs [skip ci]"
+          git add doc/pdfs/diplomawork-presentation.pdf
+          git diff --staged --quiet || git commit -m "chore: rebuild presentation PDF [skip ci]"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           git push origin HEAD:main
