@@ -20,7 +20,6 @@
     <div class="reveal">
       <div class="slides">
 
-        <!-- ═══════════ 1. Title ═══════════ -->
         <section class="title-slide">
           <h2>Генерация персонализированных<br>учебных конспектов для ЕГЭ</h2>
           <div class="subtitle">
@@ -32,7 +31,6 @@
           </div>
         </section>
 
-        <!-- ═══════════ 2. Problem ═══════════ -->
         <section>
           <h3>Проблема</h3>
           <div class="cols">
@@ -44,24 +42,13 @@
               </ul>
             </div>
             <div class="col-narrow">
-              <!-- gap diagram -->
-              <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg" style="width:100%">
-                <rect x="10" y="10" width="110" height="50" rx="8" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.5"/>
-                <text x="65" y="40" text-anchor="middle" font-size="13" fill="#1a73e8" font-weight="600">Аналитика</text>
-                <rect x="140" y="10" width="110" height="50" rx="8" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.5"/>
-                <text x="195" y="40" text-anchor="middle" font-size="13" fill="#1a73e8" font-weight="600">LLM</text>
-                <rect x="10" y="80" width="110" height="50" rx="8" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.5"/>
-                <text x="65" y="110" text-anchor="middle" font-size="13" fill="#1a73e8" font-weight="600">База знаний</text>
-                <text x="130" y="108" text-anchor="middle" font-size="32" fill="#d93025" font-weight="700">?</text>
-                <rect x="10" y="155" width="240" height="55" rx="8" fill="#fce8e6" stroke="#d93025" stroke-width="1.5"/>
-                <text x="130" y="178" text-anchor="middle" font-size="12" fill="#d93025" font-weight="600">Нет готового решения, объединяющего</text>
-                <text x="130" y="196" text-anchor="middle" font-size="12" fill="#d93025" font-weight="600">аналитику + retrieval + генерацию</text>
-              </svg>
+              <div class="diagram-box">
+                <img src="diagrams/problem.svg" alt="Проблема">
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- ═══════════ 3. Goal & Tasks ═══════════ -->
         <section>
           <h3>Цель и задачи</h3>
           <div class="card card-accent">
@@ -78,7 +65,32 @@
           </ol>
         </section>
 
-        <!-- ═══════════ 4. Existing solutions ═══════════ -->
+        <section>
+          <h3>Связь работы с профессиональной сферой</h3>
+          <div class="cols">
+            <div class="col">
+              <div class="card card-accent">
+                <strong>Прикладной контур EdTech</strong><br>
+                <span class="small muted">Сервис встроен в действующую веб-платформу «ЕГЭ Прорыв»: реальные сценарии подготовки к ЕГЭ, учётные данные и аналитика обучения без «лабораторного» упрощения.</span>
+              </div>
+              <div class="card">
+                <strong>Рынок онлайн-подготовки</strong><br>
+                <span class="small muted">Массовые платформы конкурируют по персонализации и скорости адаптации материала; работа закрывает разрыв между подбором задач и персональной <em>теорией</em>.</span>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <strong>Инженерные требования продукта</strong><br>
+                <span class="small muted">Интеграция в существующий UI, асинхронная обработка, наблюдаемость и масштабируемость — типичные задачи промышленной разработки образовательных сервисов.</span>
+              </div>
+              <div class="card">
+                <strong>Социальный эффект</strong><br>
+                <span class="small muted">Повышение эффективности подготовки за счёт связного конспекта под профиль ошибок ученика; подход переносим на другие предметы и форматы экзаменов.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section>
           <h3>Существующие решения</h3>
           <div class="cols">
@@ -107,62 +119,42 @@
           </div>
         </section>
 
-        <!-- ═══════════ 5. Architecture ═══════════ -->
         <section>
-          <h3>Архитектура сервиса</h3>
-          <div class="diagram-box">
-            <svg viewBox="0 0 760 340" xmlns="http://www.w3.org/2000/svg" style="width:100%">
-              <defs>
-                <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#5f6368"/></marker>
-              </defs>
-              <!-- User -->
-              <circle cx="60" cy="40" r="18" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.5"/>
-              <text x="60" y="45" text-anchor="middle" font-size="11" fill="#1a73e8" font-weight="600">👤</text>
-              <text x="60" y="72" text-anchor="middle" font-size="11" fill="#5f6368">Ученик</text>
-              <!-- Web UI -->
-              <rect x="120" y="20" width="120" height="42" rx="6" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.5"/>
-              <text x="180" y="46" text-anchor="middle" font-size="12" fill="#1a73e8" font-weight="600">Веб-интерфейс</text>
-              <line x1="78" y1="40" x2="118" y2="40" stroke="#5f6368" stroke-width="1.2" marker-end="url(#ah)"/>
-              <!-- Orchestrator -->
-              <rect x="300" y="20" width="150" height="42" rx="6" fill="#1a73e8" stroke="#1a73e8" stroke-width="1.5"/>
-              <text x="375" y="46" text-anchor="middle" font-size="12" fill="#fff" font-weight="600">Оркестратор</text>
-              <line x1="242" y1="40" x2="298" y2="40" stroke="#5f6368" stroke-width="1.2" marker-end="url(#ah)"/>
-              <!-- Analytics -->
-              <rect x="300" y="100" width="150" height="42" rx="6" fill="#fce8e6" stroke="#d93025" stroke-width="1.2"/>
-              <text x="375" y="118" text-anchor="middle" font-size="11" fill="#d93025" font-weight="600">Профиль ученика</text>
-              <text x="375" y="132" text-anchor="middle" font-size="9" fill="#5f6368">ошибки · прогресс · mastery</text>
-              <line x1="375" y1="64" x2="375" y2="98" stroke="#5f6368" stroke-width="1.2" marker-end="url(#ah)"/>
-              <!-- Agent pipeline -->
-              <rect x="520" y="20" width="220" height="42" rx="6" fill="#e6f4ea" stroke="#137333" stroke-width="1.5"/>
-              <text x="630" y="46" text-anchor="middle" font-size="12" fill="#137333" font-weight="600">Агентный пайплайн</text>
-              <line x1="452" y1="40" x2="518" y2="40" stroke="#5f6368" stroke-width="1.2" marker-end="url(#ah)"/>
-              <!-- Knowledge base -->
-              <rect x="520" y="100" width="100" height="42" rx="6" fill="#fef7e0" stroke="#e37400" stroke-width="1.2"/>
-              <text x="570" y="118" text-anchor="middle" font-size="11" fill="#e37400" font-weight="600">База знаний</text>
-              <text x="570" y="132" text-anchor="middle" font-size="9" fill="#5f6368">(атомы)</text>
-              <line x1="570" y1="64" x2="570" y2="98" stroke="#5f6368" stroke-width="1.2" marker-end="url(#ah)"/>
-              <!-- Qdrant -->
-              <rect x="640" y="100" width="100" height="42" rx="6" fill="#fef7e0" stroke="#e37400" stroke-width="1.2"/>
-              <text x="690" y="118" text-anchor="middle" font-size="11" fill="#e37400" font-weight="600">Qdrant</text>
-              <text x="690" y="132" text-anchor="middle" font-size="9" fill="#5f6368">векторная БД</text>
-              <line x1="690" y1="64" x2="690" y2="98" stroke="#5f6368" stroke-width="1.2" marker-end="url(#ah)"/>
-              <!-- LLM -->
-              <rect x="580" y="180" width="140" height="42" rx="6" fill="#f3e8fd" stroke="#7627bb" stroke-width="1.5"/>
-              <text x="650" y="200" text-anchor="middle" font-size="11" fill="#7627bb" font-weight="600">LLM</text>
-              <text x="650" y="214" text-anchor="middle" font-size="9" fill="#5f6368">Groq / OpenRouter</text>
-              <line x1="630" y1="144" x2="645" y2="178" stroke="#5f6368" stroke-width="1.2" marker-end="url(#ah)"/>
-              <!-- Verification -->
-              <rect x="580" y="260" width="140" height="42" rx="6" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.2"/>
-              <text x="650" y="286" text-anchor="middle" font-size="11" fill="#1a73e8" font-weight="600">Верификация</text>
-              <line x1="650" y1="224" x2="650" y2="258" stroke="#5f6368" stroke-width="1.2" marker-end="url(#ah)"/>
-              <!-- Output arrow back -->
-              <path d="M580,280 L180,280 L180,64" stroke="#137333" stroke-width="1.5" fill="none" marker-end="url(#ah)" stroke-dasharray="6,3"/>
-              <text x="370" y="272" text-anchor="middle" font-size="10" fill="#137333" font-weight="600">конспект</text>
-            </svg>
+          <h3>Другие связанные работы</h3>
+          <p class="small muted" style="margin-bottom:0.5em">
+            Дополнение к массовым платформам и чат-ассистентам: исследования по персонализации, моделированию знаний и LLM в образовании.
+          </p>
+          <div class="cols small">
+            <div class="col">
+              <div class="card">
+                <strong>LLM в образовании</strong><br>
+                Риски галлюцинаций и несоответствия программе; обзоры вызовов внедрения (в т.ч. Kasneci et al., Yan et al., Shi et al.).
+              </div>
+              <div class="card">
+                <strong>Knowledge tracing</strong><br>
+                Классика (BKT) и нейросетевые модели (DKT): сильная диагностика мастерства навыков, но не генерация цельного учебного конспекта.
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <strong>Персонализированная обратная связь</strong><br>
+                Активная исследовательская линия по генерации подсказок и рекомендаций; часто реактивный диалог, а не отдельный структурированный артефакт «конспект».
+              </div>
+              <div class="card card-accent">
+                <strong>Наш акцент</strong><br>
+                Совмещение <strong>аналитики ученика</strong>, <strong>предметной базы (RAG)</strong> и <strong>управляемой генерации</strong> в один продуктовый сценарий — персональный конспект под ЕГЭ.
+              </div>
+            </div>
           </div>
         </section>
 
-        <!-- ═══════════ 6. Knowledge base ═══════════ -->
+        <section>
+          <h3>Архитектура сервиса</h3>
+          <div class="diagram-box">
+            <img src="diagrams/architecture.svg" alt="Архитектура">
+          </div>
+        </section>
+
         <section>
           <h3>Предметная база знаний</h3>
           <div class="cols">
@@ -181,103 +173,21 @@
             </div>
             <div class="col-narrow">
               <div class="diagram-box">
-                <svg viewBox="0 0 220 210" xmlns="http://www.w3.org/2000/svg" style="width:100%">
-                  <defs><marker id="ah2" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><path d="M0,0 L7,2.5 L0,5" fill="#1a73e8"/></marker></defs>
-                  <rect x="60" y="5" width="100" height="32" rx="6" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.2"/>
-                  <text x="110" y="26" text-anchor="middle" font-size="10" fill="#1a73e8" font-weight="600">t06_mm01</text>
-                  <rect x="10" y="65" width="90" height="32" rx="6" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.2"/>
-                  <text x="55" y="86" text-anchor="middle" font-size="10" fill="#1a73e8" font-weight="600">t06_mm02</text>
-                  <rect x="120" y="65" width="90" height="32" rx="6" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.2"/>
-                  <text x="165" y="86" text-anchor="middle" font-size="10" fill="#1a73e8" font-weight="600">t06_mm03</text>
-                  <line x1="90" y1="39" x2="65" y2="63" stroke="#1a73e8" stroke-width="1.2" marker-end="url(#ah2)"/>
-                  <line x1="130" y1="39" x2="155" y2="63" stroke="#1a73e8" stroke-width="1.2" marker-end="url(#ah2)"/>
-                  <rect x="60" y="125" width="100" height="32" rx="6" fill="#fef7e0" stroke="#e37400" stroke-width="1.2"/>
-                  <text x="110" y="146" text-anchor="middle" font-size="10" fill="#e37400" font-weight="600">t10_mm51</text>
-                  <line x1="55" y1="99" x2="85" y2="123" stroke="#1a73e8" stroke-width="1.2" marker-end="url(#ah2)"/>
-                  <line x1="165" y1="99" x2="135" y2="123" stroke="#1a73e8" stroke-width="1.2" marker-end="url(#ah2)"/>
-                  <rect x="20" y="170" width="80" height="24" rx="10" fill="#e6f4ea" stroke="#137333" stroke-width="1"/>
-                  <text x="60" y="186" text-anchor="middle" font-size="8" fill="#137333" font-weight="600">equation_setup</text>
-                  <rect x="115" y="170" width="85" height="24" rx="10" fill="#e6f4ea" stroke="#137333" stroke-width="1"/>
-                  <text x="157" y="186" text-anchor="middle" font-size="8" fill="#137333" font-weight="600">sign_analysis</text>
-                  <line x1="60" y1="159" x2="60" y2="168" stroke="#137333" stroke-width="0.8" stroke-dasharray="3,2"/>
-                  <line x1="157" y1="159" x2="157" y2="168" stroke="#137333" stroke-width="0.8" stroke-dasharray="3,2"/>
-                </svg>
+                <img src="diagrams/knowledge-base.svg" alt="База знаний">
               </div>
               <p class="small muted" style="text-align:center">DAG + shared skills</p>
             </div>
           </div>
         </section>
 
-        <!-- ═══════════ 7. RAG Pipeline ═══════════ -->
         <section>
           <h3>RAG-пайплайн</h3>
           <div class="diagram-box" style="padding:0.4em 0.2em">
-            <svg viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg" style="width:100%">
-              <defs><marker id="ah3" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><path d="M0,0 L7,2.5 L0,5" fill="#5f6368"/></marker></defs>
-              <!-- steps -->
-              <rect x="5" y="30" width="88" height="56" rx="6" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.2"/>
-              <text x="49" y="54" text-anchor="middle" font-size="9" fill="#1a73e8" font-weight="600">Мульти-</text>
-              <text x="49" y="66" text-anchor="middle" font-size="9" fill="#1a73e8" font-weight="600">запросы</text>
-              <text x="49" y="78" text-anchor="middle" font-size="8" fill="#5f6368">из профиля</text>
-
-              <line x1="95" y1="58" x2="107" y2="58" stroke="#5f6368" stroke-width="1" marker-end="url(#ah3)"/>
-
-              <rect x="110" y="30" width="88" height="56" rx="6" fill="#fef7e0" stroke="#e37400" stroke-width="1.2"/>
-              <text x="154" y="52" text-anchor="middle" font-size="9" fill="#e37400" font-weight="600">Гибридный</text>
-              <text x="154" y="64" text-anchor="middle" font-size="9" fill="#e37400" font-weight="600">поиск</text>
-              <text x="154" y="78" text-anchor="middle" font-size="8" fill="#5f6368">dense + sparse</text>
-
-              <line x1="200" y1="58" x2="212" y2="58" stroke="#5f6368" stroke-width="1" marker-end="url(#ah3)"/>
-
-              <rect x="215" y="30" width="78" height="56" rx="6" fill="#fef7e0" stroke="#e37400" stroke-width="1.2"/>
-              <text x="254" y="54" text-anchor="middle" font-size="9" fill="#e37400" font-weight="600">RRF-</text>
-              <text x="254" y="66" text-anchor="middle" font-size="9" fill="#e37400" font-weight="600">слияние</text>
-
-              <line x1="295" y1="58" x2="307" y2="58" stroke="#5f6368" stroke-width="1" marker-end="url(#ah3)"/>
-
-              <rect x="310" y="30" width="88" height="56" rx="6" fill="#fce8e6" stroke="#d93025" stroke-width="1.2"/>
-              <text x="354" y="52" text-anchor="middle" font-size="9" fill="#d93025" font-weight="600">Профильный</text>
-              <text x="354" y="64" text-anchor="middle" font-size="9" fill="#d93025" font-weight="600">буст</text>
-              <text x="354" y="78" text-anchor="middle" font-size="8" fill="#5f6368">ошибки · mastery</text>
-
-              <line x1="400" y1="58" x2="412" y2="58" stroke="#5f6368" stroke-width="1" marker-end="url(#ah3)"/>
-
-              <rect x="415" y="30" width="88" height="56" rx="6" fill="#e6f4ea" stroke="#137333" stroke-width="1.2"/>
-              <text x="459" y="52" text-anchor="middle" font-size="9" fill="#137333" font-weight="600">Расширение</text>
-              <text x="459" y="64" text-anchor="middle" font-size="9" fill="#137333" font-weight="600">по графу</text>
-              <text x="459" y="78" text-anchor="middle" font-size="8" fill="#5f6368">пререквизиты</text>
-
-              <line x1="505" y1="58" x2="517" y2="58" stroke="#5f6368" stroke-width="1" marker-end="url(#ah3)"/>
-
-              <rect x="520" y="30" width="68" height="56" rx="6" fill="#e6f4ea" stroke="#137333" stroke-width="1.2"/>
-              <text x="554" y="54" text-anchor="middle" font-size="9" fill="#137333" font-weight="600">MMR</text>
-              <text x="554" y="68" text-anchor="middle" font-size="8" fill="#5f6368">diversity</text>
-
-              <line x1="590" y1="58" x2="602" y2="58" stroke="#5f6368" stroke-width="1" marker-end="url(#ah3)"/>
-
-              <rect x="605" y="30" width="82" height="56" rx="6" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.2"/>
-              <text x="646" y="52" text-anchor="middle" font-size="9" fill="#1a73e8" font-weight="600">Топологич.</text>
-              <text x="646" y="66" text-anchor="middle" font-size="9" fill="#1a73e8" font-weight="600">сортировка</text>
-
-              <line x1="689" y1="58" x2="701" y2="58" stroke="#5f6368" stroke-width="1" marker-end="url(#ah3)"/>
-
-              <rect x="704" y="30" width="88" height="56" rx="6" fill="#f3e8fd" stroke="#7627bb" stroke-width="1.5"/>
-              <text x="748" y="54" text-anchor="middle" font-size="9" fill="#7627bb" font-weight="600">Генерация</text>
-              <text x="748" y="68" text-anchor="middle" font-size="9" fill="#7627bb" font-weight="600">LLM</text>
-
-              <!-- labels row -->
-              <text x="49" y="18" text-anchor="middle" font-size="8" fill="#5f6368">①</text>
-              <text x="154" y="18" text-anchor="middle" font-size="8" fill="#5f6368">②</text>
-              <text x="254" y="18" text-anchor="middle" font-size="8" fill="#5f6368">③</text>
-              <text x="354" y="18" text-anchor="middle" font-size="8" fill="#5f6368">④</text>
-              <text x="459" y="18" text-anchor="middle" font-size="8" fill="#5f6368">⑤</text>
-              <text x="554" y="18" text-anchor="middle" font-size="8" fill="#5f6368">⑥</text>
-              <text x="646" y="18" text-anchor="middle" font-size="8" fill="#5f6368">⑦</text>
-              <text x="748" y="18" text-anchor="middle" font-size="8" fill="#5f6368">⑧</text>
-
-              <text x="400" y="108" text-anchor="middle" font-size="10" fill="#5f6368">Контекст ранжируется по релевантности × персональности</text>
-            </svg>
+            <img src="diagrams/rag-pipeline.svg" alt="RAG-пайплайн">
           </div>
+          <p class="small muted" style="text-align:center;margin-top:0.3em">
+            Контекст ранжируется по релевантности × персональности
+          </p>
           <div class="cols small" style="margin-top:0.5em">
             <div class="col card">
               <strong>Гибридный RRF:</strong>
@@ -294,7 +204,6 @@
           </div>
         </section>
 
-        <!-- ═══════════ 8. Hybrid search ═══════════ -->
         <section>
           <h3>Векторное представление и гибридный поиск</h3>
           <div class="cols">
@@ -317,63 +226,18 @@
             </div>
             <div class="col-narrow">
               <div class="diagram-box">
-                <svg viewBox="0 0 180 200" xmlns="http://www.w3.org/2000/svg" style="width:100%">
-                  <defs><marker id="ah4" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><path d="M0,0 L7,2.5 L0,5" fill="#5f6368"/></marker></defs>
-                  <rect x="40" y="5" width="100" height="30" rx="6" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.2"/>
-                  <text x="90" y="24" text-anchor="middle" font-size="10" fill="#1a73e8" font-weight="600">Запрос</text>
-                  <line x1="65" y1="37" x2="45" y2="55" stroke="#5f6368" stroke-width="1" marker-end="url(#ah4)"/>
-                  <line x1="115" y1="37" x2="135" y2="55" stroke="#5f6368" stroke-width="1" marker-end="url(#ah4)"/>
-                  <rect x="5" y="58" width="72" height="30" rx="6" fill="#fef7e0" stroke="#e37400" stroke-width="1"/>
-                  <text x="41" y="77" text-anchor="middle" font-size="9" fill="#e37400" font-weight="600">Dense</text>
-                  <rect x="103" y="58" width="72" height="30" rx="6" fill="#fef7e0" stroke="#e37400" stroke-width="1"/>
-                  <text x="139" y="77" text-anchor="middle" font-size="9" fill="#e37400" font-weight="600">Sparse</text>
-                  <line x1="41" y1="90" x2="75" y2="115" stroke="#5f6368" stroke-width="1" marker-end="url(#ah4)"/>
-                  <line x1="139" y1="90" x2="105" y2="115" stroke="#5f6368" stroke-width="1" marker-end="url(#ah4)"/>
-                  <rect x="30" y="118" width="120" height="30" rx="6" fill="#e6f4ea" stroke="#137333" stroke-width="1.2"/>
-                  <text x="90" y="138" text-anchor="middle" font-size="10" fill="#137333" font-weight="600">RRF fusion</text>
-                  <line x1="90" y1="150" x2="90" y2="168" stroke="#5f6368" stroke-width="1" marker-end="url(#ah4)"/>
-                  <rect x="30" y="170" width="120" height="26" rx="6" fill="#f3e8fd" stroke="#7627bb" stroke-width="1.2"/>
-                  <text x="90" y="188" text-anchor="middle" font-size="10" fill="#7627bb" font-weight="600">Top-K атомов</text>
-                </svg>
+                <img src="diagrams/hybrid-search.svg" alt="Гибридный поиск">
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ═══════════ 9. Generation & verification ═══════════ -->
         <section>
           <h3>Генерация и верификация</h3>
           <div class="cols">
             <div class="col-wide">
               <div class="diagram-box">
-                <svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" style="width:100%">
-                  <defs><marker id="ah5" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><path d="M0,0 L7,2.5 L0,5" fill="#5f6368"/></marker></defs>
-                  <!-- Prompt assembly -->
-                  <rect x="10" y="10" width="140" height="45" rx="6" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.2"/>
-                  <text x="80" y="30" text-anchor="middle" font-size="10" fill="#1a73e8" font-weight="600">Сборка промпта</text>
-                  <text x="80" y="44" text-anchor="middle" font-size="8" fill="#5f6368">профиль + контекст + тема</text>
-                  <line x1="152" y1="32" x2="168" y2="32" stroke="#5f6368" stroke-width="1" marker-end="url(#ah5)"/>
-                  <!-- Generation -->
-                  <rect x="170" y="10" width="100" height="45" rx="6" fill="#f3e8fd" stroke="#7627bb" stroke-width="1.5"/>
-                  <text x="220" y="30" text-anchor="middle" font-size="10" fill="#7627bb" font-weight="600">LLM генерация</text>
-                  <text x="220" y="44" text-anchor="middle" font-size="8" fill="#5f6368">T=0.25 · 8192 tok</text>
-                  <line x1="220" y1="57" x2="220" y2="73" stroke="#5f6368" stroke-width="1" marker-end="url(#ah5)"/>
-                  <!-- Verification steps -->
-                  <rect x="120" y="75" width="200" height="36" rx="6" fill="#e6f4ea" stroke="#137333" stroke-width="1.2"/>
-                  <text x="220" y="98" text-anchor="middle" font-size="10" fill="#137333" font-weight="600">① Структурированная проверка</text>
-                  <line x1="220" y1="113" x2="220" y2="123" stroke="#5f6368" stroke-width="1" marker-end="url(#ah5)"/>
-                  <rect x="120" y="125" width="200" height="36" rx="6" fill="#e6f4ea" stroke="#137333" stroke-width="1.2"/>
-                  <text x="220" y="148" text-anchor="middle" font-size="10" fill="#137333" font-weight="600">② Математическая верификация</text>
-                  <line x1="220" y1="163" x2="220" y2="173" stroke="#5f6368" stroke-width="1" marker-end="url(#ah5)"/>
-                  <rect x="120" y="175" width="200" height="36" rx="6" fill="#e6f4ea" stroke="#137333" stroke-width="1.2"/>
-                  <text x="220" y="198" text-anchor="middle" font-size="10" fill="#137333" font-weight="600">③ Валидация формата ЕГЭ</text>
-                  <!-- retry arrow -->
-                  <path d="M118,145 L60,145 L60,30 L80,30" stroke="#d93025" stroke-width="1" fill="none" marker-end="url(#ah5)" stroke-dasharray="4,2"/>
-                  <text x="45" y="90" font-size="8" fill="#d93025" transform="rotate(-90,45,90)">retry</text>
-                  <!-- output -->
-                  <line x1="220" y1="213" x2="220" y2="232" stroke="#5f6368" stroke-width="1" marker-end="url(#ah5)"/>
-                  <text x="220" y="240" text-anchor="middle" font-size="10" fill="#1a73e8" font-weight="700">Конспект ✓</text>
-                </svg>
+                <img src="diagrams/generation-verify.svg" alt="Генерация и верификация">
               </div>
             </div>
             <div class="col-narrow">
@@ -392,7 +256,6 @@
           </div>
         </section>
 
-        <!-- ═══════════ 10. Tech stack ═══════════ -->
         <section>
           <h3>Инструменты и технологии</h3>
           <div class="cols">
@@ -443,7 +306,6 @@
           </div>
         </section>
 
-        <!-- ═══════════ 11. Results ═══════════ -->
         <section>
           <h3>Результаты</h3>
           <div class="cols">
@@ -474,7 +336,6 @@
           </div>
         </section>
 
-        <!-- ═══════════ 12. Novelty ═══════════ -->
         <section>
           <h3>Научно-прикладная новизна</h3>
           <div class="cols">
@@ -488,23 +349,12 @@
             </div>
             <div class="col-narrow">
               <div class="diagram-box">
-                <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" style="width:100%">
-                  <circle cx="60" cy="70" r="50" fill="#e8f0fe" fill-opacity="0.7" stroke="#1a73e8" stroke-width="1"/>
-                  <text x="40" y="55" font-size="9" fill="#1a73e8" font-weight="600">Learning</text>
-                  <text x="40" y="67" font-size="9" fill="#1a73e8" font-weight="600">Analytics</text>
-                  <circle cx="140" cy="70" r="50" fill="#f3e8fd" fill-opacity="0.7" stroke="#7627bb" stroke-width="1"/>
-                  <text x="140" y="55" font-size="9" fill="#7627bb" font-weight="600" text-anchor="middle">LLM</text>
-                  <text x="140" y="67" font-size="9" fill="#7627bb" font-weight="600" text-anchor="middle">генерация</text>
-                  <circle cx="100" cy="120" r="50" fill="#e6f4ea" fill-opacity="0.7" stroke="#137333" stroke-width="1"/>
-                  <text x="100" y="128" font-size="9" fill="#137333" font-weight="600" text-anchor="middle">RAG</text>
-                  <text x="100" y="80" font-size="11" fill="#d93025" font-weight="700" text-anchor="middle">★</text>
-                </svg>
+                <img src="diagrams/novelty.svg" alt="Научная новизна">
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ═══════════ 13. Conclusions ═══════════ -->
         <section>
           <h3>Выводы</h3>
           <ol>
@@ -516,7 +366,6 @@
           </ol>
         </section>
 
-        <!-- ═══════════ 14. Thank you ═══════════ -->
         <section class="end-slide">
           <h2>Спасибо за внимание</h2>
           <p class="muted" style="margin-top:0.5em">Вопросы?</p>
@@ -540,6 +389,9 @@
         margin: 0.04,
         plugins: [RevealNotes],
         pdfSeparateFragments: false,
+        pdfMaxPagesPerSlide: 1,
+      }).then(function () {
+        window.__presentationReady = true;
       });
     </script>
   </body>

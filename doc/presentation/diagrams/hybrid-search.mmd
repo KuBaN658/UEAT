@@ -1,0 +1,12 @@
+%%{init: {'themeVariables': { 'fontSize': '15px'}}}%%
+flowchart TB
+  Q[Запрос]
+  D1[Dense]
+  S1[Sparse]
+  RRF[RRF fusion]
+  Top[Top-K атомов]
+  Q --> D1
+  Q --> S1
+  D1 --> RRF
+  S1 --> RRF
+  RRF --> Top

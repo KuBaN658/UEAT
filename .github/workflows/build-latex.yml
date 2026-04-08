@@ -28,6 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: read
     steps:
       - uses: actions/checkout@v4
         with:
@@ -57,6 +58,42 @@ jobs:
           name: pdf-latex
           path: doc/pdfs/*.pdf
           retention-days: 7
+
+      - name: Comment PDF on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const runId = context.runId;
+            const workflowRunUrl = `https://github.com/${owner}/${repo}/actions/runs/${runId}`;
+
+            const runResp = await github.rest.actions.getWorkflowRun({ owner, repo, run_id: runId });
+            const checkSuiteId = runResp.data.check_suite_id;
+
+            const artifactsResp = await github.rest.actions.listWorkflowRunArtifacts({
+              owner,
+              repo,
+              run_id: runId,
+              name: 'pdf-latex',
+              per_page: 5,
+            });
+            const artifact = artifactsResp.data.artifacts[0];
+
+            const artifactUrl =
+              checkSuiteId && artifact?.id
+                ? `https://github.com/${owner}/${repo}/suites/${checkSuiteId}/artifacts/${artifact.id}`
+                : workflowRunUrl;
+
+            const body = `## 📄 LaTeX PDF\n\nСборка LaTeX завершена. [Скачать PDF](${artifactUrl}) (архив ZIP: \`Project_Plan_and_Review.pdf\`, \`diplomawork.pdf\`).`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
 
       - name: Commit PDF to main branch
         if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'

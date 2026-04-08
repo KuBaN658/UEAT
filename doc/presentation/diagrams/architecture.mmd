@@ -1,0 +1,18 @@
+%%{init: {'themeVariables': { 'fontSize': '14px'}}}%%
+flowchart LR
+  U((Ученик))
+  Web[Веб-интерфейс]
+  Orch[Оркестратор]
+  Prof[Профиль ученика]
+  Agent[Агентный пайплайн]
+  KB[База знаний]
+  Q[(Qdrant)]
+  LLM[LLM]
+  Ver[Верификация]
+  U --> Web --> Orch --> Agent
+  Orch --> Prof
+  Agent --> KB
+  Agent --> Q
+  Agent --> LLM
+  Agent --> Ver
+  Ver -.->|конспект| Web

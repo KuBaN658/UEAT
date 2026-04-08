@@ -3,6 +3,7 @@ import { mkdir, readFile } from "node:fs/promises";
 import { dirname, extname, join, normalize, resolve } from "node:path";
 import process from "node:process";
 import { chromium } from "playwright";
+import { buildDiagramsFromMmd } from "./build-diagrams.mjs";
 
 const HOST = "127.0.0.1";
 const PORT = 4173;
@@ -42,6 +43,7 @@ const server = createServer(async (req, res) => {
 });
 
 async function run() {
+  buildDiagramsFromMmd();
   await mkdir(dirname(OUT_FILE), { recursive: true });
   await new Promise((resolveListen) => server.listen(PORT, HOST, resolveListen));
 
@@ -49,26 +51,23 @@ async function run() {
   const page = await browser.newPage({
     viewport: { width: 1600, height: 900 },
   });
+  page.setDefaultTimeout(60_000);
 
   await page.goto(`http://${HOST}:${PORT}/index.html?print-pdf`, {
-    waitUntil: "networkidle",
+    waitUntil: "load",
   });
   await page.waitForFunction(
-    () => document.documentElement.classList.contains("print-pdf"),
-    { timeout: 30_000 },
+    () => window.__presentationReady === true,
+    { timeout: 60_000 },
   );
-  await new Promise((r) => setTimeout(r, 800));
+  await new Promise((r) => setTimeout(r, 500));
+
   await page.pdf({
     path: OUT_FILE,
-    width: "1920px",
-    height: "1080px",
+    width: "1280px",
+    height: "720px",
     printBackground: true,
-    margin: {
-      top: "0",
-      right: "0",
-      bottom: "0",
-      left: "0",
-    },
+    margin: { top: "0", right: "0", bottom: "0", left: "0" },
   });
 
   await browser.close();

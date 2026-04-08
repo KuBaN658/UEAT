@@ -3,9 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:diagrams": "node build-diagrams.mjs",
     "export:pdf": "node export-pdf.mjs"
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.12.0",
     "playwright": "1.59.1"
   }
 }
