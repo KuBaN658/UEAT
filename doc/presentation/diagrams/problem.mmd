@@ -1,0 +1,11 @@
+%%{init: {'themeVariables': { 'fontSize': '15px'}}}%%
+flowchart TB
+  A[Аналитика]
+  B[LLM]
+  C[База знаний]
+  D{{"?"}}
+  E["Нет готового решения:<br/>аналитика + retrieval + генерация"]
+  A --> D
+  B --> D
+  C --> D
+  D --> E

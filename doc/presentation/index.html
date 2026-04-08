@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ВКР — персонализированные учебные конспекты</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css"
+      id="theme"
+    />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section class="title-slide">
+          <h2>Генерация персонализированных<br>учебных конспектов для ЕГЭ</h2>
+          <div class="subtitle">
+            Выпускная квалификационная работа (программная ВКР)
+          </div>
+          <div class="org">
+            НИУ ВШЭ · Факультет компьютерных наук<br>
+            Платформа «ЕГЭ Прорыв»
+          </div>
+        </section>
+
+        <section>
+          <h3>Проблема</h3>
+          <div class="cols">
+            <div class="col">
+              <ul>
+                <li>Платформы ЕГЭ подбирают <strong>задания</strong>, но не адаптируют <strong>теорию</strong>.</li>
+                <li>Ученик с устойчивыми ошибками собирает объяснение сам — из видео, чатов, заметок.</li>
+                <li>LLM генерируют связный текст, но без ограничений подвержены <strong>галлюцинациям</strong>.</li>
+              </ul>
+            </div>
+            <div class="col-narrow">
+              <div class="diagram-box">
+                <img src="diagrams/problem.svg" alt="Проблема">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Цель и задачи</h3>
+          <div class="card card-accent">
+            <strong>Цель:</strong> разработать сервис, автоматически формирующий
+            персонализированный конспект по математике ЕГЭ на основе
+            цифрового следа ученика.
+          </div>
+          <ol class="small" style="margin-top:0.5em">
+            <li>Определить состав аналитики для персонализации: ошибки, прогресс, mastery.</li>
+            <li>Спроектировать RAG-пайплайн с предметной базой знаний.</li>
+            <li>Реализовать многошаговую генерацию с верификацией.</li>
+            <li>Интегрировать сервис в действующую платформу «ЕГЭ Прорыв».</li>
+            <li>Оценить качество конспектов: персонализация, корректность, читаемость.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Связь работы с профессиональной сферой</h3>
+          <div class="cols">
+            <div class="col">
+              <div class="card card-accent">
+                <strong>Прикладной контур EdTech</strong><br>
+                <span class="small muted">Сервис встроен в действующую веб-платформу «ЕГЭ Прорыв»: реальные сценарии подготовки к ЕГЭ, учётные данные и аналитика обучения без «лабораторного» упрощения.</span>
+              </div>
+              <div class="card">
+                <strong>Рынок онлайн-подготовки</strong><br>
+                <span class="small muted">Массовые платформы конкурируют по персонализации и скорости адаптации материала; работа закрывает разрыв между подбором задач и персональной <em>теорией</em>.</span>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <strong>Инженерные требования продукта</strong><br>
+                <span class="small muted">Интеграция в существующий UI, асинхронная обработка, наблюдаемость и масштабируемость — типичные задачи промышленной разработки образовательных сервисов.</span>
+              </div>
+              <div class="card">
+                <strong>Социальный эффект</strong><br>
+                <span class="small muted">Повышение эффективности подготовки за счёт связного конспекта под профиль ошибок ученика; подход переносим на другие предметы и форматы экзаменов.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Существующие решения</h3>
+          <div class="cols">
+            <div class="col">
+              <div class="card">
+                <strong>Массовые платформы</strong><br>
+                <span class="small">ЕГЭLand, Умскул, MAXIMUM</span><br>
+                <span class="small muted">Персонализация на уровне курса / набора задач. Теория универсальна.</span>
+              </div>
+              <div class="card">
+                <strong>Learning Analytics / KT</strong><br>
+                <span class="small muted">Хорошо диагностируют «что плохо», но не отвечают «как объяснить».</span>
+              </div>
+              <div class="card">
+                <strong>LLM-ассистенты</strong><br>
+                <span class="small">Яндекс Учебник, Khanmigo, Q-Chat</span><br>
+                <span class="small muted">Реактивный чат → нет цельного учебного конспекта.</span>
+              </div>
+            </div>
+            <div class="col-narrow" style="display:flex;align-items:center">
+              <div class="card card-accent" style="text-align:center;width:100%">
+                <strong>Наше решение</strong><br>
+                <span class="small">Аналитика + RAG + LLM<br>= персональный конспект<br>как самостоятельный артефакт</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Другие связанные работы</h3>
+          <p class="small muted" style="margin-bottom:0.5em">
+            Дополнение к массовым платформам и чат-ассистентам: исследования по персонализации, моделированию знаний и LLM в образовании.
+          </p>
+          <div class="cols small">
+            <div class="col">
+              <div class="card">
+                <strong>LLM в образовании</strong><br>
+                Риски галлюцинаций и несоответствия программе; обзоры вызовов внедрения (в т.ч. Kasneci et al., Yan et al., Shi et al.).
+              </div>
+              <div class="card">
+                <strong>Knowledge tracing</strong><br>
+                Классика (BKT) и нейросетевые модели (DKT): сильная диагностика мастерства навыков, но не генерация цельного учебного конспекта.
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <strong>Персонализированная обратная связь</strong><br>
+                Активная исследовательская линия по генерации подсказок и рекомендаций; часто реактивный диалог, а не отдельный структурированный артефакт «конспект».
+              </div>
+              <div class="card card-accent">
+                <strong>Наш акцент</strong><br>
+                Совмещение <strong>аналитики ученика</strong>, <strong>предметной базы (RAG)</strong> и <strong>управляемой генерации</strong> в один продуктовый сценарий — персональный конспект под ЕГЭ.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Архитектура сервиса</h3>
+          <div class="diagram-box">
+            <img src="diagrams/architecture.svg" alt="Архитектура">
+          </div>
+        </section>
+
+        <section>
+          <h3>Предметная база знаний</h3>
+          <div class="cols">
+            <div class="col">
+              <p class="small">Вместо автоматического chunking — экспертно размеченные <strong>атомы</strong>:</p>
+              <ul class="small">
+                <li><strong>id</strong> — идентификатор (t06_mm01, t12_mm03, …)</li>
+                <li><strong>text</strong> — учебный текст с формулами и примерами</li>
+                <li><strong>error_tags</strong> — теги типичных ошибок</li>
+                <li><strong>prerequisites</strong> — DAG пререквизитов</li>
+                <li><strong>shared_skills</strong> — межзадачные навыки</li>
+              </ul>
+              <div class="card card-accent small" style="margin-top:0.4em">
+                + файл <strong>misconceptions.yaml</strong> — экспертные описания типичных заблуждений
+              </div>
+            </div>
+            <div class="col-narrow">
+              <div class="diagram-box">
+                <img src="diagrams/knowledge-base.svg" alt="База знаний">
+              </div>
+              <p class="small muted" style="text-align:center">DAG + shared skills</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>RAG-пайплайн</h3>
+          <div class="diagram-box" style="padding:0.4em 0.2em">
+            <img src="diagrams/rag-pipeline.svg" alt="RAG-пайплайн">
+          </div>
+          <p class="small muted" style="text-align:center;margin-top:0.3em">
+            Контекст ранжируется по релевантности × персональности
+          </p>
+          <div class="cols small" style="margin-top:0.5em">
+            <div class="col card">
+              <strong>Гибридный RRF:</strong>
+              <span class="formula" style="display:block;margin-top:0.2em">
+                RRF(d) = w<sub>dense</sub> / (k + r<sub>dense</sub>) + w<sub>sparse</sub> / (k + r<sub>sparse</sub>)
+              </span>
+            </div>
+            <div class="col card">
+              <strong>Профильный буст:</strong>
+              <span class="formula" style="display:block;margin-top:0.2em">
+                S(d) = S<sub>fused</sub>(d) + γ · (err(d) + β · skill(d)) − 𝟙[m>θ] · δ
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Векторное представление и гибридный поиск</h3>
+          <div class="cols">
+            <div class="col">
+              <div class="card">
+                <strong>Dense</strong> — mxbai-embed-large-v1 (1024d)<br>
+                <span class="small muted">Семантическая близость тем и понятий</span>
+              </div>
+              <div class="card">
+                <strong>Sparse</strong> — BM25 (Qdrant/bm25)<br>
+                <span class="small muted">Точное совпадение ключевых терминов</span>
+              </div>
+              <div class="card">
+                <strong>Qdrant</strong> — два именованных пространства<br>
+                <span class="small muted">payload-индексы по task_number, subtypes → серверная фильтрация</span>
+              </div>
+              <div class="card card-accent small" style="margin-top:0.3em">
+                Инкрементальное обновление: SHA-256 хеш контента → пропуск повторного эмбеддинга
+              </div>
+            </div>
+            <div class="col-narrow">
+              <div class="diagram-box">
+                <img src="diagrams/hybrid-search.svg" alt="Гибридный поиск">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Генерация и верификация</h3>
+          <div class="cols">
+            <div class="col-wide">
+              <div class="diagram-box">
+                <img src="diagrams/generation-verify.svg" alt="Генерация и верификация">
+              </div>
+            </div>
+            <div class="col-narrow">
+              <p class="small"><strong>Промпт включает:</strong></p>
+              <ul class="small">
+                <li>Задание + подтип</li>
+                <li>Уровень детализации<br>(по точности: &lt;30% → подробный)</li>
+                <li>Топ-5 тегов ошибок</li>
+                <li>Извлечённый контекст</li>
+                <li>Темы-фронтиры (зона ближайшего развития)</li>
+              </ul>
+              <div class="card card-accent small" style="margin-top:0.3em">
+                Постобработка: удаление ID атомов, блоков мышления, принудительная конвертация JSON → Markdown
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Инструменты и технологии</h3>
+          <div class="cols">
+            <div class="col">
+              <table class="small" style="border-collapse:collapse;width:100%">
+                <tr style="border-bottom:1px solid #dadce0">
+                  <td style="padding:0.3em 0.5em"><strong>Компонент</strong></td>
+                  <td style="padding:0.3em 0.5em"><strong>Технология</strong></td>
+                </tr>
+                <tr style="border-bottom:1px solid #f0f0f0">
+                  <td style="padding:0.3em 0.5em">Оркестрация</td>
+                  <td style="padding:0.3em 0.5em">Python · LangChain → LangGraph</td>
+                </tr>
+                <tr style="border-bottom:1px solid #f0f0f0">
+                  <td style="padding:0.3em 0.5em">Векторная БД</td>
+                  <td style="padding:0.3em 0.5em">Qdrant (dense + sparse)</td>
+                </tr>
+                <tr style="border-bottom:1px solid #f0f0f0">
+                  <td style="padding:0.3em 0.5em">Эмбеддинги</td>
+                  <td style="padding:0.3em 0.5em">mxbai-embed-large-v1 · fastembed</td>
+                </tr>
+                <tr style="border-bottom:1px solid #f0f0f0">
+                  <td style="padding:0.3em 0.5em">LLM backend</td>
+                  <td style="padding:0.3em 0.5em">Groq / OpenRouter / Ollama</td>
+                </tr>
+                <tr style="border-bottom:1px solid #f0f0f0">
+                  <td style="padding:0.3em 0.5em">База знаний</td>
+                  <td style="padding:0.3em 0.5em">YAML-атомы (граф зависимостей)</td>
+                </tr>
+                <tr>
+                  <td style="padding:0.3em 0.5em">Платформа</td>
+                  <td style="padding:0.3em 0.5em">ЕГЭ Прорыв (веб-сервис)</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-narrow" style="display:flex;align-items:center">
+              <div style="text-align:center;width:100%">
+                <span class="pill">Python</span>
+                <span class="pill">LangChain</span>
+                <span class="pill">Qdrant</span>
+                <span class="pill">fastembed</span>
+                <span class="pill">Groq</span>
+                <span class="pill">YAML</span>
+                <span class="pill">RAG</span>
+                <span class="pill">LLM</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Результаты</h3>
+          <div class="cols">
+            <div class="col">
+              <ul>
+                <li>Конспекты генерируются на основе <strong>анонимизированной выборки 36 учеников</strong>.</li>
+                <li>Многоступенчатая верификация снижает предметные неточности.</li>
+                <li>Параметры RAG вынесены в конфигурацию — воспроизводимость экспериментов.</li>
+              </ul>
+              <div class="card card-accent small" style="margin-top:0.4em">
+                Пример конспекта приведён в приложении к ВКР.
+              </div>
+            </div>
+            <div class="col-narrow">
+              <div class="card" style="text-align:center">
+                <span style="font-size:2em;color:#1a73e8">36</span><br>
+                <span class="small muted">учеников в выборке</span>
+              </div>
+              <div class="card" style="text-align:center;margin-top:0.3em">
+                <span style="font-size:2em;color:#137333">12</span><br>
+                <span class="small muted">атомов контекста (top-k)</span>
+              </div>
+              <div class="card" style="text-align:center;margin-top:0.3em">
+                <span style="font-size:2em;color:#7627bb">3</span><br>
+                <span class="small muted">этапа верификации</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Научно-прикладная новизна</h3>
+          <div class="cols">
+            <div class="col">
+              <ol>
+                <li>Интеграция <strong>learner modeling + RAG + LLM</strong> в едином прикладном контуре.</li>
+                <li>Генерация <strong>полноценного учебного артефакта</strong>, а не отдельного ответа в чате.</li>
+                <li>Воспроизводимый пайплайн с явными этапами и <strong>настраиваемыми параметрами</strong>.</li>
+                <li>Подход расширяем на <strong>другие предметы и форматы</strong> экзаменов.</li>
+              </ol>
+            </div>
+            <div class="col-narrow">
+              <div class="diagram-box">
+                <img src="diagrams/novelty.svg" alt="Научная новизна">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Выводы</h3>
+          <ol>
+            <li>Разработан сервис генерации <strong>персонализированных конспектов</strong> для ЕГЭ, интегрируемый в платформу «ЕГЭ Прорыв».</li>
+            <li>Предложен <strong>многоуровневый RAG-пайплайн</strong> с гибридным поиском, профильным бустом, графом пререквизитов и MMR-диверсификацией.</li>
+            <li>Реализована <strong>многоступенчатая верификация</strong>, снижающая риск предметных неточностей.</li>
+            <li>Все параметры вынесены в конфигурацию — <strong>воспроизводимость</strong> экспериментов без изменения кода.</li>
+            <li>Подход расширяем на другие предметы и экзаменационные форматы.</li>
+          </ol>
+        </section>
+
+        <section class="end-slide">
+          <h2>Спасибо за внимание</h2>
+          <p class="muted" style="margin-top:0.5em">Вопросы?</p>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: "c/t",
+        controls: true,
+        progress: true,
+        center: false,
+        transition: "slide",
+        width: 1280,
+        height: 720,
+        margin: 0.04,
+        plugins: [RevealNotes],
+        pdfSeparateFragments: false,
+        pdfMaxPagesPerSlide: 1,
+      }).then(function () {
+        window.__presentationReady = true;
+      });
+    </script>
+  </body>
+</html>
