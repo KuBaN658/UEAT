@@ -6,6 +6,7 @@
 - `diagrams/*.mmd` — исходники [Mermaid](https://mermaid.js.org/); SVG **не хранится в репозитории** и создаётся при экспорте PDF (или вручную: `npm run build:diagrams`).
 - `theme.css` — локальные стили.
 - `export-pdf.mjs` — перед PDF: `mmdc` для всех `.mmd` → `.svg`, затем Playwright печатает слайды.
+- `puppeteer-config.json` — аргументы Chromium для `mmdc` (на Linux в CI без sandbox иначе падает запуск браузера).
 
 ## Как открыть презентацию
 

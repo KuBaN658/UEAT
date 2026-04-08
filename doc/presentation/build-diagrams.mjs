@@ -20,16 +20,29 @@ export function buildDiagramsFromMmd() {
       "Mermaid CLI not found at " + mmdcCli + "; run npm install in doc/presentation",
     );
   }
+  const puppeteerConfig = join(ROOT, "puppeteer-config.json");
   const diagramsDir = join(ROOT, "diagrams");
   const files = readdirSync(diagramsDir).filter((f) => f.endsWith(".mmd"));
   for (const f of files) {
     const inPath = join(diagramsDir, f);
     const outPath = join(diagramsDir, f.replace(/\.mmd$/i, ".svg"));
-    execFileSync(
-      process.execPath,
-      [mmdcCli, "-i", inPath, "-o", outPath, "-b", "transparent", "--quiet"],
-      { cwd: ROOT, stdio: "inherit", env: process.env },
-    );
+    const args = [
+      mmdcCli,
+      "-i",
+      inPath,
+      "-o",
+      outPath,
+      "-b",
+      "transparent",
+      "--quiet",
+      "-p",
+      puppeteerConfig,
+    ];
+    execFileSync(process.execPath, args, {
+      cwd: ROOT,
+      stdio: "inherit",
+      env: process.env,
+    });
   }
 }
 

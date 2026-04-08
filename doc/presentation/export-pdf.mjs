@@ -47,7 +47,13 @@ async function run() {
   await mkdir(dirname(OUT_FILE), { recursive: true });
   await new Promise((resolveListen) => server.listen(PORT, HOST, resolveListen));
 
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+    ],
+  });
   const page = await browser.newPage({
     viewport: { width: 1600, height: 900 },
   });
