@@ -22,9 +22,9 @@
 
 После этого появится файл `diplomawork-presentation.pdf` (в текущей директории).
 
-Для вывода в другой путь (как в CI):
+Канонический путь в репозитории (как в CI):
 
-- `PDF_OUT=../pdfs/diplomawork-presentation.pdf npm run export:pdf`
+- `PDF_OUT=../../docs/presentation.pdf npm run export:pdf` (из каталога `doc/presentation`)
 
 ## Режим печати вручную (альтернатива)
 
