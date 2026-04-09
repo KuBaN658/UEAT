@@ -2,17 +2,16 @@
 flowchart LR
   U((Ученик))
   Web[Веб-интерфейс]
-  Orch[Оркестратор]
-  Prof[Профиль ученика]
-  Agent[Агентный пайплайн]
-  KB[База знаний]
-  Q[(Qdrant)]
-  LLM[LLM]
-  Ver[Верификация]
-  U --> Web --> Orch --> Agent
+  subgraph Service [Сервис генерации конспектов]
+    Orch[Оркестратор]
+    Prof[Профиль ученика]
+    Agent[Агент 
+    LLM]
+    KB[(База знаний)]
+  end
+  U --> Web --> Orch -->|контекст| Agent
   Orch --> Prof
-  Agent --> KB
-  Agent --> Q
-  Agent --> LLM
-  Agent --> Ver
-  Ver -.->|конспект| Web
+  Prof -.-> Orch
+  Orch --> KB
+  KB -.-> Orch
+  Agent -.->|конспект| Web
