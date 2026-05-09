@@ -5,39 +5,36 @@ config:
 ---
 graph TB
   User(["Ученик"])
-  ExternalWeb["Внешний веб-интерфейс
-  ЕГЭПрорыв"]
-  DevWeb["Наш веб-интерфейс
-  только разработка"]
-  Backend["Backend API
-  FastAPI"]
-  Profile["Профиль
-  ученика"]
+  ExternalWeb["Платформа ЕГЭПрорыв
+  (внешний веб-интерфейс)"]
+  Admin["Модуль admin
+  симулятор + панель наблюдаемости MVP"]
+  Kafka[("Kafka
+  ege.submissions.v1")]
+  Backend["Backend
+  API + воркеры"]
   Agent["Агентный пайплайн
   LangGraph"]
   KB["База знаний
   learning atoms"]
   Qdrant[("Qdrant
   векторная БД")]
-  MCP["MCP-сервис
-  инструменты"]
+  MCP["MCP-инструменты
+  stdio-подпроцесс"]
   LLM["LLM
   Groq/OpenRouter/Ollama"]
-  Archive["Eval-архив
-  конспекты и оценки"]
 
   User --> ExternalWeb
-  ExternalWeb -->|"запрос генерации"| Backend
-  DevWeb -.->|"dev/debug"| Backend
+  ExternalWeb -->|"submission"| Kafka
+  Kafka -->|"фоновая диагностика"| Backend
+  ExternalWeb -->|"POST /jobs (история)"| Backend
+  Admin -.->|"dev / observability"| Backend
 
-  Backend --> Profile
   Backend --> Agent
-  Profile --> Agent
   KB -.->|"индексация"| Qdrant
   Agent -->|"retrieval"| Qdrant
   Agent -.->|"tools"| MCP
   Agent -->|"генерация"| LLM
-  Agent -->|"сохранение"| Archive
-  Agent -->|"конспект"| Backend
-  Backend --> ExternalWeb
+  Agent --> Backend
+  Backend -.->|"callbacks"| ExternalWeb
   ExternalWeb --> User

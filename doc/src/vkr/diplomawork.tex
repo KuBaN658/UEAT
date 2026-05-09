@@ -448,8 +448,15 @@ LLM-ориентированные ассистенты.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.55\textwidth]{arch_service.pdf}
-	\caption{Архитектура сервиса персонализированных конспектов.}
+	\includegraphics[width=0.7\textwidth]{arch_service.pdf}
+	\caption{Архитектура сервиса персонализированных конспектов
+	(верхнеуровневое представление). Блок \emph{Backend} объединяет HTTP API
+	и фоновых воркеров; их разделение и развёртывание подробно рассмотрены
+	в Главе~\ref{ch:rag} и Главе~4 (Таблица~\ref{tab:k8s_topology}).
+	Платформа ЕГЭПрорыв взаимодействует с сервисом по двум каналам: фоновая
+	диагностика ответов через Kafka и явный запрос генерации конспекта через
+	\texttt{POST /jobs}. Async-семантика возврата результата (callback /
+	опрос) описана в подразделе~\ref{subsec:flow2}.}
 	\label{fig:arch_service}
 \end{figure}
 
