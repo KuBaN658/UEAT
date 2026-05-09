@@ -1,0 +1,12 @@
+flowchart LR
+    UI([Ученик]):::ext -- "1: нажатие<br/>«Сгенерировать»" --> P["Платформа<br/>ЕГЭПрорыв"]:::them
+    P -- "2: SELECT истории" --> PDB[("Платформа PG<br/>история ответов")]:::them
+    P -- "3: POST /jobs" --> API["Наш API"]:::us
+    API --> CJ[("conspect_jobs<br/>очередь в Postgres<br/>SKIP LOCKED")]:::us
+    CJ --> CW["conspect-worker<br/>(Глава 3 — RAG + LLM)"]:::us
+    CW -- "4: retrieval +<br/>генерация" --> LLM([LLM]):::ext
+    CW -. "5: callback<br/>POST personal-conspect" .-> P
+
+    classDef us fill:#d4f5d4,stroke:#2a8a2a,color:#000
+    classDef them fill:#d4e5f5,stroke:#2a5a8a,color:#000
+    classDef ext fill:#eaeaea,stroke:#666,color:#000
