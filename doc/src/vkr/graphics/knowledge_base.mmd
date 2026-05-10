@@ -1,0 +1,31 @@
+%%{init: {"flowchart": {"htmlLabels": true}} }%%
+flowchart TD
+    basic_motion["Формулы равномерного движения<br/><i>s = v · t</i>"]
+    same_direction["Два объекта в одном направлении"]
+    meeting_motion["Встречное движение"]
+    pursuit["Задачи на догоняние с разными скоростями"]
+    route_segments["Движение по участкам с разными скоростями"]
+    time_conditions["Временные условия<br/>прибыл на <i>k</i> часов раньше/позже"]
+    average_speed["Средняя скорость<br/><i>v<sub>ср</sub> = S / T</i>"]
+    turnaround["Движение по участкам с разворотом"]
+    multi_segment_avg["Средняя скорость многоучасткового маршрута"]
+    complex_avg["Сложные задачи на среднюю скорость"]
+    distance_time_params["Уравнения расстояние–время<br/><i>S / v − S / (v + k) = d</i>"]
+    param_time["Параметрические задачи на время"]
+    param_advanced["Параметрические задачи расстояние–время"]
+
+    basic_motion --> same_direction
+    same_direction --> meeting_motion
+
+    meeting_motion --> pursuit
+    meeting_motion --> route_segments
+    meeting_motion --> time_conditions
+
+    route_segments --> average_speed
+    route_segments --> turnaround
+    average_speed --> multi_segment_avg
+    multi_segment_avg --> complex_avg
+
+    time_conditions --> distance_time_params
+    time_conditions --> param_time
+    distance_time_params --> param_advanced
