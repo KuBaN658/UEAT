@@ -1,0 +1,1166 @@
+- id: t16_mm01
+  title: Сложные проценты — формула роста
+  text: 'Если на сумму $S_0$ ежегодно начисляется $p\%$ сложных процентов, то через $n$ лет: $S_n=S_0(1+r)^n$, где $r=p/100$. Каждый период проценты начисляются на текущую сумму, а не на исходную. Это основа всех финансовых задач 16-й.
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  - deposit
+  - debt_schedule_credit
+  error_tags:
+  - fin_simple_vs_compound
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - D334F2
+  - F4D70D
+  - 53A300
+  - CD6602
+  - D63B7C
+  - 4221BE
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 6FE223
+  - 71B1D1
+  - F6F358
+  - 7A0F52
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 6D2E6D
+  - 686E6E
+  - FE9D85
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm02
+  title: Коэффициент роста k = 1 + p/100
+  text: 'Если ставка $p\%$ за период, то после начисления сумма умножается на $k=1+p/100$. Например, $p=10\%\Rightarrow k=1{,}1$; $p=20\%\Rightarrow k=1{,}2$. Используй $k$ как один множитель — это сильно сокращает запись и уменьшает вероятность ошибок.
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  - differentiated_credit
+  - debt_schedule_credit
+  error_tags:
+  - fin_wrong_growth_factor
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - 3eFF42
+  - 36614C
+  - D334F2
+  - F4D70D
+  - 78cB01
+  - 29E10A
+  - 53A300
+  - CD6602
+  - 423D7F
+  - BFFA71
+  - D63B7C
+  - FE4FB7
+  - 7A1CB0
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 2A731e
+  - '257120'
+  - 6FE223
+  - 4DD4D9
+  - 71B1D1
+  - 8C8AD4
+  - F6F358
+  - 7A0F52
+  - 81455c
+  - FB11A1
+  - C17CAC
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 45786c
+  - B4B56D
+  - 6D2E6D
+  - 686E6E
+  - 4C1D36
+  - FE9D85
+  - BA898B
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm03
+  title: Закон изменения долга за период
+  text: 'После одного периода (года/месяца): долг растёт на проценты, потом из него вычитают платёж $X_i$. Формула: $D_i=D_{i-1}\cdot k - X_i$. Это рекуррентное соотношение применяется ко всем кредитным схемам без исключения.
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  - differentiated_credit
+  - debt_schedule_credit
+  error_tags: []
+  prerequisites: []
+  shared_skills:
+  - equation_setup
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - 3eFF42
+  - 36614C
+  - D334F2
+  - F4D70D
+  - 78cB01
+  - 29E10A
+  - 53A300
+  - CD6602
+  - 423D7F
+  - BFFA71
+  - D63B7C
+  - FE4FB7
+  - 7A1CB0
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 2A731e
+  - '257120'
+  - 6FE223
+  - 4DD4D9
+  - 71B1D1
+  - 8C8AD4
+  - F6F358
+  - 7A0F52
+  - 81455c
+  - FB11A1
+  - C17CAC
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 45786c
+  - B4B56D
+  - 6D2E6D
+  - 686E6E
+  - 4C1D36
+  - FE9D85
+  - BA898B
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm04
+  title: Таблица «начало — после процентов — платёж — остаток»
+  text: 'Главный приём для 16-й задачи: построй таблицу из 4 столбцов для каждого периода. (1) Долг на начало; (2) после начисления процентов: $\cdot k$; (3) платёж $X_i$; (4) остаток в конце периода. Это убирает off-by-one и делает рассуждение проверяемым.
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  - differentiated_credit
+  - debt_schedule_credit
+  error_tags: []
+  prerequisites:
+  - t16_mm03
+  shared_skills: []
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - 3eFF42
+  - 36614C
+  - D334F2
+  - F4D70D
+  - 78cB01
+  - 29E10A
+  - 53A300
+  - CD6602
+  - 423D7F
+  - BFFA71
+  - D63B7C
+  - FE4FB7
+  - 7A1CB0
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 2A731e
+  - '257120'
+  - 6FE223
+  - 4DD4D9
+  - 71B1D1
+  - 8C8AD4
+  - F6F358
+  - 7A0F52
+  - 81455c
+  - FB11A1
+  - C17CAC
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 45786c
+  - B4B56D
+  - 6D2E6D
+  - 686E6E
+  - 4C1D36
+  - FE9D85
+  - BA898B
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm05
+  title: Сумма геометрической прогрессии
+  text: '$1+k+k^2+\ldots+k^{n-1}=\dfrac{k^n-1}{k-1}$ при $k\ne 1$. Используется при выводе формулы аннуитетного платежа: после раскрытия $D_n=Sk^n - X(k^{n-1}+\ldots+1)$. Запомни число слагаемых — ровно $n$, а не $n-1$ или $n+1$.
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  error_tags:
+  - fin_geometric_sum_index_off
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - D334F2
+  - F4D70D
+  - 53A300
+  - CD6602
+  - D63B7C
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 6FE223
+  - 71B1D1
+  - F6F358
+  - 7A0F52
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 6D2E6D
+  - 686E6E
+  - FE9D85
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm06
+  title: Сумма арифметической прогрессии
+  text: '$\Sigma=\frac{(a_1+a_n)\cdot n}{2}=\frac{(2a_1+(n-1)d)\cdot n}{2}$. Применяется при подсчёте суммы платежей в дифференцированной схеме (платежи убывают равномерно — арифметическая прогрессия).
+
+    '
+  task_number: 16
+  subtypes:
+  - differentiated_credit
+  error_tags: []
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - 3eFF42
+  - 36614C
+  - 78cB01
+  - 29E10A
+  - 423D7F
+  - BFFA71
+  - FE4FB7
+  - 7A1CB0
+  - 2A731e
+  - '257120'
+  - 4DD4D9
+  - 8C8AD4
+  - 81455c
+  - FB11A1
+  - C17CAC
+  - 45786c
+  - B4B56D
+  - 4C1D36
+  - BA898B
+- id: t16_mm07
+  title: Аннуитетный кредит — постановка
+  text: 'Заёмщик берёт $S$ под $p\%$ за период, гасит $n$ равными платежами $X$. После $n$ периодов долг должен быть нулём: $D_n=0$. Из этого условия выводится формула на $X$ через геометрическую прогрессию.
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  error_tags:
+  - fin_boundary_debt_not_zero
+  prerequisites:
+  - t16_mm03
+  shared_skills: []
+  applicable_tasks:
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - D334F2
+  - F4D70D
+  - 53A300
+  - CD6602
+  - D63B7C
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 6FE223
+  - 71B1D1
+  - F6F358
+  - 7A0F52
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 6D2E6D
+  - 686E6E
+  - FE9D85
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm08
+  title: Формула аннуитетного платежа
+  text: 'Раскрывая рекурсию $n$ раз: $D_n=Sk^n - X\dfrac{k^n-1}{k-1}=0$. Отсюда $X=\dfrac{S\cdot k^n(k-1)}{k^n-1}=\dfrac{S\cdot r(1+r)^n}{(1+r)^n-1}$. На экзамене лучше выводить эту формулу через таблицу, а не подставлять «готовую».
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  error_tags: []
+  prerequisites:
+  - t16_mm07
+  - t16_mm05
+  shared_skills: []
+  applicable_tasks:
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - D334F2
+  - F4D70D
+  - 53A300
+  - CD6602
+  - D63B7C
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 6FE223
+  - 71B1D1
+  - F6F358
+  - 7A0F52
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 6D2E6D
+  - 686E6E
+  - FE9D85
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm09
+  title: Сумма выплат и переплата (аннуитет)
+  text: 'Общая сумма выплат $B=nX$. Переплата $\Delta=B-S=nX-S$. Иногда задача формулируется как «найди $S$, при котором $\Delta=$ задано» — пишешь уравнение $nX-S=\Delta$ и подставляешь $X$ из формулы аннуитета.
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  error_tags:
+  - fin_overpayment_calc_error
+  prerequisites:
+  - t16_mm08
+  shared_skills: []
+  applicable_tasks:
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - D334F2
+  - F4D70D
+  - 53A300
+  - CD6602
+  - D63B7C
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 6FE223
+  - 71B1D1
+  - F6F358
+  - 7A0F52
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 6D2E6D
+  - 686E6E
+  - FE9D85
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm10
+  title: Аннуитет на короткий срок (n = 2, 3, 4)
+  text: 'При $n\le 4$ удобнее напрямую расписать таблицу долга: $D_1=Sk-X$, $D_2=D_1 k-X=Sk^2-Xk-X$, ..., $D_n=Sk^n-X(k^{n-1}+\ldots+1)$. Условие $D_n=0$ даёт уравнение на $X$ или $S$ без формулы прогрессии.
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  error_tags: []
+  prerequisites:
+  - t16_mm04
+  shared_skills: []
+  applicable_tasks:
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - D334F2
+  - F4D70D
+  - 53A300
+  - CD6602
+  - D63B7C
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 6FE223
+  - 71B1D1
+  - F6F358
+  - 7A0F52
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 6D2E6D
+  - 686E6E
+  - FE9D85
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm11
+  title: Дифференцированный кредит — схема
+  text: 'Тело долга $S$ делится на $n$ равных частей по $S/n$. Каждый период: проценты на текущий долг + одна часть тела. После $i$-го платежа долг $D_i=\dfrac{S(n-i)}{n}$. Платежи убывают линейно.
+
+    '
+  task_number: 16
+  subtypes:
+  - differentiated_credit
+  error_tags:
+  - fin_annuity_vs_diff_confusion
+  prerequisites:
+  - t16_mm03
+  shared_skills: []
+  applicable_tasks:
+  - 3eFF42
+  - 36614C
+  - 78cB01
+  - 29E10A
+  - 423D7F
+  - BFFA71
+  - FE4FB7
+  - 7A1CB0
+  - 2A731e
+  - '257120'
+  - 4DD4D9
+  - 8C8AD4
+  - 81455c
+  - FB11A1
+  - C17CAC
+  - 45786c
+  - B4B56D
+  - 4C1D36
+  - BA898B
+- id: t16_mm12
+  title: Размер i-го дифференцированного платежа
+  text: 'Перед $i$-м платежом долг $D_{i-1}=\dfrac{S(n-i+1)}{n}$. После начисления процентов: $D_{i-1}\cdot k$. Платёж $X_i=D_{i-1}\cdot k - D_i = \dfrac{S}{n}+r\cdot\dfrac{S(n-i+1)}{n}$ (тело + проценты на остаток до начисления).
+
+    '
+  task_number: 16
+  subtypes:
+  - differentiated_credit
+  error_tags: []
+  prerequisites:
+  - t16_mm11
+  shared_skills: []
+  applicable_tasks:
+  - 3eFF42
+  - 36614C
+  - 78cB01
+  - 29E10A
+  - 423D7F
+  - BFFA71
+  - FE4FB7
+  - 7A1CB0
+  - 2A731e
+  - '257120'
+  - 4DD4D9
+  - 8C8AD4
+  - 81455c
+  - FB11A1
+  - C17CAC
+  - 45786c
+  - B4B56D
+  - 4C1D36
+  - BA898B
+- id: t16_mm13
+  title: Сумма дифференцированных платежей
+  text: '$X_i$ образует арифметическую прогрессию (первый — $\frac{S}{n}+rS$, последний — $\frac{S}{n}+r\frac{S}{n}=\frac{S(1+r)}{n}$). Сумма: $B=\sum X_i = S + rS\cdot\frac{n+1}{2}$ (тело + проценты в среднем за полпериода). Переплата $\Delta=rS(n+1)/2$.
+
+    '
+  task_number: 16
+  subtypes:
+  - differentiated_credit
+  error_tags: []
+  prerequisites:
+  - t16_mm06
+  - t16_mm12
+  shared_skills: []
+  applicable_tasks:
+  - 3eFF42
+  - 36614C
+  - 78cB01
+  - 29E10A
+  - 423D7F
+  - BFFA71
+  - FE4FB7
+  - 7A1CB0
+  - 2A731e
+  - '257120'
+  - 4DD4D9
+  - 8C8AD4
+  - 81455c
+  - FB11A1
+  - C17CAC
+  - 45786c
+  - B4B56D
+  - 4C1D36
+  - BA898B
+- id: t16_mm14
+  title: Кредит с заданной таблицей долга
+  text: 'Условие задаёт долг в начале каждого июля как долю от $S$: $D_i=\alpha_i S$, например $\alpha_0=1, \alpha_1=0{,}6, \alpha_2=0{,}3, \alpha_3=0$. Платёж $X_i$ — это разность между долгом после начисления процентов и заданным $D_i$: $X_i=\alpha_{i-1}Sk-\alpha_i S=S(\alpha_{i-1}k-\alpha_i)$.
+
+    '
+  task_number: 16
+  subtypes:
+  - debt_schedule_credit
+  error_tags:
+  - fin_table_share_misread
+  prerequisites:
+  - t16_mm03
+  shared_skills: []
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+- id: t16_mm15
+  title: Сумма платежей по таблице долга
+  text: 'После выписки всех $X_i=S(\alpha_{i-1}k-\alpha_i)$ их сумма $B=\sum X_i=S(k\sum\alpha_{i-1}-\sum\alpha_i)$. Многие задачи сводятся к формуле $B=S\cdot[(k-1)\sum_{i=0}^{n-1}\alpha_i + \alpha_0]$ при $\alpha_n=0$.
+
+    '
+  task_number: 16
+  subtypes:
+  - debt_schedule_credit
+  error_tags: []
+  prerequisites:
+  - t16_mm14
+  shared_skills: []
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+- id: t16_mm16
+  title: Смешанный график (проценты + равные платежи)
+  text: 'Первые $m$ лет заёмщик платит только проценты ($D$ не меняется), потом $n-m$ лет — равные платежи. На «процентном» этапе сумма выплат $= m\cdot rS$. На втором этапе — стандартный аннуитет с $n-m$ периодами на тот же $S$. Складывай оба этапа.
+
+    '
+  task_number: 16
+  subtypes:
+  - debt_schedule_credit
+  - annuity_credit
+  error_tags: []
+  prerequisites:
+  - t16_mm08
+  shared_skills: []
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - D334F2
+  - F4D70D
+  - 53A300
+  - CD6602
+  - D63B7C
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 6FE223
+  - 71B1D1
+  - F6F358
+  - 7A0F52
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 6D2E6D
+  - 686E6E
+  - FE9D85
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm17
+  title: Обратная задача — найти ставку r
+  text: 'Если даны $S$, $n$, схема платежей и какое-то условие на сумму выплат/конкретный платёж: подставь в формулу долга и получи уравнение на $k=1+r$. Часто это уравнение второй или третьей степени по $k$, иногда удобно сделать замену $t=k^n$.
+
+    '
+  task_number: 16
+  subtypes:
+  - find_rate_or_term
+  error_tags: []
+  prerequisites:
+  - t16_mm08
+  shared_skills:
+  - equation_setup
+  applicable_tasks:
+  - 686BE7
+  - 67736B
+- id: t16_mm18
+  title: Обратная задача — найти срок n
+  text: 'Если ищется $n$ (целое), стандартный приём: выразить $D_n$ как функцию $n$ и найти наименьшее целое, удовлетворяющее условию $D_n\le 0$ или конкретному равенству. В дифференцированном — это уравнение арифметической прогрессии.
+
+    '
+  task_number: 16
+  subtypes:
+  - find_rate_or_term
+  error_tags:
+  - fin_integer_constraint_ignored
+  prerequisites:
+  - t16_mm13
+  shared_skills: []
+  applicable_tasks:
+  - 686BE7
+  - 67736B
+- id: t16_mm19
+  title: Найти максимальный размер кредита S
+  text: '«Найти наибольшее целое $S$, при котором сумма выплат меньше $V$»: выразить $B$ через $S$, решить $B<V$ (или $B\le V$) относительно $S$, взять наибольшее целое. Не забудь подставить найденное $S$ обратно и проверить.
+
+    '
+  task_number: 16
+  subtypes:
+  - find_rate_or_term
+  - debt_schedule_credit
+  error_tags:
+  - fin_integer_constraint_ignored
+  prerequisites:
+  - t16_mm15
+  shared_skills: []
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+  - 686BE7
+  - 67736B
+- id: t16_mm20
+  title: Целочисленные ограничения в условии
+  text: '«Целое число миллионов», «целая ставка $r\%$»: внимательно выпиши, в каких единицах величина и какое целое требуется. Если из неравенства получается $S<3{,}45$, то наибольшее целое — $3$, а не $3{,}45$.
+
+    '
+  task_number: 16
+  subtypes:
+  - find_rate_or_term
+  error_tags:
+  - fin_integer_constraint_ignored
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - 686BE7
+  - 67736B
+- id: t16_mm21
+  title: Накопительный вклад без пополнений
+  text: 'Вклад $S_0$ под $p\%$ за период растёт по формуле сложных процентов: $S_n=S_0\cdot k^n$, $k=1+p/100$. Никаких платежей не вычитаем — деньги только накапливаются. Прибыль вкладчика: $S_n-S_0$.
+
+    '
+  task_number: 16
+  subtypes:
+  - deposit
+  error_tags: []
+  prerequisites:
+  - t16_mm01
+  shared_skills: []
+  applicable_tasks:
+  - 4221BE
+- id: t16_mm22
+  title: Вклад с регулярным пополнением
+  text: 'Если в начале каждого периода вкладчик добавляет $a$, после $n$ периодов: $S_n=S_0 k^n+a(k^n+k^{n-1}+\ldots+k)=S_0 k^n+ak\cdot\dfrac{k^n-1}{k-1}$. Если пополнение в конце периода — последний взнос не успевает попасть под начисление: $S_n=S_0 k^n+a\cdot\dfrac{k^n-1}{k-1}$.
+
+    '
+  task_number: 16
+  subtypes:
+  - deposit
+  error_tags:
+  - fin_replenishment_timing
+  prerequisites:
+  - t16_mm05
+  shared_skills: []
+  applicable_tasks:
+  - 4221BE
+- id: t16_mm23
+  title: Время пополнения относительно начисления
+  text: 'Пополнение «в начале периода» проходит до начисления процентов — успевает поучаствовать в начислении. «В конце периода» — после, проценты на него не идут в этом периоде. Перепутать = занизить/завысить итог. Обязательно фиксируй порядок на бумаге.
+
+    '
+  task_number: 16
+  subtypes:
+  - deposit
+  error_tags:
+  - fin_replenishment_timing
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - 4221BE
+- id: t16_mm24
+  title: Сравнение двух стратегий вклада
+  text: 'Когда два вкладчика (Марина и Надежда) с разными графиками: для каждого выпиши $S_n$ как функцию параметра, потом найди разность или равенство. Обычно один кладёт сразу всё, второй частями — после нужного количества периодов один обгоняет другого.
+
+    '
+  task_number: 16
+  subtypes:
+  - deposit
+  error_tags: []
+  prerequisites:
+  - t16_mm22
+  shared_skills: []
+  applicable_tasks:
+  - 4221BE
+- id: t16_mm25
+  title: Простые проценты vs сложные
+  text: 'При простых процентах сумма растёт линейно: $S_n=S_0(1+nr)$. При сложных — экспоненциально: $S_n=S_0(1+r)^n$. На длинных сроках сложные сильно больше. В задачах 16-й почти всегда сложные — но всё равно проверь формулировку условия.
+
+    '
+  task_number: 16
+  subtypes:
+  - deposit
+  - annuity_credit
+  error_tags:
+  - fin_simple_vs_compound
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - D334F2
+  - F4D70D
+  - 53A300
+  - CD6602
+  - D63B7C
+  - 4221BE
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 6FE223
+  - 71B1D1
+  - F6F358
+  - 7A0F52
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 6D2E6D
+  - 686E6E
+  - FE9D85
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm26
+  title: Порядок «начисление процентов — платёж»
+  text: 'Стандарт ЕГЭ: сначала проценты на старый долг, потом из него вычитается платёж. Если в условии прописано иначе («сначала платёж, потом проценты на остаток») — следуй условию буквально. Перепутать порядок = ошибка в каждом периоде.
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  - differentiated_credit
+  - debt_schedule_credit
+  error_tags:
+  - fin_order_charge_payment
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - 3eFF42
+  - 36614C
+  - D334F2
+  - F4D70D
+  - 78cB01
+  - 29E10A
+  - 53A300
+  - CD6602
+  - 423D7F
+  - BFFA71
+  - D63B7C
+  - FE4FB7
+  - 7A1CB0
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 2A731e
+  - '257120'
+  - 6FE223
+  - 4DD4D9
+  - 71B1D1
+  - 8C8AD4
+  - F6F358
+  - 7A0F52
+  - 81455c
+  - FB11A1
+  - C17CAC
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 45786c
+  - B4B56D
+  - 6D2E6D
+  - 686E6E
+  - 4C1D36
+  - FE9D85
+  - BA898B
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm27
+  title: Off-by-one в количестве периодов
+  text: '«Кредит на 4 года» — 4 платежа, 4 начисления процентов. Первый платёж — в конце 1-го года или в середине 2-го (по условию). Считай ОДНОВРЕМЕННО годы и платежи и сверяйся с условием. Часто ошибка: $n+1$ начислений на $n$ платежей или наоборот.
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  - debt_schedule_credit
+  error_tags:
+  - fin_off_by_one_periods
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - D334F2
+  - F4D70D
+  - 53A300
+  - CD6602
+  - D63B7C
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 6FE223
+  - 71B1D1
+  - F6F358
+  - 7A0F52
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 6D2E6D
+  - 686E6E
+  - FE9D85
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm28
+  title: Месячные периоды
+  text: 'Если в условии «1-го числа каждого месяца долг растёт на $r\%$», то $r$ — это МЕСЯЧНАЯ ставка, $n$ — число месяцев. Все формулы те же ($k=1+r/100$, $D_i=D_{i-1}k-X_i$), просто единицы другие. Не путай с годовой $(1+r_{\text{год}})$ — иначе ошибка в десятки раз.
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  - differentiated_credit
+  - debt_schedule_credit
+  error_tags:
+  - fin_monthly_yearly_mismatch
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - 3eFF42
+  - 36614C
+  - D334F2
+  - F4D70D
+  - 78cB01
+  - 29E10A
+  - 53A300
+  - CD6602
+  - 423D7F
+  - BFFA71
+  - D63B7C
+  - FE4FB7
+  - 7A1CB0
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 2A731e
+  - '257120'
+  - 6FE223
+  - 4DD4D9
+  - 71B1D1
+  - 8C8AD4
+  - F6F358
+  - 7A0F52
+  - 81455c
+  - FB11A1
+  - C17CAC
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 45786c
+  - B4B56D
+  - 6D2E6D
+  - 686E6E
+  - 4C1D36
+  - FE9D85
+  - BA898B
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm29
+  title: База процента — текущий долг, не первоначальный
+  text: 'Проценты ВСЕГДА начисляются на ТЕКУЩИЙ долг ($D_{i-1}$), а не на первоначальный $S$. Это и есть «сложные» проценты. Если в условии «$r\%$ от текущей суммы долга» — это сложные. «$r\%$ от взятой суммы» — простые (редко).
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  - differentiated_credit
+  - debt_schedule_credit
+  error_tags:
+  - fin_wrong_base_for_percent
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+  - 1F03D1
+  - 1187D1
+  - 60FD4D
+  - 3eFF42
+  - 36614C
+  - D334F2
+  - F4D70D
+  - 78cB01
+  - 29E10A
+  - 53A300
+  - CD6602
+  - 423D7F
+  - BFFA71
+  - D63B7C
+  - FE4FB7
+  - 7A1CB0
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 2A731e
+  - '257120'
+  - 6FE223
+  - 4DD4D9
+  - 71B1D1
+  - 8C8AD4
+  - F6F358
+  - 7A0F52
+  - 81455c
+  - FB11A1
+  - C17CAC
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 45786c
+  - B4B56D
+  - 6D2E6D
+  - 686E6E
+  - 4C1D36
+  - FE9D85
+  - BA898B
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm30
+  title: Условие достаточности — проверка первого платежа
+  text: 'Чтобы платёжи действительно гасили долг, первый платёж должен быть больше начисленных за период процентов: $X>rS$. Если в задаче несколько условий и есть оценка «снизу» — проверка делается для ПЕРВОГО (самого «тяжёлого») периода, не последнего.
+
+    '
+  task_number: 16
+  subtypes:
+  - annuity_credit
+  - find_rate_or_term
+  error_tags: []
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - 1F03D1
+  - 1187D1
+  - 686BE7
+  - 67736B
+  - 60FD4D
+  - D334F2
+  - F4D70D
+  - 53A300
+  - CD6602
+  - D63B7C
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 6FE223
+  - 71B1D1
+  - F6F358
+  - 7A0F52
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 65F0E4
+  - 6066EB
+  - 6D2E6D
+  - 686E6E
+  - FE9D85
+  - DB5D8C
+  - A06889
+  - E7FA88
+- id: t16_mm31
+  title: Производственная оптимизация
+  text: 'Иногда 16-я — про прибыль/издержки производства. Обычно: записываешь $\text{Прибыль}(x)=\text{Доход}-\text{Издержки}$, ищешь экстремум через производную или вершину параболы. Проверяй ОДЗ (объём $x\ge 0$, целое и т.п.).
+
+    '
+  task_number: 16
+  subtypes:
+  - optimisation
+  error_tags: []
+  prerequisites: []
+  shared_skills:
+  - equation_setup
+  applicable_tasks:
+  - E1812B
+- id: t16_mm32
+  title: Алгоритм решения задачи 16
+  text: '(1) Тип задачи: аннуитет / дифференцированный / таблица / вклад. (2) Запиши $k=1+r/100$. (3) Построй таблицу долга по периодам. (4) Используй $D_n=0$ или другое условие из задачи. (5) Реши уравнение/неравенство. (6) Проверь целочисленность, знак, размерность.
+
+    '
+  task_number: 16
+  subtypes:
+  - other
+  error_tags: []
+  prerequisites:
+  - t16_mm04
+  - t16_mm08
+  - t16_mm13
+  - t16_mm14
+  shared_skills: []
+  applicable_tasks:
+  - D9AF4A
+  - 5FCD16
+  - 1F03D1
+  - 1187D1
+  - 686BE7
+  - 67736B
+  - 60FD4D
+  - 3eFF42
+  - 36614C
+  - D334F2
+  - 552BFD
+  - F4D70D
+  - 78cB01
+  - 29E10A
+  - 53A300
+  - CD6602
+  - 423D7F
+  - BFFA71
+  - D63B7C
+  - 89F37B
+  - 4221BE
+  - FE4FB7
+  - 7A1CB0
+  - 29A6B4
+  - 22FEBB
+  - 8B91B1
+  - 2A731e
+  - '257120'
+  - E1812B
+  - 6FE223
+  - 4DD4D9
+  - 71B1D1
+  - 8C8AD4
+  - F6F358
+  - 7A0F52
+  - 81455c
+  - FB11A1
+  - C17CAC
+  - A3CDCA
+  - DBAB97
+  - E8199D
+  - EA6D9D
+  - 262AEA
+  - DFEFEE
+  - 65F0E4
+  - 6066EB
+  - 45786c
+  - B4B56D
+  - DBAF65
+  - 6D2E6D
+  - 686E6E
+  - 4C1D36
+  - FE9D85
+  - BA898B
+  - DB5D8C
+  - A06889
+  - E7FA88

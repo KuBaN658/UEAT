@@ -1,0 +1,22 @@
+{
+  "student_id": "archive_u10",
+  "generated_at_utc": "2026-05-02T14:36:07.020157+00:00",
+  "retrieved_titles": [],
+  "frontier_atoms": [
+    "Показательное уравнение с одинаковым основанием",
+    "Показательное уравнение с разными основаниями"
+  ],
+  "top_errors": [
+    "wrong_base_reduction"
+  ],
+  "top_err": "Неверно приводишь показательное уравнение к общему основанию или ошибаешься в степени",
+  "recent_wrong": [
+    {
+      "task_number": 6,
+      "task_text": "Найдите корень уравнения $3^{x – 8} =\\frac{1}{81}.$",
+      "student_answer": null,
+      "correct_answer": null
+    }
+  ],
+  "n_err_items": 1
+}

@@ -1,0 +1,63 @@
+# Postgres 16, single replica, PVC. Username and password from `ege-rag-secrets`.
+# DATABASE_URL in the same Secret must match these credentials.
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: ege
+spec:
+  selector: {app: postgres}
+  ports:
+    - name: pg
+      port: 5432
+      targetPort: 5432
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: ege
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels: {app: postgres}
+  template:
+    metadata:
+      labels: {app: postgres}
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: ege_generator
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef: {name: ege-rag-secrets, key: POSTGRES_USER}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef: {name: ege-rag-secrets, key: POSTGRES_PASSWORD}
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "ege", "-d", "ege_generator"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests: {cpu: "100m", memory: "256Mi"}
+            limits:   {cpu: "1000m", memory: "1Gi"}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests: {storage: 5Gi}

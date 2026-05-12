@@ -1,0 +1,38 @@
+# Environment
+.env
+**/.env
+.venv/
+venv/
+env/
+
+# Tooling
+.pytest_cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Windows Explorer duplicate of profiles (not source of truth)
+app/data/profiles*копия/
+app/data/conspects_pdf/
+app/rag/qdrant_data/
+.cursor/
+docs/
+.uv-temp-venv/
+.deepeval/
+
+.secret

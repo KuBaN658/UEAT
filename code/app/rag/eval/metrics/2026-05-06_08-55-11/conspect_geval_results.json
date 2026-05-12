@@ -1,0 +1,195 @@
+{
+  "generated_at_utc": "2026-05-06T06:27:02.235324+00:00",
+  "geval": {
+    "config": {
+      "conspects_dir": "/home/father/Desktop/akhundov-rag/app/rag/eval/conspects",
+      "rules_path": "/home/father/Desktop/akhundov-rag/app/data/conspect_eval_rules.yaml",
+      "judge_concurrency": 4
+    },
+    "students": [
+      {
+        "student_id": "archive_u1",
+        "overall_score": 0.8333333333333334,
+        "metrics": {
+          "personalization": {
+            "score": 0.9,
+            "reason": "Конспект явно адаптирован под профиль ученика. Шаг 2: первый пункт раздела «Типичные ошибки» напрямую соответствует top_err — «Пропускаешь остановку или задержку при подсчёте времени», а второй пункт «Что важно запомнить» подробно разбирает учёт временных интервалов с остановками. Шаг 3: задача в разделе «Найди ошибку» демонстрирует именно ошибку ученика — приравнивание суммы времён движения к общему времени без вычитания стоянки (4 часа). Шаг 4: «Разбор примера» посвящён заданию №10 с остановкой и задержкой (ответ 18), что соответствует recent_wrong, где ученик ошибался именно в заданиях №10 (получил 2 и -0.2222 вместо 8 и 18). Шаг 5: frontier-темы («прибыл на k часов раньше», движение с остановками) упоминаются в первом пункте «Что важно запомнить» («задержка», «прибыл раньше на k часов») и в алгоритме задания №10. Конспект сфокусирован на задачах с остановками и задержками, а не на равномерном покрытии всех заданий.",
+            "success": true,
+            "error": false
+          },
+          "school_format": {
+            "score": 0.7,
+            "reason": "Конспект содержит все шесть обязательных разделов, каждый из которых соответствует своему назначению: правила с объяснениями «почему», конкретные ошибки с контрпримерами, пошаговые алгоритмы для №6, №10, №12, полностью решённый пример, намеренно неверное решение с разбором и чеклист из 5 пунктов в формате «- [ ]». Язык доступен для учеников 9–11 класса, объяснения сопровождаются примерами и аналогиями. Шаги в алгоритмах конкретны («Приравняй к нулю», «Обозначь за x»). Однако в разделах «Разбор примера» и «Найди ошибку» присутствуют многочисленные рассуждения модели о собственных действиях: подборе чисел для «красивого» ответа, перепроверке условий, исправлении хода мысли. Эти фрагменты («Давайте перепроверим», «Исправление хода мысли», «Стоп, здесь арифметическая ошибка в подборе чисел») являются мета-рассуждениями, не предназначенными для ученика, и нарушают требование чистоты контента.",
+            "success": true,
+            "error": false
+          },
+          "math_correctness": {
+            "score": 0.9,
+            "reason": "LaTeX syntax error found in \"Разбор примера\" step 3: \"\\frac{35}{v+3} + frac{35}{v-3} = 4\" is missing the backslash before 'frac'. All other formulas are properly formatted. Mathematical steps are correct in both example sections, the \"Find the error\" section correctly identifies one conceptual error (forgetting to subtract stop time), and all counterexamples are arithmetically accurate. Final answers are integer values (18) with no √, π, ≈, or fractional expressions.",
+            "success": true,
+            "error": false
+          }
+        },
+        "has_error": false
+      },
+      {
+        "student_id": "archive_u10",
+        "overall_score": 0.9333333333333332,
+        "metrics": {
+          "personalization": {
+            "score": 0.8,
+            "reason": "Конспект хорошо адаптирован под профиль ученика. Первый пункт «Что важно запомнить» напрямую адресует top_err (ошибка в приведении к общему основанию и работе со степенями). Первый пункт «Типичные ошибки» также начинается с этой темы и включает контрпример именно с разными основаниями (4^x = 8^{x-1}). Раздел «Найди ошибку» демонстрирует ошибку в возведении степени в степень — $(2^2)^{x+1} = 2^{2x+1}$ вместо $2^{2x+2}$ — что соответствует типу top_err. Разбор примера посвящён типу задачи, аналогичному заданию №6 (из recent_wrong), и тренирует навык приведения к общему основанию. Однако frontier-темы («Показательное уравнение с одинаковым/разными основаниями») упомянуты только имплицитно через концепцию приведения к одному основанию, без прямого указания в «Что важно запомнить» или «Алгоритме». Разделы №10 и №12 включены обоснованно — они применяют степенные преобразования (производные от показательных функций, текстовые задачи со степенями), что не является равномерным покрытием без акцента. Итого: высокая адаптация под слабые места при неполном (но приемлемом) покрытии frontier-тем.",
+            "success": true,
+            "error": false
+          },
+          "school_format": {
+            "score": 1.0,
+            "reason": "All six required sections are present and fully aligned with their intended purposes. The 'Что важно запомнить' section provides rules with formulas and explanations of why they work. The 'Типичные ошибки' section includes specific errors with corrections and numerical counterexamples. The 'Алгоритм решения' section contains explicit sub-blocks for tasks №6, №10, and №12, each with 4–5 concrete, actionable steps (e.g., 'Приравняй показатели', 'Проверь ОДЗ'). The 'Разбор примера' section presents a fully solved problem with condition, step-by-step solution, and answer. The 'Найди ошибку' section includes an intentionally incorrect solution with a structured breakdown of the error and its correction. The 'Чеклист перед ответом' contains exactly 5 items in the correct '- [ ]' format, each a specific self-check action. The language is accessible to 9–11 grade students with no unexplained professional jargon. Explanations are accompanied by intuitive reasoning and short examples rather than dry definitions. No model reasoning appears in the content.",
+            "success": true,
+            "error": false
+          },
+          "math_correctness": {
+            "score": 1.0,
+            "reason": "All evaluation criteria are met: (1) All formulas are properly formatted in LaTeX throughout the document. (2) The 'Что важно запомнить' section contains mathematically correct general rules. (3) The 'Разбор примера' section correctly solves $5^{x+3} = \\frac{1}{125}$ with proper steps leading to the integer answer -6. (4) The 'Найди ошибку' section correctly identifies exactly one error in the erroneous solution (the exponent $2x+1$ should be $2x+2$), provides a mathematically correct fix, and the final answer is the integer 2. (5) All counterexamples in 'Типичные ошибки' have correct arithmetic: $x=3$ for $4^x = 8^{x-1}$, $x=3$ for $2^{x+1} = 2^{3x-5}$, and $x=4$ for $3^x = 81$. (6) Both final answers are integers (-6 and 2), with no √, π, fractions, or ≈ signs present.",
+            "success": true,
+            "error": false
+          }
+        },
+        "has_error": false
+      },
+      {
+        "student_id": "archive_u2",
+        "overall_score": 0.8666666666666667,
+        "metrics": {
+          "personalization": {
+            "score": 1.0,
+            "reason": "Конспект демонстрирует сильную персонализацию: первые два пункта «Что важно запомнить» напрямую адресуют top_err (приведение к общему основанию и свойства степеней). Раздел «Типичные ошибки» начинается с ошибки при приведении к общему основанию, что соответствует wrong_base_reduction. «Найди ошибку» показывает типичную ошибку приравнивания показателей (связано с top_err). «Разбор примера» охватывает технику решения показательных уравнений, релевантную заданию №6, где ученик ошибся (ответил 8 вместо 2). Frontier-темы («с одинаковым/разными основаниями») упоминаются в алгоритме решения. Конспект явно нацелен на слабые места конкретного ученика.",
+            "success": true,
+            "error": false
+          },
+          "school_format": {
+            "score": 1.0,
+            "reason": "Все шесть обязательных разделов присутствуют и заполнены содержательно. «Что важно запомнить» содержит правила с формулами и объяснением «почему» (например, почему при равных основаниях приравниваем показатели). «Типичные ошибки» включает конкретные ошибки с контрпримерами и числовыми примерами. «Алгоритм решения» имеет явные подблоки для заданий №6, №10 и №12, каждый с 5 шагами конкретных действий. «Разбор примера» — полностью решённая задача с 7 шагами, условием и ответом. «Найди ошибку» — намеренно неверное решение с разбором и исправлением. «Чеклист перед ответом» — ровно 5 пунктов в формате «- [ ]», каждый охватывает самопроверку. Язык доступен ученику 9–11 класса, объяснения сопровождаются примерами, шаги конкретны и не содержат размытых рекомендаций.",
+            "success": true,
+            "error": false
+          },
+          "math_correctness": {
+            "score": 0.6,
+            "reason": "В разделе «Разбор примера» (Шаг 4) допущена синтаксическая ошибка LaTeX: \\frac написано как frac — отсутствует обратная косая черта. Это прямое нарушение критерия 1. В разделе «Типичные ошибки» формула $2^x(2^x - 4) = 0$ записана без знака умножения между $2^x$ и скобкой, что является неполной LaTeX-разметкой. Остальные формулы корректны, математика в примере верна (ответ 3), в разделе «Найди ошибку» указана одна ошибка и исправление приводит к правильному ответу 2, все контрпримеры вычислены верно.",
+            "success": false,
+            "error": false
+          }
+        },
+        "has_error": false
+      },
+      {
+        "student_id": "archive_u3",
+        "overall_score": 0.7000000000000001,
+        "metrics": {
+          "personalization": {
+            "score": 0.9,
+            "reason": "Конспект явно адаптирован под профиль ученика с ошибкой picked_wrong_variable. Первый пункт «Что важно запомнить» напрямую адресует top_err: выбор искомой величины за x. Первый пункт «Типичных ошибок» также прицельно указывает на неправильный выбор переменной с конкретным контрпримером. Раздел «Найди ошибку» демонстрирует ровно эту ошибку — выбор времени вместо скорости, что приводит к громоздкому уравнению. «Разбор примера» содержит задачу на движение по воде, идентичную по типу recent_wrong (задание №10 про теплоход 180 км). Замена переменной как frontier-тема упоминается в «Что важно запомнить» (пункт 3). Алгоритм для №10 детально описан с акцентом на выбор правильной переменной. Все разделы работают на устранение главной ошибки ученика.",
+            "success": true,
+            "error": false
+          },
+          "school_format": {
+            "score": 1.0,
+            "reason": "All 6 required sections are present and content aligns with their purpose: «Что важно запомнить» provides rules with formulas and explanations of why; «Типичные ошибки» includes specific errors with corrections and numerical examples (e.g., v_собств=19, v_теч=1); «Алгоритм решения» contains explicit sub-blocks for tasks №6, №10, №12 with 4-5 specific steps each; «Разбор примера» shows a fully solved problem with condition, solution, and answer (x=11); «Найди ошибку» presents an intentionally incorrect solution with analysis structure; «Чеклист перед ответом» has exactly 5 items in «- [ ]» format covering self-check actions. Language is appropriate for 9-11 grade students with intuitive explanations and analogies. Steps are specific actions (e.g., «Приравняй к нулю», «Вычисли значение функции»). No model reasoning present.",
+            "success": true,
+            "error": false
+          },
+          "math_correctness": {
+            "score": 0.2,
+            "reason": "В разделе «Найди ошибку» правильный ответ 14 является математически неверным для исходного условия (расстояние 60 км, время 8 ч, течение 2 км/ч). При x=14: время по течению = 60/16 = 3,75 ч, против течения = 60/12 = 5 ч, сумма = 8,75 ч, а не 8 ч. Автор затем произвольно меняет условие задачи на 48 км и 7 ч, чтобы получить целочисленный ответ — это нарушает требование проверки правильного ответа на математическую корректность. Также в шаге 4 ошибочного решения выводится уравнение с нецелыми корнями ($x^2 - 15x - 4 = 0$), что фактически указывает на ошибку в составлении уравнения, а не только в выборе переменной.",
+            "success": false,
+            "error": false
+          }
+        },
+        "has_error": false
+      },
+      {
+        "student_id": "archive_u4",
+        "overall_score": 0.7333333333333334,
+        "metrics": {
+          "personalization": {
+            "score": 0.5,
+            "reason": "Разделы «Что важно запомнить» и «Типичные ошибки» прицельно адресуют top_err — неверное решение f'(x)=0: вынос множителей, проверка на ноль, запрет деления на выражение с x. Раздел «Найди ошибку» демонстрирует именно этот тип ошибки. Frontier-тема «Разложение производной произведения на множители» упомянута в первом пункте «Что важно запомнить». Однако в «Разборе примера» разобрана задача с функцией y=x³−9x²+24x−5, тогда как recent_wrong содержит задание №12 с функцией y=x³−12x²+36x+17 — пример не соответствует конкретной ошибочной задаче ученика, что является существенным недостатком.",
+            "success": false,
+            "error": false
+          },
+          "school_format": {
+            "score": 1.0,
+            "reason": "Все шесть обязательных разделов присутствуют и полностью соответствуют своему назначению: «Что важно запомнить» содержит правила с формулами и пояснениями, «Типичные ошибки» — конкретные ошибки с исправлением и числовыми примерами, «Алгоритм решения» разделён на подблоки для заданий №6, №10 и №12, каждый с 5 конкретными шагами, «Разбор примера» — полностью решённая задача с условием, решением и ответом, «Найди ошибку» — намеренно неверное решение с анализом и исправлением, «Чеклист перед ответом» — ровно 5 пунктов в формате «- [ ]», охватывающих самопроверку для всех трёх типов заданий. Язык конспекта доступен ученику 9–11 класса, используются только стандартные школьные термины. Объяснения сопровождаются примерами и интуитивными пояснениями, шаги алгоритмов конкретны и не содержат расплывчатых рекомендаций.",
+            "success": true,
+            "error": false
+          },
+          "math_correctness": {
+            "score": 0.7,
+            "reason": "Все формулы корректно обёрнуты в LaTeX (шаг 1 пройден). Формулы в разделе «Что важно запомнить» математически верны (шаг 2 пройден). Разбор примера выполнен без арифметических ошибок: производная найдена верно, дискриминант D=4 вычислен правильно, корни x=2 и x=4 найдены верно, вторая производная y''=6x−18 проверена корректно, значение y(4)=11 вычислено верно (шаг 3 пройден). Однако в разделе «Найди ошибку» выявлены серьёзные проблемы: (1) ошибочное решение содержит корректную арифметику — корни вычислены верно (x₁=4, x₂=2), но в объяснении ошибочно утверждается, что «в вычислениях допущена арифметическая ошибка», что является ложным утверждением; (2) затем пояснение противоречит себе, переключаясь на «не проверены концы отрезка», хотя отрезок в задаче не задан, и далее — на «неверно определён тип экстремума», что также не соответствует ошибочному решению, где знаки второй производной определены верно. Шаг 5 (контрпримеры не требуются) и шаг 6 (ответы — целые числа 11 и 4) выполнены корректно. Основной недостаток — математически некорректное описание ошибки в разделе «Найди ошибку», что нарушает требование шага 4.",
+            "success": true,
+            "error": false
+          }
+        },
+        "has_error": false
+      },
+      {
+        "student_id": "archive_u5",
+        "overall_score": 0.9666666666666667,
+        "metrics": {
+          "personalization": {
+            "score": 0.9,
+            "reason": "Конспект демонстрирует сильную персонализацию. Первый пункт «Что важно запомнить» напрямую адресует top_err — проверку знака производной на интервалах. Раздел «Найди ошибку» содержит именно ошибку типа minmax_wrong_sign_analysis (путаница максимума/минимума при смене знака). Разбор примера привязан к Заданию №12 — задаче, которую ученик недавно решил неверно (3.33333 вместо 10). Frontier-тема «Экстремумы многочлена: знак производной» перекликается с первым пунктом «Что важно запомнить». Содержание не выглядит шаблонным — акцент сделан на анализе знака производной, что соответствует слабому месту ученика. Замечание: второй пункт «Что важно запомнить» касается концов отрезка, а не top_err напрямую, но это некритично, так как первый пункт точно попадает в ошибку.",
+            "success": true,
+            "error": false
+          },
+          "school_format": {
+            "score": 1.0,
+            "reason": "All six required sections are present and fully aligned with their intended purposes. «Что важно запомнить» provides rules with formulas and explanations of 'why'. «Типичные ошибки» includes specific errors with corrections and numerical counterexamples. «Алгоритм решения» contains explicit sub-blocks for tasks №6, №10, №12, each with 4-5 specific action steps (e.g., 'Найди производную', 'Приравняй к нулю'). «Разбор примера» presents a fully solved problem with condition, step-by-step solution, and answer (-7). «Найди ошибку» shows an intentionally incorrect solution with structured analysis and correction. «Чеклист перед ответом» contains exactly 5 items in '- [ ]' format, each a concrete self-check action covering the relevant tasks. Language is appropriate for grades 9-11 with no unexplained professional terms. Explanations include intuitive reasoning and short examples rather than dry definitions.",
+            "success": true,
+            "error": false
+          },
+          "math_correctness": {
+            "score": 1.0,
+            "reason": "All formulas are correctly formatted in LaTeX throughout the document. In 'Что важно запомнить', all mathematical rules and explanations are correct. In 'Разбор примера', the solution correctly finds the derivative $y' = \\frac{3}{2}\\sqrt{x} - 6$, identifies the critical point $x = 16$ as outside the interval, verifies the function is decreasing on $[1; 9]$ with $y'(4) = -3$, and computes the minimum value $y(9) = -7$ correctly. In 'Найди ошибку', the erroneous solution contains exactly one error (misidentifying the extremum type at $x = -2$), the correction properly identifies $x = 2$ as the minimum point, and the final answer is mathematically correct. In 'Типичные ошибки', the counterexamples are accurate (e.g., $f'(x) = (x-2)(x+3)$ with $f'(0) = -6 < 0$). Both final answers are integers: -7 and 2, with no prohibited symbols.",
+            "success": true,
+            "error": false
+          }
+        },
+        "has_error": false
+      },
+      {
+        "student_id": "archive_u6",
+        "overall_score": 0.8666666666666667,
+        "metrics": {
+          "personalization": {
+            "score": 0.6,
+            "reason": "Раздел «Что важно запомнить» прицельно адресует top_err в первых двух пунктах: первый пункт разбирает ошибки со свойствами степеней (exp_property_error), второй — выбор переменной (picked_wrong_variable). Разбор примера посвящён заданию №6, которое есть в recent_wrong. Frontier-темы «Свойства степеней при решении уравнений» и «Введение переменной» упомянуты в «Что важно запомнить». Однако раздел «Найди ошибку» демонстрирует ошибку возведения в квадрат (алгебраическая ошибка с формулой квадрата суммы), а не ошибку применения свойств степеней, что не соответствует типу top_err — это значительный недостаток, так как ключевая ошибка ученика не иллюстрируется в этом разделе.",
+            "success": false,
+            "error": false
+          },
+          "school_format": {
+            "score": 1.0,
+            "reason": "All six required sections are present and their content aligns well with their intended purposes. The 'Что важно запомнить' section provides rules with formulas and explanations of why they work. The 'Типичные ошибки' section includes specific errors with corrections and numerical counterexamples. The 'Алгоритм решения' section contains explicit sub-blocks for tasks №6, №10, and №12, each with 4-5 concrete steps (e.g., 'Выбери переменную', 'Приведи все слагаемые к одному основанию'). The 'Разбор примера' section presents a fully solved problem with condition, step-by-step solution, and answer. The 'Найди ошибку' section shows an intentionally incorrect solution with structured analysis. The 'Чеклист перед ответом' contains exactly 5 items in '- [ ]' format, each a specific self-check action covering the three task types. Language is appropriate for grades 9-11 with no unexplained professional terms. Explanations include analogies, short examples, and intuitive descriptions rather than dry definitions. No model reasoning is present in the content.",
+            "success": true,
+            "error": false
+          },
+          "math_correctness": {
+            "score": 1.0,
+            "reason": "All formulas are correctly formatted in LaTeX with no syntax errors. The 'Что важно запомнить' section contains mathematically correct formulas for exponent rules. The 'Разбор примера' correctly solves $4^{x} - 3 \\cdot 2^{x+1} + 8 = 0$ with proper substitution $t = 2^x$, accurate discriminant calculation (D = 4), correct quadratic roots, and final answers x = 1 and x = 2 as integers. The 'Найди ошибку' section properly identifies exactly one error (forgotten term 2x in $(x+1)^2$), provides a mathematically correct fixed solution leading to $x = 2$, and correctly identifies $x = -2$ as extraneous through verification. All counterexamples in 'Типичные ошибки' are arithmetically correct (e.g., $2^3 \\cdot 2^2 = 32$, $(2^3)^2 = 64$). Both final answers (1; 2 and 2) are integers as required.",
+            "success": true,
+            "error": false
+          }
+        },
+        "has_error": false
+      }
+    ],
+    "student_count": 7,
+    "excluded_count": 0,
+    "overall_avg_score": 0.8428571428571429,
+    "per_metric_avg": {
+      "personalization": 0.7999999999999999,
+      "school_format": 0.9571428571428572,
+      "math_correctness": 0.7714285714285715
+    }
+  }
+}

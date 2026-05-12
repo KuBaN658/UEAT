@@ -1,0 +1,1308 @@
+- id: t12_mm01
+  title: Анализ графика функции без производной
+  text: |-
+    По графику $f(x)$ можно определить наибольшее/наименьшее значение визуально. Максимум — вершина «горки», минимум — дно «ямки». На отрезке $[a,b]$ нужно также проверить значения на концах: $f(a)$ и $f(b)$.
+  task_number: 12
+  subtypes:
+  - no_derivative
+  error_tags:
+  - minmax_confused_min_max
+  shared_skills:
+  - answer_plausibility
+  applicable_tasks:
+  - 76054F
+  - 27ACB1
+  - 221C18
+  - B4CB9F
+  - EAD99A
+- id: t12_mm02
+  title: Сравнение значений функции по графику
+  text: |-
+    Чтобы сравнить $f(a)$ и $f(b)$: найди точки на графике и сравни высоты. Если нужно наибольшее/наименьшее — сравни все экстремумы и концы отрезка. Ответ — значение $f$ (а не $x$!), если спрашивают «наибольшее значение».
+  task_number: 12
+  subtypes:
+  - no_derivative
+  error_tags:
+  - minmax_confused_min_max
+  prerequisites:
+  - t12_mm01
+  applicable_tasks:
+  - 76054F
+  - 35F6F7
+  - BDEF76
+  - E0767B
+  - 97AEB6
+  - 221C18
+  - 79CEAC
+  - 198ec9
+  - EAD99A
+  - 88E991
+  - BEB5E7
+  - B4B4EA
+  - 56CF6E
+  - '498736'
+  - AC8783
+- id: t12_mm03
+  title: Нахождение точек экстремума по графику
+  text: |-
+    Точка максимума — $x_0$, где $f$ переходит от возрастания к убыванию. Точка минимума — где от убывания к возрастанию. Ответ — значение $x_0$ (а не $f(x_0)$!), если спрашивают «точку экстремума».
+  task_number: 12
+  subtypes:
+  - no_derivative
+  error_tags:
+  - minmax_confused_min_max
+  - minmax_wrong_sign_analysis
+  prerequisites:
+  - t12_mm02
+  applicable_tasks:
+  - 47384A
+  - 24e5F8
+  - 5750FE
+  - 933FFF
+  - 6888FA
+  - 6310FE
+  - 35F6F7
+  - BDEF76
+  - '597474'
+  - 1E41B2
+  - 33F1B8
+  - 5E7419
+  - 688D26
+  - 5A70DB
+  - 01A05E
+  - '285552'
+  - D99158
+  - 714DA4
+  - C0F5A3
+  - 198ec9
+  - ACB0C6
+  - 88E991
+  - 1ECEE8
+  - 24A166
+  - 56CF6E
+  - 35C66B
+  - AC8783
+- id: t12_mm04
+  title: Количество экстремумов и нулей по графику
+  text: |-
+    Количество точек максимума = количество «горок». Минимума = количество «ямок». Нули функции = пересечения с осью $x$. На отрезке $[a,b]$ считай только те экстремумы, которые попадают внутрь.
+  task_number: 12
+  subtypes:
+  - no_derivative
+  error_tags:
+  - minmax_wrong_sign_analysis
+  prerequisites:
+  - t12_mm02
+  applicable_tasks:
+  - EAD99A
+  - '498736'
+- id: t12_mm05
+  title: Касательная и её угловой коэффициент
+  text: |-
+    Касательная к графику $f$ в точке $x_0$: $y = f(x_0) + f'(x_0)(x-x_0)$. Угловой коэффициент касательной $= f'(x_0)$. Если касательная горизонтальна → $f'(x_0)=0$ → это точка экстремума (или перегиба).
+  task_number: 12
+  subtypes:
+  - no_derivative
+  error_tags:
+  - deriv_wrong_rule
+  prerequisites:
+  - t12_mm01
+  applicable_tasks:
+  - 47384A
+  - 76054F
+  - 659A4A
+  - 24e5F8
+  - 5750FE
+  - 933FFF
+  - 6888FA
+  - 6310FE
+  - 35F6F7
+  - BDEF76
+  - '597474'
+  - E0767B
+  - 1E41B2
+  - 27ACB1
+  - D1E7BE
+  - 97AEB6
+  - 33F1B8
+  - 221C18
+  - 5E7419
+  - 81F510
+  - DF872D
+  - 688D26
+  - B224D1
+  - 5A70DB
+  - AE14D4
+  - 01A05E
+  - '285552'
+  - D99158
+  - 714DA4
+  - 79CEAC
+  - C0F5A3
+  - 198ec9
+  - ACB0C6
+  - 6986c7
+  - 3975C8
+  - B4CB9F
+  - 2E9992
+  - EAD99A
+  - 88E991
+  - BEB5E7
+  - B4B4EA
+  - 1ECEE8
+  - 2D0BeD
+  - F82962
+  - 033968
+  - 24A166
+  - 56CF6E
+  - 35C66B
+  - '498736'
+  - FF843F
+  - AC8783
+- id: t12_mm06
+  title: Геометрический смысл производной
+  text: |-
+    $f'(x_0)$ = тангенс угла наклона касательной к оси $x$. По графику: $f'(x_0) = \tan\alpha$, где $\alpha$ — угол между касательной и положительным направлением $Ox$. Если $f'(x_0) > 0$ — функция возрастает, $f'(x_0) < 0$ — убывает.
+  task_number: 12
+  subtypes:
+  - no_derivative
+  error_tags:
+  - deriv_wrong_rule
+  prerequisites:
+  - t12_mm05
+  applicable_tasks:
+  - 76054F
+  - 24e5F8
+  - 933FFF
+  - 6888FA
+  - 6310FE
+  - BDEF76
+  - '597474'
+  - E0767B
+  - 1E41B2
+  - 97AEB6
+  - 33F1B8
+  - 221C18
+  - 5E7419
+  - 688D26
+  - 5A70DB
+  - 01A05E
+  - D99158
+  - 79CEAC
+  - C0F5A3
+  - ACB0C6
+  - 6986c7
+  - 3975C8
+  - 2E9992
+  - EAD99A
+  - 88E991
+  - BEB5E7
+  - B4B4EA
+  - F82962
+  - 033968
+  - 24A166
+  - '498736'
+  - FF843F
+- id: t12_mm07
+  title: Чтение графика $f'(x)$ для нахождения экстремумов $f(x)$
+  text: |-
+    Дан график $f'(x)$: $f'(x)>0$ → $f$ возрастает; $f'(x)<0$ → $f$ убывает. Точка максимума $f$: $f'$ меняет знак с $+$ на $-$ (пересекает ось $x$ сверху вниз). Точка минимума: $f'$ меняет знак с $-$ на $+$. Если $f'$ касается $x$-оси, но не меняет знак — нет экстремума.
+  task_number: 12
+  subtypes:
+  - no_derivative
+  error_tags:
+  - minmax_wrong_sign_analysis
+  - minmax_confused_min_max
+  prerequisites:
+  - t12_mm03
+  applicable_tasks:
+  - 47384A
+  - 76054F
+  - 659A4A
+  - 24e5F8
+  - 5750FE
+  - 933FFF
+  - 6888FA
+  - 6310FE
+  - BDEF76
+  - '597474'
+  - E0767B
+  - 27ACB1
+  - D1E7BE
+  - 97AEB6
+  - 33F1B8
+  - 221C18
+  - 5E7419
+  - 81F510
+  - DF872D
+  - 688D26
+  - B224D1
+  - 5A70DB
+  - AE14D4
+  - 01A05E
+  - '285552'
+  - D99158
+  - 714DA4
+  - 79CEAC
+  - C0F5A3
+  - 198ec9
+  - ACB0C6
+  - 6986c7
+  - 3975C8
+  - B4CB9F
+  - 2E9992
+  - EAD99A
+  - BEB5E7
+  - B4B4EA
+  - 1ECEE8
+  - 2D0BeD
+  - 033968
+  - 24A166
+  - 56CF6E
+  - 35C66B
+  - '498736'
+  - FF843F
+  - AC8783
+- id: t12_mm08
+  title: 'Таблица производных: базовые правила'
+  text: |-
+    $(x^n)' = nx^{n-1}$, $(C)' = 0$, $(Cf)' = Cf'$, $(f \pm g)' = f' \pm g'$. Также: $(\sqrt{x})' = \frac{1}{2\sqrt{x}}$, $(\frac{1}{x})' = -\frac{1}{x^2}$. Запомни: степень уменьшается на 1, старая степень становится коэффициентом.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - deriv_wrong_rule
+  applicable_tasks:
+  - 47384A
+  - 76054F
+  - 659A4A
+  - 24e5F8
+  - 5750FE
+  - 933FFF
+  - 6888FA
+  - 6310FE
+  - 35F6F7
+  - BDEF76
+  - '597474'
+  - E0767B
+  - 1E41B2
+  - 27ACB1
+  - 97AEB6
+  - 33F1B8
+  - 221C18
+  - 5E7419
+  - 81F510
+  - DF872D
+  - 688D26
+  - B224D1
+  - 5A70DB
+  - AE14D4
+  - 01A05E
+  - '285552'
+  - D99158
+  - 714DA4
+  - 79CEAC
+  - C0F5A3
+  - 198ec9
+  - ACB0C6
+  - 6986c7
+  - 3975C8
+  - B4CB9F
+  - 2E9992
+  - EAD99A
+  - 88E991
+  - BEB5E7
+  - 1ECEE8
+  - 2D0BeD
+  - F82962
+  - 24A166
+  - 56CF6E
+  - 35C66B
+  - '498736'
+  - FF843F
+  - AC8783
+- id: t12_mm09
+  title: Производная многочлена
+  text: |-
+    Для $f(x)=a_n x^n + \ldots + a_1 x + a_0$: $f'(x) = na_n x^{n-1} + \ldots + a_1$. Пример: $f(x)=x^3-12x^2+36x+17$ → $f'(x)=3x^2-24x+36 = 3(x^2-8x+12) = 3(x-2)(x-6)$. Критические точки: $f'(x)=0$ → $x=2$ и $x=6$.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - deriv_wrong_rule
+  - deriv_sign_error
+  shared_skills:
+  - equation_setup
+  - sign_analysis
+  applicable_tasks:
+  - 47384A
+  - 76054F
+  - 659A4A
+  - 24e5F8
+  - 5750FE
+  - 933FFF
+  - 6888FA
+  - 6310FE
+  - '597474'
+  - 27ACB1
+  - 97AEB6
+  - 221C18
+  - 5E7419
+  - 81F510
+  - DF872D
+  - 688D26
+  - B224D1
+  - 5A70DB
+  - AE14D4
+  - 01A05E
+  - 714DA4
+  - 198ec9
+  - 6986c7
+  - B4CB9F
+  - BEB5E7
+  - 2D0BeD
+  - 24A166
+  - 35C66B
+  - FF843F
+  - AC8783
+- id: t12_mm10
+  title: Критические точки многочлена
+  text: |-
+    Критические точки — решения $f'(x)=0$. Для кубического $f(x)$: $f'(x)$ — квадратный трёхчлен. Разложи $f'(x)$ на множители или найди корни через дискриминант. Если $D < 0$ — критических точек нет, функция монотонна.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - critical_point_wrong_eq
+  - deriv_sign_error
+  prerequisites:
+  - t12_mm09
+  shared_skills:
+  - equation_setup
+  applicable_tasks:
+  - 47384A
+  - 659A4A
+  - 24e5F8
+  - 5750FE
+  - 6888FA
+  - 6310FE
+  - BDEF76
+  - '597474'
+  - E0767B
+  - 1E41B2
+  - 27ACB1
+  - 221C18
+  - 5E7419
+  - 81F510
+  - 5A70DB
+  - AE14D4
+  - 01A05E
+  - 714DA4
+  - 198ec9
+  - 6986c7
+  - 3975C8
+  - B4CB9F
+  - 2E9992
+  - BEB5E7
+  - 2D0BeD
+  - F82962
+  - 24A166
+  - 35C66B
+  - FF843F
+  - AC8783
+- id: t12_mm11
+  title: 'Экстремумы многочлена: знак производной'
+  text: |-
+    Определи знак $f'(x)$ в каждом интервале между критическими точками. Если $f'$ меняет знак с $+$ на $-$ в точке $x_0$ — это максимум. С $-$ на $+$ — минимум. Метод: подставь пробную точку из каждого интервала в $f'$.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - minmax_wrong_sign_analysis
+  - minmax_confused_min_max
+  prerequisites:
+  - t12_mm10
+  shared_skills:
+  - sign_analysis
+  applicable_tasks:
+  - 47384A
+  - 76054F
+  - 659A4A
+  - 24e5F8
+  - 5750FE
+  - 6888FA
+  - 6310FE
+  - 35F6F7
+  - BDEF76
+  - '597474'
+  - E0767B
+  - 1E41B2
+  - 27ACB1
+  - D1E7BE
+  - 97AEB6
+  - 33F1B8
+  - 221C18
+  - 5E7419
+  - 81F510
+  - DF872D
+  - 688D26
+  - B224D1
+  - 5A70DB
+  - AE14D4
+  - 01A05E
+  - D99158
+  - 714DA4
+  - 79CEAC
+  - 198ec9
+  - 6986c7
+  - 3975C8
+  - B4CB9F
+  - 2E9992
+  - EAD99A
+  - 88E991
+  - BEB5E7
+  - B4B4EA
+  - 1ECEE8
+  - 2D0BeD
+  - F82962
+  - 033968
+  - 24A166
+  - 56CF6E
+  - 35C66B
+  - '498736'
+  - FF843F
+  - AC8783
+- id: t12_mm12
+  title: Наибольшее/наименьшее значение на отрезке $[a,b]$
+  text: |-
+    Алгоритм: (1) найди $f'(x)=0$ → критические точки $x_1,x_2,\ldots$ (2) оставь только те, что лежат в $[a,b]$ (3) вычисли $f(a)$, $f(b)$, $f(x_1)$, $f(x_2)$, \ldots (4) наибольшее значение — максимум из этих чисел, наименьшее — минимум.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - minmax_forgot_endpoints
+  - minmax_confused_min_max
+  prerequisites:
+  - t12_mm11
+  applicable_tasks:
+  - 47384A
+  - 76054F
+  - 24e5F8
+  - 5750FE
+  - 933FFF
+  - 6310FE
+  - 35F6F7
+  - BDEF76
+  - '597474'
+  - E0767B
+  - 1E41B2
+  - 27ACB1
+  - D1E7BE
+  - 97AEB6
+  - 33F1B8
+  - 221C18
+  - 5E7419
+  - 81F510
+  - DF872D
+  - 688D26
+  - 5A70DB
+  - AE14D4
+  - 01A05E
+  - '285552'
+  - D99158
+  - 714DA4
+  - 79CEAC
+  - C0F5A3
+  - 198ec9
+  - ACB0C6
+  - 6986c7
+  - 3975C8
+  - B4CB9F
+  - 2E9992
+  - EAD99A
+  - 88E991
+  - BEB5E7
+  - B4B4EA
+  - 1ECEE8
+  - 2D0BeD
+  - F82962
+  - 033968
+  - 24A166
+  - 56CF6E
+  - 35C66B
+  - '498736'
+  - FF843F
+  - AC8783
+- id: t12_mm13
+  title: Производная иррациональной функции ($\sqrt{x}$, $x^{p/q}$)
+  text: |-
+    $(\sqrt{x})' = \frac{1}{2\sqrt{x}}$ (при $x>0$). Общее: $(x^\alpha)' = \alpha x^{\alpha-1}$. Пример: $(\sqrt[3]{x^2})' = (x^{2/3})' = \frac{2}{3}x^{-1/3} = \frac{2}{3\sqrt[3]{x}}$. Не забудь область определения: под корнем чётной степени $\ge 0$.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - deriv_wrong_rule
+  - critical_point_missed_domain
+  prerequisites:
+  - t12_mm09
+  applicable_tasks:
+  - '597474'
+  - E0767B
+  - 27ACB1
+  - 33F1B8
+  - 221C18
+  - D99158
+  - 714DA4
+  - 198ec9
+  - 3975C8
+  - B4CB9F
+  - 2E9992
+  - BEB5E7
+  - FF843F
+- id: t12_mm14
+  title: Экстремумы функций с модулем
+  text: |-
+    Для $|f(x)|$: раскрой по определению. В точках $f(x)=0$ может быть излом — там производная не существует, но может быть экстремум. Отдельно анализируй $f(x) \ge 0$ и $f(x) < 0$.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - critical_point_wrong_eq
+  - minmax_wrong_sign_analysis
+  prerequisites:
+  - t12_mm11
+  applicable_tasks: []
+- id: t12_mm15
+  title: Параметрические задачи на экстремумы многочлена
+  text: |-
+    Задачи вида: «при каком $a$ функция $f(x)=x^3+ax^2+bx+c$ имеет максимум в точке $x_0$?» Условия: $f'(x_0)=0$ и $f''(x_0)<0$ (или смена знака $f'$). Подставь $x_0$ в $f'(x)=0$ и найди параметр.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - critical_point_wrong_eq
+  - did_not_check_constraints
+  prerequisites:
+  - t12_mm11
+  applicable_tasks:
+  - 24e5F8
+  - 5750FE
+  - 6888FA
+  - 6310FE
+  - '597474'
+  - E0767B
+  - 5E7419
+  - 5A70DB
+  - AE14D4
+  - 01A05E
+  - D99158
+  - 714DA4
+  - 198ec9
+  - B4CB9F
+  - 1ECEE8
+  - 2D0BeD
+  - F82962
+  - 35C66B
+  - AC8783
+- id: t12_mm16
+  title: 'Производная $|f(x)|$: правила и особенности'
+  text: |-
+    $(|f(x)|)' = f'(x) \cdot \text{sgn}(f(x)) = \frac{f(x)}{|f(x)|} \cdot f'(x)$ при $f(x)\neq 0$. В точке $f(x)=0$ производная может не существовать (угловая точка). Часто проще: раскрой модуль на промежутках знакопостоянства $f(x)$.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - deriv_wrong_rule
+  - critical_point_missed_domain
+  applicable_tasks:
+  - EAD99A
+- id: t12_mm17
+  title: Наибольшее/наименьшее иррациональной функции на отрезке
+  text: |-
+    Пример: $f(x) = x - 2\sqrt{x}$ на $[0, 9]$. $f'(x) = 1 - \frac{1}{\sqrt{x}}$. $f'(x) = 0 \Rightarrow \sqrt{x}=1 \Rightarrow x=1$. Сравни $f(0)=0$, $f(1)=-1$, $f(9)=3$. Ответ: min $=-1$, max $=3$.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - critical_point_missed_domain
+  - minmax_forgot_endpoints
+  prerequisites:
+  - t12_mm13
+  applicable_tasks:
+  - 47384A
+  - 76054F
+  - 659A4A
+  - 5750FE
+  - 933FFF
+  - 35F6F7
+  - BDEF76
+  - '597474'
+  - E0767B
+  - 1E41B2
+  - 27ACB1
+  - D1E7BE
+  - 97AEB6
+  - 33F1B8
+  - 221C18
+  - 81F510
+  - DF872D
+  - 688D26
+  - B224D1
+  - 5A70DB
+  - AE14D4
+  - 01A05E
+  - '285552'
+  - D99158
+  - 714DA4
+  - 79CEAC
+  - C0F5A3
+  - 198ec9
+  - ACB0C6
+  - 3975C8
+  - 2E9992
+  - EAD99A
+  - 88E991
+  - BEB5E7
+  - B4B4EA
+  - 1ECEE8
+  - 2D0BeD
+  - F82962
+  - 033968
+  - 24A166
+  - 56CF6E
+  - 35C66B
+  - '498736'
+  - FF843F
+  - AC8783
+- id: t12_mm18
+  title: Экстремумы функций с вложенными корнями
+  text: |-
+    Для $f(x)=\sqrt{g(x)}$: $f'(x) = \frac{g'(x)}{2\sqrt{g(x)}}$, определена при $g(x)>0$. Критические точки: $g'(x)=0$ (при $g(x)>0$) и граница области определения $g(x)=0$. Проверяй обе ситуации!
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - deriv_forgot_chain_rule
+  - critical_point_missed_domain
+  prerequisites:
+  - t12_mm13
+  applicable_tasks:
+  - E0767B
+  - 27ACB1
+  - 33F1B8
+  - 221C18
+  - D99158
+  - 3975C8
+  - BEB5E7
+  - FF843F
+- id: t12_mm19
+  title: Многочлены степени выше 3
+  text: |-
+    Для $f(x)=x^4+ax^3+\ldots$: $f'(x)$ — кубический многочлен. Разложение $f'(x)$: иногда один корень угадывается ($x=0$ или $x=1$), потом делим на $(x-x_0)$. Или группировка: $f'(x) = x^2(3x+a)+b$.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - deriv_wrong_rule
+  - critical_point_wrong_eq
+  prerequisites:
+  - t12_mm09
+  applicable_tasks:
+  - AC8783
+- id: t12_mm20
+  title: Экстремумы многочленов степени 4+
+  text: |-
+    У $f(x) = x^4 - 4x^3$ три критические точки? $f'(x)=4x^3-12x^2=4x^2(x-3)$. Корни: $x=0$ (кратный) и $x=3$. При $x=0$ знак $f'$ НЕ меняется (нет экстремума). При $x=3$ знак меняется с $-$ на $+$ → минимум.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - minmax_wrong_sign_analysis
+  - critical_point_wrong_eq
+  prerequisites:
+  - t12_mm19
+  applicable_tasks:
+  - 47384A
+  - 659A4A
+  - 24e5F8
+  - 5750FE
+  - 6888FA
+  - 35F6F7
+  - E0767B
+  - 81F510
+  - AE14D4
+  - 01A05E
+  - '285552'
+  - 714DA4
+  - 198ec9
+  - ACB0C6
+  - 3975C8
+  - B4CB9F
+  - 2E9992
+  - BEB5E7
+  - B4B4EA
+  - 1ECEE8
+  - 033968
+  - 35C66B
+  - FF843F
+  - AC8783
+- id: t12_mm21
+  title: Оптимизация для многочленов высокой степени
+  text: |-
+    Наибольшее/наименьшее значение многочлена 4-й степени на отрезке: стандартный алгоритм, но $f'(x)=0$ может давать 1-3 корня. Кратные корни: проверяй смену знака! Подставь пробные точки слева и справа.
+  task_number: 12
+  subtypes:
+  - power_irrational
+  error_tags:
+  - minmax_forgot_endpoints
+  - minmax_wrong_sign_analysis
+  prerequisites:
+  - t12_mm19
+  applicable_tasks:
+  - 24e5F8
+  - 5750FE
+  - 6888FA
+  - 6310FE
+  - '597474'
+  - 27ACB1
+  - 221C18
+  - 5E7419
+  - 81F510
+  - 688D26
+  - 5A70DB
+  - AE14D4
+  - 01A05E
+  - D99158
+  - 714DA4
+  - 198ec9
+  - 6986c7
+  - B4CB9F
+  - BEB5E7
+  - B4B4EA
+  - 2D0BeD
+  - 35C66B
+  - '498736'
+  - AC8783
+- id: t12_mm22
+  title: Правило дифференцирования частного $\frac{f}{g}$
+  text: |-
+    $\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}$. Запомни: «числитель: производная числителя × знаменатель МИНУС числитель × производная знаменателя». Знак минус — самая частая ошибка! Знаменатель всегда в квадрате.
+  task_number: 12
+  subtypes:
+  - quotient
+  error_tags:
+  - quotient_rule_error
+  - deriv_sign_error
+  shared_skills:
+  - equation_setup
+  applicable_tasks: []
+- id: t12_mm23
+  title: Экстремумы дробной функции на отрезке
+  text: |-
+    Алгоритм для $\frac{f(x)}{g(x)}$ на $[a,b]$: (1) найди ОДЗ ($g(x) \neq 0$); (2) производная по правилу частного; (3) $f'g - fg' = 0$; (4) сравни значения в критических точках и на концах.
+  task_number: 12
+  subtypes:
+  - quotient
+  error_tags:
+  - minmax_forgot_endpoints
+  - quotient_rule_error
+  prerequisites:
+  - t12_mm24
+  applicable_tasks:
+  - 79CEAC
+  - 1ECEE8
+  - F82962
+- id: t12_mm24
+  title: Критические точки дробных функций
+  text: |-
+    $\frac{f'g - fg'}{g^2} = 0$ ⟺ $f'g - fg' = 0$ (при $g \neq 0$). Часто удобнее: $\frac{f'}{f} = \frac{g'}{g}$ (логарифмическая производная). Пример: $\frac{x^2+1}{x}$ → $\frac{2x \cdot x - (x^2+1)}{x^2} = \frac{x^2-1}{x^2} = 0$ → $x = \pm 1$.
+  task_number: 12
+  subtypes:
+  - quotient
+  error_tags:
+  - critical_point_wrong_eq
+  - quotient_rule_error
+  prerequisites:
+  - t12_mm22
+  applicable_tasks:
+  - 47384A
+  - 5750FE
+  - 35F6F7
+  - DF872D
+  - AE14D4
+- id: t12_mm25
+  title: Сложная оптимизация дробных функций
+  text: |-
+    Функции вида $\frac{ax^2+bx+c}{dx+e}$ или $\frac{P(x)}{Q(x)}$: после дифференцирования числитель $f'g-fg'$ может быть многочленом высокой степени. Ищи корни: деление столбиком, группировка, подбор рациональных корней.
+  task_number: 12
+  subtypes:
+  - quotient
+  error_tags:
+  - quotient_rule_error
+  - minmax_wrong_sign_analysis
+  prerequisites:
+  - t12_mm23
+  applicable_tasks: []
+- id: t12_mm26
+  title: Учёт области определения для дробных функций
+  text: |-
+    ОДЗ: $g(x) \neq 0$. Если $g(x_0)=0$ — точка не входит в область определения. Вблизи таких точек функция может стремиться к $\pm\infty$ (вертикальная асимптота). При поиске min/max на отрезке: если точка разрыва внутри $[a,b]$, задача нуждается в доп. анализе.
+  task_number: 12
+  subtypes:
+  - quotient
+  error_tags:
+  - critical_point_missed_domain
+  - quotient_rule_error
+  prerequisites:
+  - t12_mm24
+  applicable_tasks:
+  - 47384A
+  - 659A4A
+  - 933FFF
+  - BDEF76
+  - 1E41B2
+  - D1E7BE
+  - 81F510
+  - DF872D
+  - '285552'
+  - D99158
+  - C0F5A3
+  - 3975C8
+  - 88E991
+  - 033968
+- id: t12_mm27
+  title: Правило дифференцирования произведения $f \cdot g$
+  text: |-
+    $(fg)' = f'g + fg'$. Для трёх множителей: $(fgh)' = f'gh + fg'h + fgh'$. Запомни: каждый множитель по очереди дифференцируется, остальные остаются. Частая ошибка: забыть второе слагаемое.
+  task_number: 12
+  subtypes:
+  - product
+  error_tags:
+  - product_rule_error
+  applicable_tasks:
+  - 35F6F7
+  - E0767B
+  - 33F1B8
+  - 688D26
+  - BEB5E7
+  - F82962
+  - 24A166
+  - 56CF6E
+- id: t12_mm28
+  title: 'Производная произведения: применение'
+  text: |-
+    Для $f(x)=x^2(x-3)$: $f'(x)=2x(x-3)+x^2 = x(2(x-3)+x) = x(3x-6) = 3x(x-2)$. Альтернатива: раскрой скобки ($x^3-3x^2$) и дифференцируй. Для сложных произведений раскрытие не всегда удобно — используй правило.
+  task_number: 12
+  subtypes:
+  - product
+  error_tags:
+  - product_rule_error
+  - deriv_sign_error
+  shared_skills:
+  - equation_setup
+  applicable_tasks:
+  - 35F6F7
+  - 33F1B8
+  - 221C18
+  - BEB5E7
+  - F82962
+  - 24A166
+  - 56CF6E
+- id: t12_mm29
+  title: Экстремумы произведения на отрезке
+  text: |-
+    Стандартный алгоритм: найди $f'(x)=0$, оставь корни в $[a,b]$, сравни значения. Для $f(x)=x(x-1)(x+2)$ на $[-3,2]$: раскрой или дифференцируй по правилу произведения. Не забудь концы отрезка!
+  task_number: 12
+  subtypes:
+  - product
+  error_tags:
+  - minmax_forgot_endpoints
+  - product_rule_error
+  prerequisites:
+  - t12_mm30
+  applicable_tasks:
+  - 76054F
+  - 5750FE
+  - 6310FE
+  - 35F6F7
+  - BDEF76
+  - '597474'
+  - E0767B
+  - 27ACB1
+  - 221C18
+  - 688D26
+  - B224D1
+  - 714DA4
+  - 79CEAC
+  - C0F5A3
+  - 198ec9
+  - EAD99A
+  - BEB5E7
+  - 2D0BeD
+  - F82962
+  - 24A166
+  - 56CF6E
+  - 35C66B
+  - '498736'
+- id: t12_mm30
+  title: Критические точки произведения функций
+  text: |-
+    $(fg)' = f'g + fg' = 0$. Вынеси общий множитель: если $f(x)=x^n \cdot h(x)$, то $f'(x) = x^{n-1}(n \cdot h(x) + x \cdot h'(x))$. Корни: $x=0$ (если $n>1$, проверь кратность!) и корни выражения в скобках.
+  task_number: 12
+  subtypes:
+  - product
+  error_tags:
+  - critical_point_wrong_eq
+  - product_rule_error
+  prerequisites:
+  - t12_mm28
+  applicable_tasks:
+  - 35F6F7
+  - E0767B
+  - 33F1B8
+  - 221C18
+  - 81F510
+  - 5A70DB
+  - 79CEAC
+  - BEB5E7
+  - 2D0BeD
+  - F82962
+  - 24A166
+  - 56CF6E
+- id: t12_mm31
+  title: Разложение производной произведения на множители
+  text: |-
+    После дифференцирования вынеси общие множители. Пример: $(x^2 e^x)' = 2xe^x + x^2 e^x = xe^x(2+x)$. Критические точки: $x=0$ и $x=-2$ (т.к. $e^x > 0$ всегда).
+  task_number: 12
+  subtypes:
+  - product
+  error_tags:
+  - critical_point_wrong_eq
+  prerequisites:
+  - t12_mm30
+  applicable_tasks:
+  - 24e5F8
+  - 35F6F7
+  - 27ACB1
+  - 33F1B8
+  - F82962
+  - 24A166
+  - 56CF6E
+- id: t12_mm32
+  title: Сложная оптимизация произведений
+  text: |-
+    Для функций вида $x^a(b-x)^c$: $f'(x) = x^{a-1}(b-x)^{c-1}[a(b-x) - cx]$. Критическая точка (кроме $x=0$ и $x=b$): $a(b-x)=cx$ → $x=\frac{ab}{a+c}$. Этот приём часто встречается в задачах на оптимизацию.
+  task_number: 12
+  subtypes:
+  - product
+  error_tags:
+  - product_rule_error
+  - minmax_wrong_sign_analysis
+  prerequisites:
+  - t12_mm31
+  applicable_tasks: []
+- id: t12_mm33
+  title: Произведение с полиномиальными множителями
+  text: |-
+    Для $f(x)=(x-a)(x-b)g(x)$: производная содержит много слагаемых. Стратегия: раскрой $(x-a)(x-b) = x^2-(a+b)x+ab$ и умножь на $g(x)$, потом дифференцируй обычным способом. Или используй логарифмическую производную.
+  task_number: 12
+  subtypes:
+  - product
+  error_tags:
+  - product_rule_error
+  - critical_point_wrong_eq
+  prerequisites:
+  - t12_mm30
+  applicable_tasks:
+  - 35F6F7
+  - F82962
+  - 24A166
+  - 56CF6E
+- id: t12_mm34
+  title: Производная показательной функции $e^x$, $a^x$
+  text: |-
+    $(e^x)' = e^x$, $(a^x)' = a^x \ln a$. С цепным правилом: $(e^{g(x)})' = g'(x) \cdot e^{g(x)}$. Помни: $e^x > 0$ всегда, поэтому $e^{g(x)} \neq 0$ и критические точки определяются только $g'(x)$.
+  task_number: 12
+  subtypes:
+  - exp_log
+  error_tags:
+  - exp_deriv_error
+  - deriv_forgot_chain_rule
+  shared_skills:
+  - constraint_checking
+  prerequisites:
+  - t06_mm05
+  applicable_tasks:
+  - 35F6F7
+  - 1E41B2
+  - '285552'
+  - F82962
+  - 24A166
+  - 56CF6E
+- id: t12_mm35
+  title: Экстремумы показательных функций
+  text: |-
+    Для $f(x)=g(x) \cdot e^{h(x)}$: $f'(x) = [g'(x)+g(x)h'(x)]e^{h(x)}$. Т.к. $e^{h(x)}>0$: критические точки из $g'(x)+g(x)h'(x)=0$. Пример: $(x-1)e^x$ → $f'(x)=e^x + (x-1)e^x = xe^x$, min в $x=0$.
+  task_number: 12
+  subtypes:
+  - exp_log
+  error_tags:
+  - exp_deriv_error
+  - minmax_wrong_sign_analysis
+  prerequisites:
+  - t12_mm34
+  applicable_tasks:
+  - 35F6F7
+  - F82962
+  - 24A166
+  - 56CF6E
+  - 35C66B
+- id: t12_mm36
+  title: Производная логарифмической функции $\ln x$, $\log_a x$
+  text: |-
+    $(\ln x)' = \frac{1}{x}$ (при $x>0$). $(\log_a x)' = \frac{1}{x \ln a}$. Цепное правило: $(\ln g(x))' = \frac{g'(x)}{g(x)}$ (при $g(x)>0$). ОДЗ: аргумент логарифма строго положительный!
+  task_number: 12
+  subtypes:
+  - exp_log
+  error_tags:
+  - log_deriv_error
+  - deriv_forgot_chain_rule
+  shared_skills:
+  - constraint_checking
+  applicable_tasks:
+  - 47384A
+  - 659A4A
+  - 933FFF
+  - BDEF76
+  - 1E41B2
+  - D1E7BE
+  - 97AEB6
+  - 81F510
+  - DF872D
+  - 688D26
+  - B224D1
+  - '285552'
+  - C0F5A3
+  - ACB0C6
+  - 88E991
+  - 1ECEE8
+  - 033968
+- id: t12_mm37
+  title: Экстремумы логарифмических функций
+  text: |-
+    Для $f(x)=\ln x - ax$: $f'(x)=\frac{1}{x}-a=\frac{1-ax}{x}$. Критическая точка: $x=\frac{1}{a}$ (при $a>0$). Проверь ОДЗ: $x>0$. На отрезке: не забудь концы, и что $\ln x$ определён только при $x>0$.
+  task_number: 12
+  subtypes:
+  - exp_log
+  error_tags:
+  - log_deriv_error
+  - critical_point_missed_domain
+  prerequisites:
+  - t12_mm36
+  applicable_tasks:
+  - 933FFF
+  - BDEF76
+  - 1E41B2
+  - D1E7BE
+  - 97AEB6
+  - 81F510
+  - DF872D
+  - B224D1
+  - '285552'
+  - C0F5A3
+  - ACB0C6
+  - 88E991
+  - 1ECEE8
+  - 033968
+- id: t12_mm38
+  title: Комбинированные экспоненциально-логарифмические функции
+  text: |-
+    Для $f(x) = e^x \ln x$: $(e^x \ln x)' = e^x \ln x + \frac{e^x}{x} = e^x(\ln x + \frac{1}{x})$. Для $f(x)=x^x = e^{x \ln x}$: $f'(x) = x^x(\ln x + 1)$. Ключ: преобразуй к экспоненте через $e^{\ln}$ и применяй цепное правило.
+  task_number: 12
+  subtypes:
+  - exp_log
+  error_tags:
+  - exp_deriv_error
+  - log_deriv_error
+  - deriv_forgot_chain_rule
+  applicable_tasks:
+  - 35F6F7
+  - ACB0C6
+- id: t12_mm39
+  title: Производные $\sin x$ и $\cos x$
+  text: |-
+    $(\sin x)' = \cos x$, $(\cos x)' = -\sin x$. С цепным правилом: $(\sin(g(x)))' = g'(x)\cos(g(x))$, $(\cos(g(x)))' = -g'(x)\sin(g(x))$. Знак минус у косинуса — самая частая ошибка.
+  task_number: 12
+  subtypes:
+  - trig
+  error_tags:
+  - trig_deriv_error
+  applicable_tasks:
+  - 76054F
+  - 79CEAC
+  - EAD99A
+  - B4B4EA
+  - '498736'
+- id: t12_mm40
+  title: Производные $\tan x$ и $\cot x$
+  text: |-
+    $(\tan x)' = \frac{1}{\cos^2 x}$, $(\cot x)' = -\frac{1}{\sin^2 x}$. ОДЗ: $\tan x$ при $x \neq \frac{\pi}{2}+\pi n$; $\cot x$ при $x \neq \pi n$. С цепным правилом: $(\tan(g(x)))' = \frac{g'(x)}{\cos^2(g(x))}$.
+  task_number: 12
+  subtypes:
+  - trig
+  error_tags:
+  - trig_deriv_error
+  - deriv_wrong_rule
+  applicable_tasks: []
+- id: t12_mm41
+  title: Тригонометрические тождества при дифференцировании
+  text: |-
+    Полезные тождества: $\sin^2 x + \cos^2 x = 1$; $\sin 2x = 2\sin x \cos x$; $\cos 2x = \cos^2 x - \sin^2 x$. Часто после дифференцирования выражение упрощается через эти формулы.
+  task_number: 12
+  subtypes:
+  - trig
+  error_tags:
+  - trig_deriv_error
+  applicable_tasks:
+  - EAD99A
+  - '498736'
+- id: t12_mm42
+  title: Критические точки тригонометрических функций
+  text: |-
+    Для $f(x) = a\sin x + b\cos x$: $f'(x) = a\cos x - b\sin x = 0$ → $\tan x = \frac{a}{b}$. Бесконечно много критических точек! На отрезке: отбирай корни в $[a,b]$. Для $f(x)=\sin^2 x$: $f'(x)=2\sin x \cos x = \sin 2x = 0$ → $x = \frac{\pi n}{2}$.
+  task_number: 12
+  subtypes:
+  - trig
+  error_tags:
+  - critical_point_wrong_eq
+  - trig_deriv_error
+  prerequisites:
+  - t12_mm40
+  applicable_tasks:
+  - 76054F
+  - 79CEAC
+  - EAD99A
+  - '498736'
+- id: t12_mm43
+  title: Экстремумы композиции тригонометрических функций
+  text: |-
+    Для $f(x)=\sin(g(x))$: $f'(x) = g'(x)\cos(g(x))=0$ → $g'(x)=0$ или $g(x)=\frac{\pi}{2}+\pi n$. Пример: $\sin(x^2)$: $f'(x)=2x\cos(x^2)=0$ → $x=0$ или $x^2=\frac{\pi}{2}+\pi n$. Отбирай корни с учётом отрезка и ОДЗ.
+  task_number: 12
+  subtypes:
+  - trig
+  error_tags:
+  - deriv_forgot_chain_rule
+  - trig_deriv_error
+  prerequisites:
+  - t12_mm48
+  applicable_tasks:
+  - '498736'
+- id: t12_mm44
+  title: 'Экстремумы тригонометрических функций на отрезке: базовые'
+  text: |-
+    Для $f(x) = \sin x$ на $[a,b]$: $f'(x)=\cos x = 0$ → $x=\frac{\pi}{2}+\pi n$. Отбери $x \in [a,b]$, вычисли $f$ на концах и в критических точках. Помни: $\sin x \in [-1,1]$, $\cos x \in [-1,1]$ — используй для проверки.
+  task_number: 12
+  subtypes:
+  - trig
+  error_tags:
+  - minmax_forgot_endpoints
+  - trig_deriv_error
+  applicable_tasks:
+  - 76054F
+  - 79CEAC
+  - EAD99A
+  - B4B4EA
+  - '498736'
+- id: t12_mm45
+  title: Сложные тригонометрические экстремумы
+  text: |-
+    Для $f(x) = \sin x + \cos x$: $f'(x) = \cos x - \sin x = 0$ → $\tan x = 1$ → $x = \frac{\pi}{4}+\pi n$. Или приведи к одной функции: $\sin x + \cos x = \sqrt{2}\sin(x+\frac{\pi}{4})$. Тогда max $= \sqrt{2}$, min $= -\sqrt{2}$.
+  task_number: 12
+  subtypes:
+  - trig
+  error_tags:
+  - trig_deriv_error
+  - minmax_wrong_sign_analysis
+  prerequisites:
+  - t12_mm44
+  applicable_tasks: []
+- id: t12_mm46
+  title: Оптимизация тригонометрических функций на отрезке
+  text: |-
+    Сложная тригонометрическая функция на $[a,b]$: найди все $x$ где $f'(x)=0$, отбери в $[a,b]$, вычисли $f$ в каждой + на концах. Если функция периодична — на длинном отрезке может быть много критических точек.
+  task_number: 12
+  subtypes:
+  - trig
+  error_tags:
+  - minmax_forgot_endpoints
+  - trig_deriv_error
+  - minmax_confused_min_max
+  prerequisites:
+  - t12_mm45
+  applicable_tasks:
+  - 76054F
+  - 659A4A
+  - 24e5F8
+  - 6888FA
+  - BDEF76
+  - 1E41B2
+  - 27ACB1
+  - D1E7BE
+  - 221C18
+  - 81F510
+  - DF872D
+  - 688D26
+  - B224D1
+  - 5A70DB
+  - 01A05E
+  - 714DA4
+  - 79CEAC
+  - C0F5A3
+  - 3975C8
+  - B4CB9F
+  - 2E9992
+  - EAD99A
+  - BEB5E7
+  - B4B4EA
+  - 1ECEE8
+  - 033968
+  - 24A166
+  - 56CF6E
+  - 35C66B
+  - '498736'
+- id: t12_mm47
+  title: Комбинированные тригонометрические задачи
+  text: |-
+    Задачи с $f(x) = \sin(ax+b) \cdot g(x)$ или $\frac{\sin x}{\cos x + c}$: комбинируй правила (произведение/частное + цепное правило + тригонометрия). Упрощай производную через тождества перед поиском корней.
+  task_number: 12
+  subtypes:
+  - trig
+  error_tags:
+  - trig_deriv_error
+  - minmax_wrong_sign_analysis
+  - deriv_forgot_chain_rule
+  prerequisites:
+  - t12_mm42
+  - t12_mm43
+  applicable_tasks:
+  - EAD99A
+- id: t12_mm48
+  title: Цепное правило для тригонометрических композиций
+  text: |-
+    $(f(g(x)))' = f'(g(x)) \cdot g'(x)$. Примеры: $(\sin 3x)' = 3\cos 3x$; $(\cos(x^2))' = -2x\sin(x^2)$; $(\sin^2 x)' = 2\sin x \cdot \cos x = \sin 2x$. Не забудь внутреннюю производную!
+  task_number: 12
+  subtypes:
+  - trig
+  error_tags:
+  - deriv_forgot_chain_rule
+  - trig_deriv_error
+  applicable_tasks:
+  - 47384A
+  - E0767B
+  - 1E41B2
+  - 79CEAC
+  - 2E9992
+  - EAD99A
+  - B4B4EA
+  - 24A166
+  - '498736'

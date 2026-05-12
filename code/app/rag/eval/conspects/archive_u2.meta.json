@@ -1,0 +1,20 @@
+{
+  "student_id": "archive_u2",
+  "generated_at_utc": "2026-05-03T14:04:14.555842+00:00",
+  "retrieved_titles": [],
+  "frontier_atoms": [
+    "Показательное уравнение с одинаковым основанием",
+    "Показательное уравнение с разными основаниями"
+  ],
+  "top_errors": ["wrong_base_reduction", "exp_property_error"],
+  "top_err": "Неверно приводишь показательное уравнение к общему основанию или ошибаешься в степени",
+  "recent_wrong": [
+    {
+      "task_number": 6,
+      "task_text": "",
+      "student_answer": "8",
+      "correct_answer": "2"
+    }
+  ],
+  "n_err_items": 2
+}

@@ -1,0 +1,1111 @@
+- id: t10_mm01
+  title: Процент как доля числа
+  text: $r\%$ числа $N$ — это $\frac{r}{100}\cdot N$. Увеличить на $r\%$ означает
+    умножить на $(1+\frac{r}{100})$, уменьшить — на $(1-\frac{r}{100})$. Процент всегда
+    нужно переводить в десятичную дробь.
+  task_number: 10
+  subtypes:
+  - percent_mixture
+  error_tags:
+  - percent_used_as_number
+  shared_skills:
+  - answer_plausibility
+- id: t10_mm02
+  title: Нахождение числа по его проценту
+  text: 'Если $x$ составляет $r\%$ от числа $N$, то $N=\frac{x}{r/100}=\frac{100x}{r}$.
+    Часто ошибаются с выбором базы: «$5\%$ от зарплаты» и «$5\%$ от всех расходов»
+    — это разные $N$.'
+  task_number: 10
+  subtypes:
+  - percent_mixture
+  error_tags:
+  - percent_wrong_base
+  prerequisites:
+  - t10_mm05
+- id: t10_mm03
+  title: Концентрация раствора и доля вещества
+  text: 'Концентрация $p$ — доля чистого вещества в растворе: $p=\frac{m_{\text{в-ва}}}{m_{\text{р-ра}}}$.
+    Масса вещества $= p \cdot m$. При смешивании масса вещества сохраняется: $p_1
+    m_1 + p_2 m_2 = p_3 (m_1 + m_2)$. Итоговая концентрация всегда между $p_1$ и $p_2$.'
+  task_number: 10
+  subtypes:
+  - percent_mixture
+  error_tags:
+  - mixture_not_using_balance
+  - mixture_percent_not_to_fraction
+  prerequisites:
+  - t10_mm01
+  shared_skills:
+  - answer_plausibility
+- id: t10_mm04
+  title: Смешивание двух растворов разной концентрации
+  text: 'При смешивании двух растворов массами $m_1,m_2$ с концентрациями $p_1,p_2$:
+    $p_{\text{ит}}=\frac{p_1 m_1 + p_2 m_2}{m_1 + m_2}$. Если одна масса — чистое
+    вещество ($p=1$) или чистый растворитель ($p=0$), подставляй соответственно.'
+  task_number: 10
+  subtypes:
+  - percent_mixture
+  error_tags:
+  - mixture_wrong_total_mass
+  - mixture_not_using_balance
+  prerequisites:
+  - t10_mm05
+- id: t10_mm05
+  title: Последовательные изменения на проценты
+  text: 'Два изменения подряд: умножай множители, не складывай проценты. Если цена
+    выросла на $a\%$, потом упала на $b\%$: итог $= P(1+\frac{a}{100})(1-\frac{b}{100})$.
+    Это НЕ равно $P(1+\frac{a-b}{100})$. Результат зависит от порядка.'
+  task_number: 10
+  subtypes:
+  - percent_mixture
+  error_tags:
+  - percent_chain_changes
+  prerequisites:
+  - t10_mm03
+- id: t10_mm06
+  title: 'Сплавы: масса металла в сплаве'
+  text: Сплав — та же смесь. Если сплав массой $m$ содержит $r\%$ меди, то масса меди
+    $=\frac{r}{100}m$. При сплавлении двух кусков масса каждого металла складывается.
+    Если добавили чистый металл ($100\%$), его масса идёт целиком.
+  task_number: 10
+  subtypes:
+  - percent_mixture
+  error_tags:
+  - mixture_not_using_balance
+  - mixture_percent_not_to_fraction
+  prerequisites:
+  - t10_mm01
+- id: t10_mm10
+  title: Сложные задачи на сплавы с несколькими неизвестными
+  text: 'Когда в задаче два или три сплава с разными долями: введи $x$ = масса одного
+    из них, вырази остальные массы через $x$ и условия. Составь баланс по каждому
+    веществу. Если два вещества — получится система из двух уравнений.'
+  task_number: 10
+  subtypes:
+  - percent_mixture
+  error_tags:
+  - mixture_wrong_total_mass
+  - picked_wrong_variable
+  prerequisites:
+  - t10_mm06
+- id: t10_mm15
+  title: Системы уравнений для задач на растворы
+  text: 'Если в условии два разных смешивания (например, «всё смешали» и «смешали
+    равные массы»), вводи $p_1,p_2$ как неизвестные концентрации и составляй систему.
+    В равных массах: $\frac{p_1+p_2}{2}=p_{\text{ит}}$.'
+  task_number: 10
+  subtypes:
+  - percent_mixture
+  error_tags:
+  - mixture_wrong_total_mass
+  - mixture_not_using_balance
+  prerequisites:
+  - t10_mm03
+- id: t10_mm07
+  title: Введение переменной в текстовой задаче
+  text: 'Первый шаг любой текстовой задачи: выбрать, что обозначить за $x$. Удобнее
+    всего обозначать ту величину, которую спрашивают. Подпиши единицы и смысл: «пусть
+    $x$ (км/ч) — собственная скорость лодки».'
+  task_number: 10
+  subtypes:
+  - equation_setup
+  error_tags:
+  - picked_wrong_variable
+  shared_skills:
+  - equation_setup
+  prerequisites:
+  - t06_mm15
+- id: t10_mm08
+  title: Уравнение из условия «разность»
+  text: 'Фраза «на $d$ единиц больше/меньше» сразу даёт $A - B = d$ или $B - A = d$.
+    «На $d$ часов позже» → разность времён: $\frac{S}{v_1}-\frac{S}{v_2}=d$. Всегда
+    проверяй знак: «быстрее» → время меньше → вычитай из большего.'
+  task_number: 10
+  subtypes:
+  - equation_setup
+  error_tags:
+  - lost_parentheses_or_sign
+  - picked_wrong_variable
+  shared_skills:
+  - equation_setup
+- id: t10_mm09
+  title: Уравнение из условия «отношение»
+  text: Фраза «в $k$ раз больше/меньше» даёт $A = kB$ или $B = kA$. «Скорость второго
+    в $1.5$ раза больше первого» → $v_2 = 1.5 v_1$. Если «на $20\%$ быстрее» — это
+    «в $1.2$ раза быстрее», т.е. множитель.
+  task_number: 10
+  subtypes:
+  - equation_setup
+  error_tags:
+  - picked_wrong_variable
+  prerequisites:
+  - t10_mm07
+- id: t10_mm11
+  title: Рациональные уравнения с дробями
+  text: Большинство задач №10 приводят к уравнению вида $\frac{A}{x} \pm \frac{B}{x+k}
+    = C$. Умножь обе части на общий знаменатель $x(x+k)$. Не забудь проверить, что
+    $x\neq 0$ и $x\neq -k$. После раскрытия скобок часто получается квадратное уравнение.
+  task_number: 10
+  subtypes:
+  - equation_setup
+  error_tags:
+  - lost_parentheses_or_sign
+  - did_not_check_constraints
+  prerequisites:
+  - t10_mm12
+  shared_skills:
+  - equation_setup
+- id: t10_mm12
+  title: Линейные уравнения из текстовых задач
+  text: 'Если в задаче одно неизвестное и нет дробей с $x$ в знаменателе, получится
+    линейное уравнение $ax+b=c$. Приведи все величины к одним единицам перед составлением
+    уравнения. Пример: «заплатили $x$ руб., получили сдачу $y$ руб.» → $x + y = S$.'
+  task_number: 10
+  subtypes:
+  - equation_setup
+  error_tags:
+  - units_mismatch
+  - picked_wrong_variable
+- id: t10_mm13
+  title: Квадратные уравнения из текстовых задач
+  text: 'После умножения на общий знаменатель или раскрытия скобок часто получается
+    $ax^2+bx+c=0$. Дискриминант $D=b^2-4ac$; корни $x=\frac{-b\pm\sqrt{D}}{2a}$. Из
+    двух корней выбирай тот, который удовлетворяет ОДЗ: скорость>0, время>0, масса>0.'
+  task_number: 10
+  subtypes:
+  - equation_setup
+  error_tags:
+  - did_not_check_constraints
+  - lost_parentheses_or_sign
+  prerequisites:
+  - t10_mm11
+  - t10_mm08
+- id: t10_mm14
+  title: Системы двух уравнений в текстовых задачах
+  text: 'Если в задаче два неизвестных и два независимых условия — составляй систему.
+    Методы: подстановка (вырази $y$ через $x$ из одного, подставь в другое) или сложение
+    (домножь одно уравнение, чтобы при сложении одна переменная сократилась).'
+  task_number: 10
+  subtypes:
+  - equation_setup
+  error_tags:
+  - picked_wrong_variable
+  - lost_parentheses_or_sign
+  prerequisites:
+  - t10_mm13
+- id: t10_mm16
+  title: Параметрические условия и ограничения в задаче
+  text: 'Если ответ зависит от параметра или есть дополнительное условие (например,
+    «корень целый», «расстояние положительно»): реши уравнение, потом наложи ограничения.
+    При квадратном уравнении проверяй $D \ge 0$ и знак корней.'
+  task_number: 10
+  subtypes:
+  - equation_setup
+  error_tags:
+  - did_not_check_constraints
+  prerequisites:
+  - t10_mm13
+- id: t10_mm17
+  title: Сложные многошаговые текстовые задачи
+  text: 'Задачи с несколькими этапами или сложными условиями: разбей на части, для
+    каждого этапа запиши формулу, потом свяжи через общее условие. Используй таблицу
+    «кто — скорость — время — расстояние» или «кто — производительность — время —
+    объём».'
+  task_number: 10
+  subtypes:
+  - equation_setup
+  error_tags:
+  - picked_wrong_variable
+  - units_mismatch
+  prerequisites:
+  - t10_mm90
+- id: t10_mm90
+  title: 'Специальные приёмы: замена переменной и группировка'
+  text: 'Если уравнение выглядит сложно, попробуй замену: $t = \frac{1}{x}$, $t =
+    v+u$, $t = x^2$. После замены уравнение часто становится линейным или квадратным.
+    Не забудь вернуться к исходной переменной и проверить ОДЗ.'
+  task_number: 10
+  subtypes:
+  - equation_setup
+  error_tags:
+  - picked_wrong_variable
+- id: t10_mm18
+  title: 'Формулы равномерного движения: $s=vt$'
+  text: 'Базовые формулы: $s=vt$, $v=\frac{s}{t}$, $t=\frac{s}{v}$. Все величины должны
+    быть в одних единицах: км и км/ч дают время в часах, м и м/с — в секундах. Минуты
+    переводи в часы делением на 60.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_mixed_time_and_distance
+  - units_mismatch
+  shared_skills:
+  - sign_analysis
+- id: t10_mm19
+  title: Два объекта в одном направлении
+  text: 'Если оба едут в одну сторону, расстояние между ними меняется со скоростью
+    $|v_1 - v_2|$. Более быстрый догоняет более медленного. Время догона: $t = \frac{\Delta
+    s}{v_1 - v_2}$ (при $v_1 > v_2$). Если расстояние увеличивается — аналогично.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_wrong_relative_speed
+  prerequisites:
+  - t10_mm18
+  shared_skills:
+  - sign_analysis
+- id: t10_mm20
+  title: Встречное движение
+  text: 'При встречном движении скорость сближения $= v_1 + v_2$. Время до встречи:
+    $t = \frac{S}{v_1 + v_2}$, где $S$ — начальное расстояние. Каждый проходит свою
+    часть: $s_1 = v_1 t$, $s_2 = v_2 t$, и $s_1 + s_2 = S$.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_wrong_relative_speed
+  - motion_mixed_time_and_distance
+  prerequisites:
+  - t10_mm19
+- id: t10_mm21
+  title: Задачи на догоняние с разными скоростями
+  text: 'Один стартует раньше или начальный разрыв $d$. Догоняющий быстрее на $\Delta
+    v$. Время догона: $t = \frac{d}{\Delta v}$. Если стартовали одновременно из одной
+    точки, но с разных моментов — учти время «форы»: $v_1(t+\Delta t) = v_2 t$.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_wrong_relative_speed
+  - motion_forgot_delay_or_stop
+  prerequisites:
+  - t10_mm20
+- id: t10_mm22
+  title: Движение по участкам с разными скоростями
+  text: 'Маршрут из нескольких участков: $S = s_1 + s_2 + \ldots$, общее время $T
+    = t_1 + t_2 + \ldots$ Для каждого участка: $t_i = \frac{s_i}{v_i}$. Если дано
+    общее время и расстояние — уравнение: $\frac{s_1}{v_1} + \frac{S - s_1}{v_2} =
+    T$.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_mixed_time_and_distance
+  - units_mismatch
+  prerequisites:
+  - t10_mm20
+- id: t10_mm23
+  title: Движение с остановками и задержками
+  text: 'Остановка на $\Delta t$ часов добавляется к общему времени: $T = t_{\text{ехал}}
+    + \Delta t$. Частая ошибка: забыть стоянку при составлении уравнения. «Был в пути
+    5 часов, из них 1 час стоянка» → ехал 4 часа.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_forgot_delay_or_stop
+  prerequisites:
+  - t10_mm20
+- id: t10_mm24
+  title: 'Средняя скорость: определение $v_{\text{ср}}=S/T$'
+  text: 'Средняя скорость = общее расстояние / общее время. Это НЕ среднее арифметическое
+    скоростей! Если проехал 100 км со скоростью 50, потом 100 км со скоростью 100:
+    $v_{\text{ср}} = \frac{200}{2+1} = \frac{200}{3} \approx 66.7$, а не $75$.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - avg_speed_arithmetic_mean
+  - avg_speed_used_wrong_total_time
+  prerequisites:
+  - t10_mm22
+- id: t10_mm25
+  title: Средняя скорость многоучасткового маршрута
+  text: 'Для $n$ участков: $v_{\text{ср}} = \frac{s_1+s_2+\ldots+s_n}{t_1+t_2+\ldots+t_n}$.
+    Если даны расстояния и скорости: $t_i = s_i / v_i$. Если даны времена и скорости:
+    $s_i = v_i t_i$. Сначала найди числитель и знаменатель отдельно.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - avg_speed_arithmetic_mean
+  - avg_speed_used_wrong_total_time
+  prerequisites:
+  - t10_mm24
+- id: t10_mm26
+  title: Сложные задачи на среднюю скорость
+  text: В сложных случаях дана средняя скорость, нужно найти скорость на одном из
+    участков. Обозначь неизвестную скорость за $x$, запиши $v_{\text{ср}} = \frac{S_{\text{общ}}}{T_{\text{общ}}}$
+    и вырази $T_{\text{общ}}$ через $x$. Получится рациональное уравнение.
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - avg_speed_arithmetic_mean
+  - avg_speed_used_wrong_total_time
+  prerequisites:
+  - t10_mm25
+- id: t10_mm27
+  title: 'Временные условия: «прибыл на $k$ часов раньше/позже»'
+  text: '«Прибыл на $d$ часов раньше» → $t_2 = t_1 - d$, то есть $\frac{S}{v_2} =
+    \frac{S}{v_1} - d$. Это даёт разность дробей с $x$ в знаменателе. Будь внимателен
+    к знаку: «быстрее» значит время МЕНЬШЕ.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_forgot_delay_or_stop
+  - lost_parentheses_or_sign
+  prerequisites:
+  - t10_mm20
+- id: t10_mm28
+  title: 'Относительная скорость: сближение и удаление'
+  text: 'Относительная скорость: навстречу — $v_1 + v_2$; в одну сторону — $|v_1 -
+    v_2|$. Всё сводится к одному объекту, который движется с относительной скоростью.
+    Для поездов: длину поезда учитывай при обгоне и встрече.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_wrong_relative_speed
+- id: t10_mm29
+  title: Движение с остановками и условиями на время
+  text: 'Задачи, где есть стоянки и условия вида «приехал на $d$ ч раньше другого».
+    Для каждого: время в пути = время движения + стоянки. Разность полных времён даёт
+    уравнение: $(t_{\text{движ,1}} + \Delta_1) - (t_{\text{движ,2}} + \Delta_2) =
+    d$.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_forgot_delay_or_stop
+  - motion_mixed_time_and_distance
+  prerequisites:
+  - t10_mm23
+- id: t10_mm30
+  title: Уравнения «расстояние–время» с параметрами
+  text: 'Задачи типа: «если бы скорость была на $k$ больше, приехал бы на $d$ ч раньше».
+    Уравнение: $\frac{S}{v} - \frac{S}{v+k} = d$. После умножения на $v(v+k)$: линейное
+    по $S$ или квадратное по $v$.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - picked_wrong_variable
+  - did_not_check_constraints
+  prerequisites:
+  - t10_mm27
+- id: t10_mm31
+  title: Движение по участкам с разворотом
+  text: 'Если объект возвращается назад (туда-обратно), общее расстояние $= 2S$ (или
+    $S_1 + S_2$). Время туда: $t_1 = S/v_1$, обратно: $t_2 = S/v_2$. Общее время:
+    $T = t_1 + t_2 + t_{\text{стоянка}}$.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_mixed_time_and_distance
+  prerequisites:
+  - t10_mm22
+- id: t10_mm32
+  title: 'Графики движения: чтение и интерпретация'
+  text: 'На графике $s(t)$: наклон — скорость, горизонтальный участок — стоянка. Крутой
+    наклон = высокая скорость. Встреча = пересечение графиков двух объектов. Для графика
+    $v(t)$: расстояние — площадь под графиком.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_mixed_time_and_distance
+- id: t10_mm33
+  title: 'Встреча на маршруте: определение точки встречи'
+  text: 'Навстречу из $A$ и $B$: $s_A = v_A t$, $s_B = v_B t$. Встреча когда $s_A
+    + s_B = S_{AB}$. Расстояние от $A$ до точки встречи: $d_A = v_A \cdot \frac{S_{AB}}{v_A
+    + v_B}$. Если нужна точка, а не время — подставь $t$ обратно.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_wrong_relative_speed
+  - motion_mixed_time_and_distance
+  prerequisites:
+  - t10_mm34
+- id: t10_mm34
+  title: 'Задачи на точку встречи: базовые'
+  text: 'Два объекта стартуют одновременно из точек $A$ и $B$ навстречу. Время встречи
+    $= \frac{S}{v_1+v_2}$. За это время первый проехал $\frac{v_1 S}{v_1+v_2}$ от
+    $A$. Ключевое: при одновременном старте время в пути одинаковое.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_wrong_relative_speed
+- id: t10_mm35
+  title: Сложные сценарии встречи (неодновременный старт)
+  text: 'Если один стартует на $\Delta t$ позже: за время $\Delta t$ первый проехал
+    $v_1 \Delta t$. Оставшееся расстояние $= S - v_1 \Delta t$ они сближают со скоростью
+    $v_1+v_2$. Время до встречи (от старта второго): $\frac{S - v_1 \Delta t}{v_1+v_2}$.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_wrong_relative_speed
+  - motion_forgot_delay_or_stop
+  prerequisites:
+  - t10_mm33
+- id: t10_mm36
+  title: 'Относительное движение: поезда, колонны'
+  text: 'Поезд длиной $L$ проезжает мимо столба за $t$: $v = L/t$. Два поезда длиной
+    $L_1, L_2$ навстречу: проезжают мимо друг друга за $\frac{L_1+L_2}{v_1+v_2}$.
+    При обгоне в одну сторону: $\frac{L_1+L_2}{v_1-v_2}$ (при $v_1>v_2$).'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_wrong_relative_speed
+  - units_mismatch
+  prerequisites:
+  - t10_mm28
+- id: t10_mm37
+  title: Преследование с форой по времени
+  text: 'Первый выехал на $\Delta t$ раньше второго. За это время набрал фору $d =
+    v_1 \cdot \Delta t$. Второй догоняет со скоростью $v_2 > v_1$. Время догона с
+    момента старта второго: $\frac{d}{v_2-v_1}$. Место догона: $v_2 \cdot \frac{d}{v_2-v_1}$
+    от точки старта второго.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_forgot_delay_or_stop
+  - motion_wrong_relative_speed
+  prerequisites:
+  - t10_mm36
+- id: t10_mm38
+  title: Преследование с изменением скорости
+  text: 'Если один меняет скорость на маршруте: разбей на этапы. На каждом этапе —
+    постоянные скорости, считай расстояние и время отдельно. Состыкуй этапы: $s_{\text{конец
+    1-го}} = s_{\text{начало 2-го}}$ и $t_{\text{общ}} = \sum t_i$.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_wrong_relative_speed
+  - motion_forgot_delay_or_stop
+  prerequisites:
+  - t10_mm37
+- id: t10_mm39
+  title: Многоэтапные маршруты с ограничениями
+  text: 'Задачи с 3+ участками или дополнительными условиями (расстояние между точками,
+    время прибытия). Составь таблицу: участок — скорость — расстояние — время. Запиши
+    все уравнения-связи и реши систему.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - did_not_check_constraints
+  - motion_mixed_time_and_distance
+  prerequisites:
+  - t10_mm38
+- id: t10_mm40
+  title: Параметрические задачи на время (найди скорость по условию)
+  text: 'Даны два условия с одной неизвестной скоростью: «туда за $t_1$ ч, обратно
+    на $d$ ч быстрее». Уравнение: $\frac{S}{x} - \frac{S}{x+k} = d$ (или $\frac{S}{x}
+    = t_1$). Реши и проверь: скорость должна быть положительной.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - picked_wrong_variable
+  - did_not_check_constraints
+  prerequisites:
+  - t10_mm27
+- id: t10_mm41
+  title: Пропорциональное движение
+  text: 'Если скорости в отношении $v_1:v_2 = m:n$, то за одинаковое время расстояния
+    тоже $m:n$. Если расстояния равны, времена в обратном отношении: $t_1:t_2 = n:m$.
+    Полезно при задачах «проехали одинаковое расстояние».'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_mixed_time_and_distance
+- id: t10_mm42
+  title: Задачи на отношение скоростей
+  text: 'Если $v_1 / v_2 = k$ и расстояния равны: $t_1 = t_2 / k$. При встречном движении
+    из отношения скоростей можно сразу найти точку встречи: первый проехал $\frac{m}{m+n}$
+    от общего расстояния.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_wrong_relative_speed
+- id: t10_mm43
+  title: 'Задачи на остановки: сложные комбинации'
+  text: Несколько остановок + условия на общее время. Общее время = сумма времён движения
+    + сумма стоянок. Если стоянка зависит от переменной (например, «стоял столько,
+    сколько ехал первый участок»), вырази через $x$ и добавь в уравнение.
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - motion_forgot_delay_or_stop
+  - motion_mixed_time_and_distance
+  prerequisites:
+  - t10_mm23
+- id: t10_mm44
+  title: Параметрические задачи «расстояние–время» (продвинутые)
+  text: 'Задачи с двумя параметрическими условиями: «если скорость на $a$ больше —
+    время на $d_1$ меньше; если на $b$ больше — на $d_2$ меньше». Получается система
+    из двух рациональных уравнений. Удобная замена: $t = S/v$, тогда $\frac{S}{v}
+    - \frac{S}{v+a} = d_1$ и аналогично.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - picked_wrong_variable
+  - did_not_check_constraints
+  prerequisites:
+  - t10_mm30
+- id: t10_mm45
+  title: Самые сложные задачи на прямолинейное движение
+  text: 'Комбинация: несколько объектов, несколько участков, изменение скоростей,
+    условия на встречу/обгон. Алгоритм: (1) нарисуй схему, (2) обозначь все скорости
+    и времена, (3) запиши все связи, (4) реши систему, (5) проверь ОДЗ и здравый смысл.'
+  task_number: 10
+  subtypes:
+  - straight_motion
+  error_tags:
+  - did_not_check_constraints
+  - motion_mixed_time_and_distance
+  - picked_wrong_variable
+  prerequisites:
+  - t10_mm39
+- id: t10_mm46
+  title: 'Движение по кругу: встречи и обгоны'
+  text: 'Навстречу по кольцу длиной $L$: встречаются каждые $\frac{L}{v_1+v_2}$ часов.
+    В одну сторону: быстрый обгоняет медленного каждые $\frac{L}{v_1-v_2}$ часов.
+    За $n$-ю встречу суммарное пройденное расстояние $= nL$.'
+  task_number: 10
+  subtypes:
+  - circular_motion
+  error_tags:
+  - motion_wrong_relative_speed
+  prerequisites:
+  - t10_mm47
+- id: t10_mm47
+  title: 'Движение по окружности: базовые понятия'
+  text: 'Объект движется по кольцевой трассе длиной $L$. За время $t$ проходит $vt$
+    и оказывается в позиции $vt \bmod L$ от старта. Период обхода: $T = L/v$. Через
+    $T$ объект возвращается в стартовую точку.'
+  task_number: 10
+  subtypes:
+  - circular_motion
+  error_tags:
+  - motion_wrong_relative_speed
+  - motion_mixed_time_and_distance
+- id: t10_mm48
+  title: Совместное движение по кольцевой трассе
+  text: 'Два бегуна по кругу $L$: стартуют из одной точки. Если в одну сторону, первый
+    обгонит через $\frac{L}{v_1-v_2}$. Навстречу — встретятся через $\frac{L}{v_1+v_2}$.
+    Если стартуют из разных точек — учти начальный разрыв.'
+  task_number: 10
+  subtypes:
+  - circular_motion
+  error_tags:
+  - motion_wrong_relative_speed
+  - motion_mixed_time_and_distance
+  prerequisites:
+  - t10_mm46
+- id: t10_mm49
+  title: 'Часовые задачи: стрелки часов'
+  text: 'Минутная стрелка: $360°/60$ мин $= 6°$/мин. Часовая: $360°/720$ мин $= 0.5°$/мин.
+    Скорость сближения: $6 - 0.5 = 5.5°$/мин. Стрелки совпадают каждые $\frac{360}{5.5}
+    \approx 65.45$ мин.'
+  task_number: 10
+  subtypes:
+  - circular_motion
+  error_tags:
+  - motion_wrong_relative_speed
+- id: t10_mm50
+  title: Сложные задачи на движение по кругу
+  text: 'Комбинация: несколько объектов на кольце, разные направления, условия на
+    количество встреч. Ключевое: количество встреч за время $T$ = $\lfloor T / t_{\text{встречи}}
+    \rfloor$ (или $\lfloor T / t_{\text{обгона}} \rfloor$ для одного направления).'
+  task_number: 10
+  subtypes:
+  - circular_motion
+  error_tags:
+  - motion_wrong_relative_speed
+  - did_not_check_constraints
+  prerequisites:
+  - t10_mm48
+- id: t10_mm51
+  title: 'По/против течения: базовые формулы'
+  text: 'Собственная скорость $v$, скорость течения $u$. По течению: $v+u$, против:
+    $v-u$. Обязательно $v > u$, иначе плыть против течения невозможно. Время по течению:
+    $t_1 = \frac{S}{v+u}$, против: $t_2 = \frac{S}{v-u}$.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - river_swap_plus_minus
+  - river_forgot_v_gt_u
+- id: t10_mm52
+  title: Разность времён по и против течения
+  text: 'Если прошли одно расстояние $S$ по и против: $\Delta t = \frac{S}{v-u} -
+    \frac{S}{v+u}$. Это равно $\frac{2Su}{v^2-u^2}$. Против течения ДОЛЬШЕ, поэтому
+    $t_{\text{против}} > t_{\text{по}}$.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - river_swap_plus_minus
+  - lost_parentheses_or_sign
+- id: t10_mm53
+  title: Нахождение скорости течения из условий
+  text: 'Даны: расстояние, собственная скорость, разность времён → найти $u$. Уравнение:
+    $\frac{S}{v-u} - \frac{S}{v+u} = \Delta t$. Умножь на $(v-u)(v+u)$: $S(v+u) -
+    S(v-u) = \Delta t (v^2-u^2)$, т.е. $2Su = \Delta t(v^2-u^2)$.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - river_swap_plus_minus
+  - river_forgot_v_gt_u
+- id: t10_mm54
+  title: Стоянка между участками пути по реке
+  text: 'Если катер плыл по течению, стоял $\Delta t$ часов и вернулся: общее время
+    $= \frac{S}{v+u} + \Delta t + \frac{S}{v-u}$. Не забудь включить стоянку в общий
+    баланс времени.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - motion_forgot_delay_or_stop
+  - river_swap_plus_minus
+- id: t10_mm55
+  title: Сложные условия на скорость течения и собственную скорость
+  text: 'Если даны два условия — составь систему: $\frac{S_1}{v+u}+\frac{S_2}{v-u}=T_1$
+    и второе условие. Замена $a = v+u$, $b = v-u$ упрощает до линейной системы. Потом
+    $v = (a+b)/2$, $u = (a-b)/2$.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - river_swap_plus_minus
+  - picked_wrong_variable
+  prerequisites:
+  - t10_mm53
+- id: t10_mm56
+  title: Плот и скорость течения
+  text: 'Плот плывёт со скоростью течения: $v_{\text{плота}} = u$. Это основной способ
+    найти $u$: если плот проплыл $S$ км за $t$ ч, то $u = S/t$. Расстояние, на которое
+    плот отстаёт от катера = разность скоростей × время.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - river_swap_plus_minus
+- id: t10_mm57
+  title: Задачи со стоянкой и двумя участками по реке
+  text: 'Типовая задача: плыл по течению $S_1$, стоял, потом против $S_2$, всего $T$
+    ч. Уравнение: $\frac{S_1}{v+u} + t_{\text{ст}} + \frac{S_2}{v-u} = T$. Одна из
+    величин — неизвестная, остальные даны.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - motion_forgot_delay_or_stop
+  - river_swap_plus_minus
+  prerequisites:
+  - t10_mm54
+- id: t10_mm58
+  title: Два катера навстречу по реке
+  text: 'Два катера из $A$ и $B$ навстречу: один по течению ($v_1+u$), другой против
+    ($v_2-u$). Скорость сближения $= (v_1+u) + (v_2-u) = v_1+v_2$. Течение не влияет
+    на скорость сближения при встречном движении!'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - river_swap_plus_minus
+  - motion_wrong_relative_speed
+- id: t10_mm59
+  title: Система уравнений для речных задач
+  text: 'Когда неизвестны и $v$, и $u$: нужна система из 2 уравнений. Замена $a =
+    v+u$, $b = v-u$, потом $\frac{S}{a} + \frac{S}{b} = T$ и второе условие. Из $a$
+    и $b$ восстановить $v$ и $u$.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - river_swap_plus_minus
+  - picked_wrong_variable
+  prerequisites:
+  - t10_mm55
+- id: t10_mm60
+  title: Наиболее сложные речные задачи
+  text: 'Сложная комбинация: плот + катер, три участка, стоянки, условия на обгон.
+    Разбей на этапы, для каждого запиши время. Плот плывёт всё время — его позиция
+    $= ut$. Катер обгоняет плот, когда их координаты совпадают.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - river_swap_plus_minus
+  - river_forgot_v_gt_u
+  - did_not_check_constraints
+  prerequisites:
+  - t10_mm59
+  - t10_mm56
+- id: t10_mm61
+  title: Движение по озеру и реке
+  text: 'По озеру (стоячая вода) скорость $= v$ (собственная). По реке: $v \pm u$.
+    Если часть пути по озеру, часть по реке: суммируй времена отдельно. Часто в задаче
+    дано общее время или общее расстояние.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - river_swap_plus_minus
+- id: t10_mm62
+  title: Путь туда и обратно по реке
+  text: 'Туда по течению, обратно против: $T = \frac{S}{v+u} + \frac{S}{v-u}$. Это
+    равно $\frac{2Sv}{v^2-u^2}$. Если по прямой без течения: $T_0 = \frac{2S}{v}$.
+    Всегда $T > T_0$ — течение увеличивает суммарное время.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - river_swap_plus_minus
+  - lost_parentheses_or_sign
+- id: t10_mm63
+  title: Задачи со стоянкой и тремя участками по реке
+  text: 'Три участка: по течению + стоянка + против + стоянка + по течению. Суммируй
+    все времена: $\frac{S_1}{v+u} + t_1 + \frac{S_2}{v-u} + t_2 + \frac{S_3}{v+u}
+    = T$. Группируй дроби с одинаковыми знаменателями.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - motion_forgot_delay_or_stop
+  - river_swap_plus_minus
+  prerequisites:
+  - t10_mm57
+- id: t10_mm64
+  title: 'Плот + катер: одновременный старт'
+  text: 'Плот и катер стартуют одновременно из одной точки вниз по течению. Катер:
+    $v+u$, плот: $u$. Относительная скорость катера к плоту: $(v+u)-u = v$. Через
+    $t$ часов катер опередит плот на $vt$ км.'
+  task_number: 10
+  subtypes:
+  - water_motion
+  error_tags:
+  - river_swap_plus_minus
+  - motion_wrong_relative_speed
+- id: t10_mm65
+  title: 'Производительность: базовое понятие $\frac{1}{t}$'
+  text: 'Если один рабочий делает всю работу за $t$ часов, его производительность
+    $= \frac{1}{t}$ (доля работы в час). Складывать нужно производительности, а не
+    времена! Вместе: $\frac{1}{T} = \frac{1}{t_1} + \frac{1}{t_2}$, значит $T = \frac{t_1
+    t_2}{t_1+t_2}$.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_added_times_instead_of_rates
+- id: t10_mm66
+  title: 'Два работника: сумма производительностей'
+  text: 'Задача: один делает за $t_1$ ч, другой за $t_2$ ч. Вместе: $\frac{1}{T}=\frac{1}{t_1}+\frac{1}{t_2}$.
+    Если один быстрее другого на $d$ ч: $t_2 = t_1 + d$ (или $t_1 - d$, смотря кто
+    быстрее). Уравнение: $\frac{1}{t_1} + \frac{1}{t_1+d} = \frac{1}{T}$.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_added_times_instead_of_rates
+  - work_wrong_rate_equation
+- id: t10_mm67
+  title: Два работника с условием на время
+  text: 'Типовые условия: «вместе сделали за $T$ ч», «один быстрее другого на $d$
+    ч». Обозначь $t_1 = x$, $t_2 = x + d$. Уравнение: $\frac{1}{x}+\frac{1}{x+d}=\frac{1}{T}$.
+    Умножь на $x(x+d)T$, получится квадратное.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  prerequisites:
+  - t10_mm66
+- id: t10_mm68
+  title: 'Трубы: наполнение и слив'
+  text: 'Труба наполняет бассейн за $t$ ч → производительность $+\frac{1}{t}$. Труба
+    сливает за $t$ ч → производительность $-\frac{1}{t}$. Вместе: $\frac{1}{T} = \frac{1}{t_{\text{нап}}}
+    - \frac{1}{t_{\text{сл}}}$ (если наполнение быстрее).'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_added_times_instead_of_rates
+  - work_wrong_rate_equation
+- id: t10_mm69
+  title: 'Две трубы: одновременная работа'
+  text: 'Две наполняющие трубы: $\frac{1}{T}=\frac{1}{t_1}+\frac{1}{t_2}$. Одна наполняет,
+    другая сливает: $\frac{1}{T}=\frac{1}{t_1}-\frac{1}{t_2}$ (при $t_1<t_2$). Если
+    слив быстрее — бассейн не наполнится никогда.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_added_times_instead_of_rates
+  prerequisites:
+  - t10_mm68
+- id: t10_mm70
+  title: 'Три работника: сумма трёх производительностей'
+  text: 'Трое вместе: $\frac{1}{T}=\frac{1}{t_1}+\frac{1}{t_2}+\frac{1}{t_3}$. Часто
+    дано время работы разных пар, а нужно найти время втроём. Обозначь производительности
+    $a,b,c$; тогда $a+b=\frac{1}{T_{12}}$ и т.д.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_added_times_instead_of_rates
+  prerequisites:
+  - t10_mm71
+- id: t10_mm71
+  title: Совместная работа с разной производительностью
+  text: 'Если один делает $n$ деталей в час, другой $m$: вместе $n+m$ деталей в час.
+    Общий объём $V$ деталей: время $= V/(n+m)$. «Один делает на $k$ деталей/час больше»
+    → $m = n + k$.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  - work_added_times_instead_of_rates
+  prerequisites:
+  - t10_mm65
+- id: t10_mm72
+  title: Трубы с переключением
+  text: Сначала работала одна труба $t_1$ ч, потом подключили вторую. Первая наполнила
+    $\frac{t_1}{T_1}$ часть. Осталось $1 - \frac{t_1}{T_1}$. Вместе доделают за $\frac{1-t_1/T_1}{1/T_1+1/T_2}$
+    часов.
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  - motion_forgot_delay_or_stop
+  prerequisites:
+  - t10_mm69
+- id: t10_mm73
+  title: Сложные задачи с тремя работниками
+  text: 'Три работника с условиями на попарное время: «первый и второй — за $a$ ч»,
+    «второй и третий — за $b$ ч», «первый и третий — за $c$ ч». Система: $p_1+p_2=1/a$,
+    $p_2+p_3=1/b$, $p_1+p_3=1/c$. Сложи все три: $2(p_1+p_2+p_3)=\ldots$'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  - work_added_times_instead_of_rates
+  prerequisites:
+  - t10_mm74
+- id: t10_mm74
+  title: Работа с перерывами и условиями на последовательность
+  text: 'Первый работал $a$ ч один, потом присоединился второй, потом первый ушёл.
+    Считай объём на каждом этапе: этап 1 → $p_1 \cdot a$; этап 2 → $(p_1+p_2) \cdot
+    b$; и т.д. Сумма долей = 1 (вся работа).'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  - motion_forgot_delay_or_stop
+  prerequisites:
+  - t10_mm71
+- id: t10_mm75
+  title: Система уравнений для труб (два неизвестных)
+  text: 'Два условия: «вместе за $T$ ч» и «первая на $d$ ч быстрее второй». $\frac{1}{x}+\frac{1}{x+d}=\frac{1}{T}$.
+    Умножение на $x(x+d)$ даёт квадратное уравнение.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  - picked_wrong_variable
+  prerequisites:
+  - t10_mm79
+- id: t10_mm76
+  title: 'Сложные задачи: трубы и бассейн (этапы наполнения)'
+  text: 'Бассейн наполняется поэтапно: первые $t_1$ ч одна труба, потом $t_2$ ч обе,
+    потом $t_3$ ч другая. Доля на каждом этапе: $\frac{t_i}{T_j}$ или $t_i(\frac{1}{T_1}+\frac{1}{T_2})$.
+    Сумма = 1. Иногда нужно найти время одного из этапов.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  prerequisites:
+  - t10_mm75
+- id: t10_mm77
+  title: Задачи с переключением и многоэтапной работой
+  text: 'Три и более этапов с разными комбинациями труб/работников. На каждом этапе
+    считай объём: (сумма производительностей) × время этапа. Суммарный объём = полный
+    объём работы. Получается одно уравнение с одним неизвестным.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  - motion_forgot_delay_or_stop
+  prerequisites:
+  - t10_mm72
+- id: t10_mm78
+  title: Самые сложные задачи на трубы и совместную работу
+  text: 'Комбинация: несколько труб + слив + переключения + условия на объём. Алгоритм:
+    (1) обозначь производительности, (2) разбей на этапы, (3) напиши баланс на каждом
+    этапе, (4) составь и реши уравнение/систему.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  - work_added_times_instead_of_rates
+  - did_not_check_constraints
+  prerequisites:
+  - t10_mm76
+- id: t10_mm79
+  title: Наполнение бассейна с учётом слива
+  text: 'Одна труба наполняет ($+1/t_1$), другая сливает ($-1/t_2$). Результат: $1/T
+    = 1/t_1 - 1/t_2$. Если $t_1 < t_2$ — бассейн наполняется за $T = \frac{t_1 t_2}{t_2-t_1}$.
+    Если $t_1 > t_2$ — бассейн никогда не наполнится.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  prerequisites:
+  - t10_mm69
+- id: t10_mm80
+  title: Производительность и объём работы в штуках
+  text: 'Если работа измеряется в штуках (деталях, страницах): производительность
+    $q$ шт/ч. Время: $t = V/q$. Если один делает $q$ деталей, другой $q+k$, то вместе
+    $2q+k$ деталей/ч, время на $V$ деталей: $V/(2q+k)$.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  - units_mismatch
+  prerequisites:
+  - t10_mm66
+- id: t10_mm81
+  title: Задачи с изменением скорости работы
+  text: '«После обеда стал работать на $20\%$ быстрее» → $q_2 = 1.2q$. Объём за день:
+    $q \cdot t_{\text{до}} + 1.2q \cdot t_{\text{после}} = V$. Иногда скорость зависит
+    от объёма (устал) — тогда разбей на этапы.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  prerequisites:
+  - t10_mm80
+- id: t10_mm82
+  title: Сложные задачи «объём–скорость» с несколькими работниками
+  text: Несколько работников с разными скоростями, часть работы выполнена на одном
+    этапе, часть на другом. Обозначь скорость каждого, запиши объём на каждом этапе,
+    приравняй сумму к $V$. Если два неизвестных — нужно два уравнения.
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  - picked_wrong_variable
+  prerequisites:
+  - t10_mm81
+- id: t10_mm83
+  title: 'Комбинация работников: сложные сценарии'
+  text: 'Несколько рабочих работают по сложной схеме: один начал, второй подключился
+    через $a$ ч, третий присоединился, потом первый ушёл. Для каждого интервала считай
+    общую производительность. Сумма объёмов по интервалам = 1.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  - work_added_times_instead_of_rates
+  prerequisites:
+  - t10_mm84
+- id: t10_mm84
+  title: Работа по очереди / посменно
+  text: 'Работают по очереди: сначала один $a$ ч, потом другой $b$ ч, потом снова
+    первый и т.д. За один цикл $(a+b)$ ч сделано $\frac{a}{t_1}+\frac{b}{t_2}$ работы.
+    Количество циклов: $n = \lfloor 1 / (\frac{a}{t_1}+\frac{b}{t_2}) \rfloor$.'
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  prerequisites:
+  - t10_mm67
+- id: t10_mm85
+  title: 'Комбинированные задачи: работа + движение'
+  text: Задачи, где работа связана с перемещением (например, «трактор пашет поле,
+    проходя полосы»). Скорость движения и производительность — разные вещи. Время
+    = max(время движения, время работы) или сумма, в зависимости от условия.
+  task_number: 10
+  subtypes:
+  - joint_work
+  error_tags:
+  - work_wrong_rate_equation
+  - motion_mixed_time_and_distance
+- id: t10_mm86
+  title: 'Арифметическая прогрессия: формулы'
+  text: 'АП: $a_n = a_1 + (n-1)d$, $S_n = \frac{n(a_1+a_n)}{2} = \frac{n(2a_1+(n-1)d)}{2}$.
+    Свойство: $a_n = \frac{a_{n-1}+a_{n+1}}{2}$. Типичные ошибки: забыть $(n-1)$ или
+    перепутать $n$ и $n-1$.'
+  task_number: 10
+  subtypes:
+  - progression
+  error_tags:
+  - progression_wrong_formula
+- id: t10_mm87
+  title: Текстовые задачи на арифметическую прогрессию
+  text: 'Пример: «каждый день делал на $d$ деталей больше». Первый день: $a_1$, $n$-й:
+    $a_1+(n-1)d$. Всего за $n$ дней: $S_n = \frac{n(2a_1+(n-1)d)}{2}$. Внимание: «в
+    первый день 10, каждый следующий на 2 больше» → $a_1=10$, $d=2$.'
+  task_number: 10
+  subtypes:
+  - progression
+  error_tags:
+  - progression_wrong_formula
+  - progression_off_by_one
+  prerequisites:
+  - t10_mm86
+- id: t10_mm88
+  title: 'Геометрическая прогрессия: формулы'
+  text: 'ГП: $b_n = b_1 q^{n-1}$, $S_n = b_1 \frac{q^n-1}{q-1}$ (при $q\neq 1$). Свойство:
+    $b_n^2 = b_{n-1} \cdot b_{n+1}$. «Каждый месяц увеличивается в $q$ раз» — это
+    геометрическая прогрессия.'
+  task_number: 10
+  subtypes:
+  - progression
+  error_tags:
+  - progression_wrong_formula
+- id: t10_mm89
+  title: Текстовые задачи на геометрическую прогрессию
+  text: 'Пример: «вклад растёт на $10\%$ в год» → $q = 1.1$, через $n$ лет: $S = S_0
+    \cdot 1.1^n$. «Каждый час количество удваивается» → $q=2$. Осторожно с формулировкой:
+    «через 3 года» означает $n=3$, т.е. $b_4 = b_1 q^3$.'
+  task_number: 10
+  subtypes:
+  - progression
+  error_tags:
+  - progression_wrong_formula
+  - progression_off_by_one
+  prerequisites:
+  - t10_mm88

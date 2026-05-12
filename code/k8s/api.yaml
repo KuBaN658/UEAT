@@ -1,0 +1,72 @@
+# Generator API: receives POST /jobs from the platform and exposes /readyz.
+# Stateless — scale horizontally as needed.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ege-api
+  namespace: ege
+  labels: {app: ege-api}
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: ege-api}
+  template:
+    metadata:
+      labels: {app: ege-api}
+    spec:
+      imagePullSecrets:
+        - name: ege-rag-registry
+      containers:
+        - name: api
+          image: registry.gitlab.akhcheck.ru/ege-proryv/egenotesgenerator/notesreport:6786972
+          imagePullPolicy: Always
+          command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+          ports:
+            - containerPort: 8000
+              name: http
+          envFrom:
+            - configMapRef: {name: ege-rag-config}
+            - secretRef:    {name: ege-rag-secrets}
+          readinessProbe:
+            httpGet: {path: /readyz, port: http}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: {path: /healthz, port: http}
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests: {cpu: "100m", memory: "256Mi"}
+            limits:   {cpu: "1000m", memory: "1Gi"}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ege-api
+  namespace: ege
+spec:
+  selector: {app: ege-api}
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+  type: ClusterIP
+---
+# HPA: scale on CPU. Adjust thresholds and max replicas to match your load.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ege-api
+  namespace: ege
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ege-api
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: 70}

@@ -1,0 +1,22 @@
+# One-shot job that runs alembic migrations against Postgres.
+# Re-run this whenever a new migration is added to app/migrations/versions/.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ege-rag-migrations
+  namespace: ege
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: OnFailure
+      imagePullSecrets:
+        - name: ege-rag-registry
+      containers:
+        - name: alembic
+          image: registry.gitlab.akhcheck.ru/ege-proryv/egenotesgenerator/notesreport:21c342f
+          imagePullPolicy: Always
+          command: ["python", "-m", "alembic", "upgrade", "head"]
+          envFrom:
+            - configMapRef: {name: ege-rag-config}
+            - secretRef:    {name: ege-rag-secrets}

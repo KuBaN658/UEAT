@@ -1,0 +1,56 @@
+# Qdrant vector DB for RAG atoms. Single replica, internal-only.
+# RAG data must be loaded into the `ege_rag_atoms` collection separately
+# (one-time indexer job — not part of this rollout yet).
+apiVersion: v1
+kind: Service
+metadata:
+  name: qdrant
+  namespace: ege
+spec:
+  selector: {app: qdrant}
+  ports:
+    - name: http
+      port: 6333
+      targetPort: 6333
+    - name: grpc
+      port: 6334
+      targetPort: 6334
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: qdrant
+  namespace: ege
+spec:
+  serviceName: qdrant
+  replicas: 1
+  selector:
+    matchLabels: {app: qdrant}
+  template:
+    metadata:
+      labels: {app: qdrant}
+    spec:
+      containers:
+        - name: qdrant
+          image: qdrant/qdrant:v1.12.4
+          ports:
+            - containerPort: 6333
+            - containerPort: 6334
+          volumeMounts:
+            - name: data
+              mountPath: /qdrant/storage
+          readinessProbe:
+            httpGet: {path: /readyz, port: 6333}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests: {cpu: "100m", memory: "512Mi"}
+            limits:   {cpu: "1000m", memory: "2Gi"}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests: {storage: 5Gi}

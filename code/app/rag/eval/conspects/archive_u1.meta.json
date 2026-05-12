@@ -1,0 +1,32 @@
+{
+  "student_id": "archive_u1",
+  "generated_at_utc": "2026-04-30T14:57:43.082039+00:00",
+  "retrieved_titles": [],
+  "frontier_atoms": [
+    "Временные условия: «прибыл на $k$ часов раньше/позже»",
+    "Движение с остановками и задержками",
+    "Параметрические задачи на экстремумы многочлена"
+  ],
+  "top_errors": [
+    "motion_forgot_delay_or_stop",
+    "lost_parentheses_or_sign",
+    "did_not_check_constraints",
+    "river_forgot_v_gt_u"
+  ],
+  "top_err": "Пропускаешь задержку старта или остановку при подсчёте общего времени",
+  "recent_wrong": [
+    {
+      "task_number": 10,
+      "task_text": "",
+      "student_answer": "2",
+      "correct_answer": "8"
+    },
+    {
+      "task_number": 10,
+      "task_text": "",
+      "student_answer": "- 0.2222",
+      "correct_answer": "18"
+    }
+  ],
+  "n_err_items": 4
+}

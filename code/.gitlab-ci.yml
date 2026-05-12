@@ -1,0 +1,20 @@
+variables:
+  IMAGE: registry.gitlab.akhcheck.ru/ege-proryv/egenotesgenerator/notesreport
+
+build:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE != "merge_request_event"
+  tags: [common]
+  image:
+    name: gcr.io/kaniko-project/executor:v1.23.0-debug
+    entrypoint: [""]
+  script:
+    - |
+      echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(echo -n "gitlab-ci-token:${CI_JOB_TOKEN}" | base64 | tr -d '\n')\"}}}" \
+        > /kaniko/.docker/config.json
+    - /kaniko/executor
+        --context "${CI_PROJECT_DIR}"
+        --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+        --destination "${IMAGE}:${CI_COMMIT_SHORT_SHA}"
+        --cache=true
+        --cache-ttl=168h

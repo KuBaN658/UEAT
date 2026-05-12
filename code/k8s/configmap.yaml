@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ege-rag-config
+  namespace: ege
+data:
+  # Non-secret runtime config. Sensitive values live in the Secret.
+  KAFKA_SUBMISSION_TOPIC: "ege.submissions.v1"
+  KAFKA_BOOTSTRAP_SERVERS: "redpanda:9092"
+  QDRANT_URL: "http://qdrant:6333"
+  # admin proxies /jobs to this URL so the dashboard is same-origin
+  API_BASE_URL: "http://ege-api"
+  # TEMP: route platform callbacks to the in-cluster admin so we can see Flow 1 end-to-end.
+  # Switch back to the real platform URL once available.
+  PLATFORM_BASE_URL: "http://ege-admin"
+
+  LLM_BACKEND: "openrouter"
+  OPENROUTER_MODEL: "google/gemini-2.5-flash"
+  OPENROUTER_TIMEOUT: "90.0"
+  OPENROUTER_CONNECT_TIMEOUT: "30.0"
+  OPENROUTER_MAX_RETRIES: "3"
+
+  DB_POOL_MIN_SIZE: "2"
+  DB_POOL_MAX_SIZE: "10"
+  DB_POOL_TIMEOUT_SECONDS: "30"

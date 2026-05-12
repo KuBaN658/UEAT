@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EGE Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [["$","$"],["\\(","\\)"]], displayMath: [["$$","$$"],["\\[","\\]"]] },
+        options: { skipHtmlTags: ["script","noscript","style","textarea","pre"] },
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="shell">
+      <!-- sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <a class="logo" href="/">
+            <span class="logo-mark">E</span>
+            <span class="logo-text">
+              <span class="logo-text-primary">EGE</span>
+              <span class="logo-text-secondary">Admin Console</span>
+            </span>
+          </a>
+
+          <div class="sidebar-group">
+            <h6 class="sidebar-group-title">Контекст</h6>
+            <div class="sidebar-section">
+              <label class="sidebar-label" for="studentId">Ученик</label>
+              <input id="studentId" type="text" value="demo" placeholder="ID ученика" />
+            </div>
+            <div class="sidebar-section">
+              <label class="sidebar-label" for="taskNumber">Задание</label>
+              <div class="select-wrap">
+                <select id="taskNumber">
+                  <option value="6"># 6</option>
+                  <option value="10" selected># 10</option>
+                  <option value="12"># 12</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-group">
+            <h6 class="sidebar-group-title">Состояние системы</h6>
+            <div class="status-list">
+              <div class="status-row">
+                <span class="status-row-label">Kafka</span>
+                <span id="kafkaStatus" class="status-badge status-unknown">--</span>
+              </div>
+              <div class="status-row">
+                <span class="status-row-label">Database</span>
+                <span id="dbStatus" class="status-badge status-unknown">--</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-bottom">
+          <div class="refresh-info">
+            <span class="refresh-dot"></span>
+            <span id="lastRefresh">ожидание данных...</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- main -->
+      <main class="main">
+        <header class="page-header">
+          <div class="page-header-left">
+            <h1 class="page-title">Admin Console</h1>
+          </div>
+          <div class="page-header-right">
+            <div class="page-header-stat">
+              <span class="page-header-stat-label">Submissions</span>
+              <span class="page-header-stat-value" id="hdrSubCount">--</span>
+            </div>
+            <div class="page-header-stat">
+              <span class="page-header-stat-label">Conspect jobs</span>
+              <span class="page-header-stat-value" id="hdrJobCount">--</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="grid grid-2">
+          <!-- Task card -->
+          <section class="card" id="taskCard">
+            <div class="card-header">
+              <div>
+                <p class="card-eyebrow">Текущая</p>
+                <h2 class="card-title">Задача</h2>
+              </div>
+              <button id="newTaskBtn" class="btn btn-primary">
+                <span class="btn-icon">+</span>
+                <span>Новая задача</span>
+              </button>
+            </div>
+            <div id="taskText" class="task-body"><span class="muted">Загрузка...</span></div>
+            <div class="answer-row">
+              <input id="answerInput" type="text" placeholder="Введите ваш ответ" autocomplete="off" />
+              <button id="submitBtn" class="btn btn-primary">Проверить</button>
+            </div>
+            <div id="result"></div>
+          </section>
+
+          <!-- Conspect card -->
+          <section class="card" id="conspectCard">
+            <div class="card-header">
+              <div>
+                <p class="card-eyebrow">Готовый материал</p>
+                <h2 class="card-title">Персональный конспект</h2>
+              </div>
+              <button id="genConspectBtn" class="btn btn-accent">Сгенерировать</button>
+            </div>
+            <div id="conspectContent" class="conspect-body">
+              <p class="muted">Нажмите «Сгенерировать» после того как наберёте ответы.</p>
+            </div>
+          </section>
+        </div>
+
+        <!-- Monitoring: submission evaluations -->
+        <section class="card monitor-card">
+          <div class="card-header">
+            <div class="header-title-group">
+              <h2 class="card-title">Очередь диагностики</h2>
+              <span class="monitor-badge" id="subCount">0</span>
+            </div>
+          </div>
+          <div class="stats-row" id="statsRow">
+            <div class="stat-tile"><span class="stat-label">В очереди</span><span class="stat-value" id="statPending">--</span></div>
+            <div class="stat-tile"><span class="stat-label">Готово</span><span class="stat-value" id="statDone">--</span></div>
+            <div class="stat-tile"><span class="stat-label">Среднее</span><span class="stat-value" id="statAvg">--</span></div>
+            <div class="stat-tile"><span class="stat-label">P95</span><span class="stat-value" id="statP95">--</span></div>
+            <div class="stat-tile"><span class="stat-label">Поток / мин</span><span class="stat-value" id="statThroughput">--</span></div>
+            <div class="stat-tile"><span class="stat-label">Самое старое</span><span class="stat-value" id="statOldest">--</span></div>
+            <div class="stat-tile"><span class="stat-label">Kafka lag</span><span class="stat-value" id="statLag">--</span></div>
+          </div>
+          <div class="table-wrap">
+            <table id="subTable">
+              <thead>
+                <tr>
+                  <th>Время</th><th>Ученик</th><th>Задание</th><th>Ответ</th>
+                  <th>Верно</th><th>Статус</th><th>В очереди</th><th>Теги</th><th>Ошибка</th>
+                </tr>
+              </thead>
+              <tbody id="subBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Monitoring: conspect jobs -->
+        <section class="card monitor-card">
+          <div class="card-header">
+            <div class="header-title-group">
+              <h2 class="card-title">Очередь конспектов</h2>
+              <span class="monitor-badge" id="jobCount">0</span>
+            </div>
+          </div>
+          <div class="stats-row" id="jobStatsRow">
+            <div class="stat-tile"><span class="stat-label">В очереди</span><span class="stat-value" id="jobStatQueued">--</span></div>
+            <div class="stat-tile"><span class="stat-label">В работе</span><span class="stat-value" id="jobStatRunning">--</span></div>
+            <div class="stat-tile"><span class="stat-label">Готово</span><span class="stat-value" id="jobStatDone">--</span></div>
+            <div class="stat-tile"><span class="stat-label">Ошибок</span><span class="stat-value" id="jobStatFailed">--</span></div>
+            <div class="stat-tile"><span class="stat-label">Среднее</span><span class="stat-value" id="jobStatAvg">--</span></div>
+            <div class="stat-tile"><span class="stat-label">P95</span><span class="stat-value" id="jobStatP95">--</span></div>
+            <div class="stat-tile"><span class="stat-label">Самое старое</span><span class="stat-value" id="jobStatOldest">--</span></div>
+          </div>
+          <div class="table-wrap">
+            <table id="jobTable">
+              <thead>
+                <tr>
+                  <th>Время</th><th>Ученик</th><th>Статус</th><th>Ошибка</th><th>Попытки</th>
+                </tr>
+              </thead>
+              <tbody id="jobBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+      </main>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

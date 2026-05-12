@@ -1,0 +1,66 @@
+# Single-node Redpanda. Internal-only Kafka API on redpanda:9092.
+# No auth — relies on namespace network isolation.
+apiVersion: v1
+kind: Service
+metadata:
+  name: redpanda
+  namespace: ege
+spec:
+  selector: {app: redpanda}
+  ports:
+    - name: kafka
+      port: 9092
+      targetPort: 9092
+    - name: admin
+      port: 9644
+      targetPort: 9644
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redpanda
+  namespace: ege
+spec:
+  serviceName: redpanda
+  replicas: 1
+  selector:
+    matchLabels: {app: redpanda}
+  template:
+    metadata:
+      labels: {app: redpanda}
+    spec:
+      containers:
+        - name: redpanda
+          image: docker.redpanda.com/redpandadata/redpanda:v24.2.7
+          args:
+            - redpanda
+            - start
+            - --overprovisioned
+            - --smp=1
+            - --memory=1G
+            - --reserve-memory=0M
+            - --node-id=0
+            - --check=false
+            - --kafka-addr=PLAINTEXT://0.0.0.0:9092
+            - --advertise-kafka-addr=PLAINTEXT://redpanda:9092
+          ports:
+            - containerPort: 9092
+            - containerPort: 9644
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/redpanda/data
+          readinessProbe:
+            httpGet: {path: /v1/status/ready, port: 9644}
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          resources:
+            requests: {cpu: "200m", memory: "1Gi"}
+            limits:   {cpu: "1000m", memory: "1.5Gi"}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests: {storage: 5Gi}
