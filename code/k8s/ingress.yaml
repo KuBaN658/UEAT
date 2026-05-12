@@ -1,0 +1,25 @@
+# Ingress for the generator API. Adjust hostname, ingressClass, and TLS
+# to match your cluster (nginx, ALB, GKE, etc.).
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ege-api
+  namespace: ege
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "2m"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts: ["ege-api.example.com"]
+      secretName: ege-api-tls
+  rules:
+    - host: ege-api.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ege-api
+                port:
+                  number: 80

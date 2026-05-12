@@ -1,0 +1,22 @@
+{
+  "student_id": "archive_u5",
+  "generated_at_utc": "2026-05-05T15:45:56.238902+00:00",
+  "retrieved_titles": [],
+  "frontier_atoms": [
+    "Количество экстремумов и нулей по графику",
+    "Экстремумы многочлена: знак производной"
+  ],
+  "top_errors": [
+    "minmax_wrong_sign_analysis"
+  ],
+  "top_err": "Ошибаешься в анализе знака производной на интервалах",
+  "recent_wrong": [
+    {
+      "task_number": 12,
+      "task_text": "",
+      "student_answer": "3.33333",
+      "correct_answer": "10"
+    }
+  ],
+  "n_err_items": 1
+}

@@ -1,0 +1,196 @@
+services:
+
+  qdrant:
+    image: qdrant/qdrant:dev
+    restart: always
+    container_name: qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    environment:
+      QDRANT__SERVICE__MAX_REQUEST_SIZE_MB: 256
+    volumes:
+      - ./app/rag/qdrant_data:/qdrant/storage
+
+  postgres:
+    image: postgres:16-alpine
+    restart: always
+    container_name: ege-postgres
+    environment:
+      POSTGRES_DB: ege_generator
+      POSTGRES_USER: ege
+      POSTGRES_PASSWORD: ege
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ege -d ege_generator"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  redpanda:
+    image: redpandadata/redpanda:latest
+    restart: always
+    container_name: ege-redpanda
+    command:
+      - redpanda
+      - start
+      - --overprovisioned
+      - --smp=1
+      - --memory=512M
+      - --reserve-memory=0M
+      - --node-id=0
+      - --check=false
+      - --kafka-addr=PLAINTEXT://0.0.0.0:9092,INTERNAL://0.0.0.0:29092
+      - --advertise-kafka-addr=PLAINTEXT://127.0.0.1:9092,INTERNAL://redpanda:29092
+    ports:
+      - "9092:9092"
+    healthcheck:
+      test: ["CMD", "rpk", "cluster", "info"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  dbgate:
+    image: dbgate/dbgate:latest
+    restart: always
+    container_name: ege-dbgate
+    environment:
+      CONNECTIONS: postgres
+      LABEL_postgres: Postgres
+      SERVER_postgres: postgres
+      USER_postgres: ege
+      PASSWORD_postgres: ege
+      PORT_postgres: 5432
+      DATABASE_postgres: ege_generator
+      ENGINE_postgres: postgres@dbgate-plugin-postgres
+    ports:
+      - "8080:3000"
+    depends_on:
+      - postgres
+
+  redpanda-console:
+    image: redpandadata/console:latest
+    restart: always
+    container_name: ege-redpanda-console
+    environment:
+      KAFKA_BROKERS: redpanda:29092
+    ports:
+      - "8081:8080"
+    depends_on:
+      redpanda:
+        condition: service_healthy
+
+  mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    command: python -m app.infrastructure.conspect.tools --mcp-server
+    env_file:
+      - ./app/.env
+    environment:
+      QDRANT_URL: http://qdrant:6333
+    depends_on:
+      - qdrant
+    expose:
+      - "8001"
+    volumes:
+      - ./:/app
+      - model_cache:/root/.cache
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    env_file:
+      - ./app/.env
+    environment:
+      QDRANT_URL: http://qdrant:6333
+      DATABASE_URL: postgresql+asyncpg://ege:ege@postgres:5432/ege_generator
+      KAFKA_BOOTSTRAP_SERVERS: redpanda:29092
+    depends_on:
+      qdrant:
+        condition: service_started
+      mcp:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+      redpanda:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+      - model_cache:/root/.cache
+
+  ege-admin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    command: uvicorn admin.app:app --host 0.0.0.0 --port 8100
+    env_file:
+      - ./app/.env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://ege:ege@postgres:5432/ege_generator
+      KAFKA_BOOTSTRAP_SERVERS: redpanda:29092
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redpanda:
+        condition: service_healthy
+    ports:
+      - "8100:8100"
+    volumes:
+      - ./:/app
+
+  conspect-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    command: python -m app.workers.conspect_worker
+    env_file:
+      - ./app/.env
+    environment:
+      QDRANT_URL: http://qdrant:6333
+      DATABASE_URL: postgresql+asyncpg://ege:ege@postgres:5432/ege_generator
+      PLATFORM_BASE_URL: http://ege-admin:8100
+    depends_on:
+      qdrant:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+      ege-admin:
+        condition: service_started
+    volumes:
+      - ./:/app
+      - model_cache:/root/.cache
+
+  eval-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    command: python -m app.workers.eval_worker
+    env_file:
+      - ./app/.env
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: redpanda:29092
+      PLATFORM_BASE_URL: http://ege-admin:8100
+    depends_on:
+      redpanda:
+        condition: service_healthy
+      ege-admin:
+        condition: service_started
+    volumes:
+      - ./:/app
+
+volumes:
+  model_cache:
+  pg_data:

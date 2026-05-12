@@ -1,0 +1,201 @@
+openapi: 3.1.0
+info:
+  title: EGE Conspect Generator API
+  version: 0.1.0
+  description: |
+    HTTP-ручки, которые экспонирует наш сервис. Платформа (Proryv-backend)
+    выступает клиентом этих ручек.
+
+    Stateless compute service. Source of truth — платформа.
+
+    Контекст интеграции и схема Kafka-события см. в README.md и
+    kafka_submission_event.schema.yaml в этой же папке.
+
+servers:
+  - url: https://generator.example.com
+    description: Production
+  - url: http://localhost:8000
+    description: Local dev
+
+security:
+  - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: |
+        Service-to-service auth.
+
+        ⚠ КОНКРЕТНЫЙ МЕХАНИЗМ ОЖИДАЕТ ОБСУЖДЕНИЯ С ПЛАТФОРМОЙ.
+
+        Возможные варианты:
+          - JWT с shared secret (HS256) — простейший
+          - JWT, выпускаемый платформой (RS256) — стандартный
+          - Статический API-key в заголовке `X-API-Key`
+          - mTLS на уровне инфраструктуры
+
+        Спека пока описывает Bearer-схему как самую гибкую (подходит
+        под JWT, OAuth2 access token, opaque token). Детали см. в
+        README.md → "Аутентификация (TBD)".
+
+  schemas:
+    Submission:
+      type: object
+      required: [submission_id, task_id, task_number, task_text, is_correct, submitted_at]
+      properties:
+        submission_id:
+          type: string
+          format: uuid
+        task_id:
+          type: string
+          description: Идентификатор задачи на платформе
+        task_number:
+          type: integer
+          enum: [6, 10, 12, 13, 16]
+          description: Номер задания ЕГЭ
+        task_text:
+          type: string
+          description: Текст условия (KaTeX/markdown/plain)
+        is_correct:
+          type: boolean
+        student_answer:
+          type: string
+          nullable: true
+        correct_answer:
+          type: string
+          nullable: true
+          description: Обязателен для is_correct=false; nullable для true
+        diagnostic_tags:
+          type: array
+          items: { type: string }
+          description: Теги ошибок из Flow 1 (пусто для корректных или ещё не диагностированных)
+        submitted_at:
+          type: string
+          format: date-time
+
+    CallbackConfig:
+      type: object
+      required: [url]
+      properties:
+        url:
+          type: string
+          format: uri
+          description: HTTP URL для POST'a результата (см. platform.openapi.yaml)
+        auth:
+          type: string
+          nullable: true
+          description: |
+            Bearer token для аутентификации callback'а. Если задан, шлём
+            в заголовке `Authorization: Bearer <auth>` при callback'е.
+
+    JobCreateRequest:
+      type: object
+      required: [job_id, user_id, callback, submissions]
+      properties:
+        job_id:
+          type: string
+          format: uuid
+          description: |
+            Идентификатор job'а, генерируется платформой (можно использовать
+            как primary key personal_conspect.id). Также служит ключом
+            идемпотентности — повторный POST с тем же job_id вернёт
+            существующий job без создания нового.
+        user_id:
+          type: string
+          description: Идентификатор пользователя на платформе
+        callback:
+          $ref: "#/components/schemas/CallbackConfig"
+        submissions:
+          type: array
+          minItems: 0
+          maxItems: 500
+          items: { $ref: "#/components/schemas/Submission" }
+          description: |
+            Последние ~300 submissions с diagnostic_tags из Flow 1.
+            Сортировка не важна — упорядочим по submitted_at сами.
+
+    JobAccepted:
+      type: object
+      required: [job_id, status, accepted_at]
+      properties:
+        job_id: { type: string, format: uuid }
+        status:
+          type: string
+          enum: [queued, running, done, failed]
+        accepted_at: { type: string, format: date-time }
+
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string }
+        message: { type: string }
+        details:
+          type: object
+          additionalProperties: true
+
+paths:
+  /jobs:
+    post:
+      summary: Создать job на генерацию конспекта
+      operationId: createJob
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/JobCreateRequest" }
+      responses:
+        "200":
+          description: Идемпотентность сработала — job с таким job_id уже существует
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/JobAccepted" }
+        "202":
+          description: Job принят, обрабатывается асинхронно
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/JobAccepted" }
+        "400":
+          description: Валидация (пустой submissions, кривой callback URL и т.п.)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+        "401":
+          description: Auth отсутствует или невалиден
+        "413":
+          description: Payload слишком большой (>5 MB)
+        "500":
+          description: Внутренняя ошибка
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Error" }
+
+  /healthz:
+    get:
+      summary: Liveness probe
+      operationId: healthz
+      security: []
+      responses:
+        "200":
+          description: Сервис жив
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+
+  /readyz:
+    get:
+      summary: Readiness probe (DB + Qdrant + LLM)
+      operationId: readyz
+      security: []
+      responses:
+        "200":
+          description: Готов принимать трафик
+        "503":
+          description: Одна из зависимостей недоступна

@@ -1,0 +1,2164 @@
+- id: t13_mm01
+  title: Основные тригонометрические тождества
+  text: 'Базовые тождества: $\sin^2 x + \cos^2 x = 1$, $\tg x = \sin x/\cos x$, $\ctg x = \cos x/\sin x$, $\tg x \cdot \ctg x = 1$. Секанс-формы: $1 + \tg^2 x = \frac{1}{\cos^2 x}$, $1 + \ctg^2 x = \frac{1}{\sin^2 x}$. Используются для замены одной функции через другую, чтобы свести уравнение к одному типу.
+
+    '
+  task_number: 13
+  subtypes:
+  - simplest_trig
+  - quadratic_in_one_func
+  error_tags:
+  - trig_wrong_double_angle
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - C4507A
+- id: t13_mm02
+  title: Табличные значения и знаки по четвертям
+  text: 'Запомни значения $\sin/\cos/\tg$ для $0,\ \pi/6,\ \pi/4,\ \pi/3,\ \pi/2$. Знаки: I — все плюс; II — $\sin>0$, остальные $<0$; III — $\tg,\ctg>0$, $\sin,\cos<0$; IV — $\cos>0$, остальные $<0$. Без табличных значений невозможно записать $\arcsin(\sqrt{3}/2)=\pi/3$ и т.п.
+
+    '
+  task_number: 13
+  subtypes:
+  - simplest_trig
+  error_tags: []
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm03
+  title: Простейшее уравнение sin x = a
+  text: 'При $|a|\le 1$: $x=(-1)^n\arcsin a + \pi n$, $n\in\mathbb{Z}$, или две серии $x=\arcsin a + 2\pi k$ и $x=\pi-\arcsin a + 2\pi k$. При $|a|>1$ корней нет. Частные случаи: $\sin x=0\Rightarrow x=\pi n$; $\sin x=1\Rightarrow x=\pi/2+2\pi n$; $\sin x=-1\Rightarrow x=-\pi/2+2\pi n$.
+
+    '
+  task_number: 13
+  subtypes:
+  - simplest_trig
+  error_tags: []
+  prerequisites:
+  - t13_mm02
+  shared_skills:
+  - equation_setup
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm04
+  title: Простейшее уравнение cos x = a
+  text: 'При $|a|\le 1$: $x=\pm\arccos a + 2\pi n$, $n\in\mathbb{Z}$. При $|a|>1$ корней нет. Частные случаи: $\cos x=0\Rightarrow x=\pi/2+\pi n$; $\cos x=1\Rightarrow x=2\pi n$; $\cos x=-1\Rightarrow x=\pi+2\pi n$. Свойство: $\arccos(-a)=\pi-\arccos a$.
+
+    '
+  task_number: 13
+  subtypes:
+  - simplest_trig
+  error_tags:
+  - trig_wrong_arc_inverse
+  prerequisites:
+  - t13_mm02
+  shared_skills:
+  - equation_setup
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm05
+  title: Уравнения tg x = a и ctg x = a
+  text: '$\tg x=a$ всегда разрешимо: $x=\arctg a + \pi n$, $n\in\mathbb{Z}$, ОДЗ $\cos x\ne 0$. $\ctg x=a$: $x=\arcctg a + \pi n$, ОДЗ $\sin x\ne 0$. Если в исходном уравнении нет $\tg/\ctg$, появление $\cos x=0$ или $\sin x=0$ как корня после деления — отдельный риск.
+
+    '
+  task_number: 13
+  subtypes:
+  - simplest_trig
+  error_tags:
+  - trig_forgot_odz_function
+  prerequisites:
+  - t13_mm03
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm06
+  title: Чётность, нечётность и сдвиги тригофункций
+  text: '$\sin(-x)=-\sin x$, $\cos(-x)=\cos x$, $\tg(-x)=-\tg x$. Сдвиги: $\sin(x+2\pi k)=\sin x$, $\cos(x+2\pi k)=\cos x$, $\tg(x+\pi k)=\tg x$. Перед уравнением полезно использовать чётность, чтобы убрать минусы внутри функций (например $\sin(-x)=-\sin x$).
+
+    '
+  task_number: 13
+  subtypes:
+  - simplest_trig
+  error_tags: []
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm07
+  title: Формулы приведения
+  text: 'Правило: при сдвиге на $\pi$ или $2\pi$ функция не меняется (только знак), при сдвиге на $\pi/2$ или $3\pi/2$ — меняется на конфункцию. Знак — по четверти исходного угла. Примеры: $\cos(\pi+x)=-\cos x$, $\sin(\pi/2-x)=\cos x$, $\sin(\pi-x)=\sin x$, $\cos(\pi/2-x)=\sin x$.
+
+    '
+  task_number: 13
+  subtypes:
+  - simplest_trig
+  - mixed_double_angle
+  error_tags:
+  - trig_wrong_reduction
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - 6671FD
+  - 712A7B
+  - 209e7e
+  - 2247B7
+  - DCD2BC
+  - B8F61F
+  - 2CCC19
+  - 9BA813
+  - 34BB16
+  - 015B20
+  - 858BD4
+  - 0000C3
+  - 9EB1CA
+  - A67297
+  - 72Beec
+  - 8A88E1
+  - 78516c
+  - D7FC6F
+  - '716236'
+- id: t13_mm08
+  title: Формулы двойного угла
+  text: '$\sin 2x = 2\sin x\cos x$. $\cos 2x$ — три формы: $\cos^2 x-\sin^2 x = 2\cos^2 x-1 = 1-2\sin^2 x$. $\tg 2x=\frac{2\tg x}{1-\tg^2 x}$. Выбор формы $\cos 2x$ зависит от того, какую функцию хочешь оставить в уравнении.
+
+    '
+  task_number: 13
+  subtypes:
+  - mixed_double_angle
+  - quadratic_in_one_func
+  error_tags:
+  - trig_wrong_double_angle
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - 6671FD
+  - 712A7B
+  - 209e7e
+  - C4507A
+  - 2247B7
+  - DCD2BC
+  - B8F61F
+  - 2CCC19
+  - 9BA813
+  - 34BB16
+  - 015B20
+  - 858BD4
+  - 0000C3
+  - 9EB1CA
+  - A67297
+  - 72Beec
+  - 8A88E1
+  - 78516c
+  - D7FC6F
+  - '716236'
+- id: t13_mm09
+  title: Формулы понижения степени
+  text: '$\sin^2 x = \frac{1-\cos 2x}{2}$, $\cos^2 x = \frac{1+\cos 2x}{2}$, $\sin x\cos x = \frac{\sin 2x}{2}$. Применяются, когда в уравнении есть $\sin^2 x, \cos^2 x$ и нужно перейти к одинарному углу $2x$.
+
+    '
+  task_number: 13
+  subtypes:
+  - mixed_double_angle
+  error_tags: []
+  prerequisites:
+  - t13_mm08
+  shared_skills: []
+  applicable_tasks:
+  - 6671FD
+  - 712A7B
+  - 209e7e
+  - 2247B7
+  - DCD2BC
+  - B8F61F
+  - 2CCC19
+  - 9BA813
+  - 34BB16
+  - 015B20
+  - 858BD4
+  - 0000C3
+  - 9EB1CA
+  - A67297
+  - 72Beec
+  - 8A88E1
+  - 78516c
+  - D7FC6F
+  - '716236'
+- id: t13_mm10
+  title: Формулы суммы и разности углов
+  text: '$\sin(\alpha\pm\beta)=\sin\alpha\cos\beta\pm\cos\alpha\sin\beta$. $\cos(\alpha\pm\beta)=\cos\alpha\cos\beta\mp\sin\alpha\sin\beta$ (знак противоположен). Часто разворачивают $\sin(x+\pi/4)$ или $\cos(x-\pi/3)$, чтобы привести к стандартной форме.
+
+    '
+  task_number: 13
+  subtypes:
+  - mixed_double_angle
+  - non_homogeneous_first
+  error_tags: []
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - 6671FD
+  - 712A7B
+  - 209e7e
+  - 2247B7
+  - DCD2BC
+  - B8F61F
+  - 2CCC19
+  - 9BA813
+  - 34BB16
+  - 015B20
+  - 858BD4
+  - 0000C3
+  - 9EB1CA
+  - A67297
+  - 72Beec
+  - 8A88E1
+  - 78516c
+  - D7FC6F
+  - '716236'
+- id: t13_mm11
+  title: Преобразование суммы в произведение
+  text: '$\sin\alpha+\sin\beta=2\sin\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}$. $\sin\alpha-\sin\beta=2\sin\frac{\alpha-\beta}{2}\cos\frac{\alpha+\beta}{2}$. $\cos\alpha+\cos\beta=2\cos\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}$. $\cos\alpha-\cos\beta=-2\sin\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2}$. Базовый приём для разложения на множители.
+
+    '
+  task_number: 13
+  subtypes:
+  - factorisation
+  - mixed_double_angle
+  error_tags: []
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - 6671FD
+  - 712A7B
+  - 209e7e
+  - 2247B7
+  - DCD2BC
+  - B8F61F
+  - 2CCC19
+  - 9BA813
+  - 34BB16
+  - 015B20
+  - 858BD4
+  - 0000C3
+  - 9EB1CA
+  - A67297
+  - 72Beec
+  - 8A88E1
+  - 78516c
+  - D7FC6F
+  - '716236'
+- id: t13_mm12
+  title: Произведение в сумму
+  text: '$\sin\alpha\cos\beta=\frac12[\sin(\alpha+\beta)+\sin(\alpha-\beta)]$. $\cos\alpha\cos\beta=\frac12[\cos(\alpha-\beta)+\cos(\alpha+\beta)]$. $\sin\alpha\sin\beta=\frac12[\cos(\alpha-\beta)-\cos(\alpha+\beta)]$. Используется реже, в основном для упрощения числителя/знаменателя.
+
+    '
+  task_number: 13
+  subtypes:
+  - mixed_double_angle
+  error_tags: []
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - 6671FD
+  - 712A7B
+  - 209e7e
+  - 2247B7
+  - DCD2BC
+  - B8F61F
+  - 2CCC19
+  - 9BA813
+  - 34BB16
+  - 015B20
+  - 858BD4
+  - 0000C3
+  - 9EB1CA
+  - A67297
+  - 72Beec
+  - 8A88E1
+  - 78516c
+  - D7FC6F
+  - '716236'
+- id: t13_mm13
+  title: Метод вспомогательного аргумента
+  text: '$a\sin x + b\cos x = R\sin(x+\varphi)$, где $R=\sqrt{a^2+b^2}$, $\cos\varphi=a/R$, $\sin\varphi=b/R$. Уравнение $a\sin x+b\cos x=c$ при $|c|\le R$ имеет решения $x=-\varphi+(-1)^n\arcsin(c/R)+\pi n$.
+
+    '
+  task_number: 13
+  subtypes:
+  - non_homogeneous_first
+  error_tags: []
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm14
+  title: Универсальная подстановка
+  text: '$t=\tg(x/2)$: $\sin x=\frac{2t}{1+t^2}$, $\cos x=\frac{1-t^2}{1+t^2}$, $\tg x=\frac{2t}{1-t^2}$. После подстановки уравнение становится рациональным относительно $t$. ВАЖНО: подстановка теряет серию $x=\pi+2\pi n$ — её нужно проверить отдельно.
+
+    '
+  task_number: 13
+  subtypes:
+  - non_homogeneous_first
+  - other
+  error_tags:
+  - trig_lost_series_subst
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm15
+  title: Свойства обратных тригофункций
+  text: '$\arcsin(-a)=-\arcsin a$, $\arccos(-a)=\pi-\arccos a$, $\arctg(-a)=-\arctg a$. Области значений: $\arcsin a\in[-\pi/2;\pi/2]$, $\arccos a\in[0;\pi]$, $\arctg a\in(-\pi/2;\pi/2)$. Если $|a|>1$, $\arcsin a$ и $\arccos a$ не определены.
+
+    '
+  task_number: 13
+  subtypes:
+  - simplest_trig
+  error_tags:
+  - trig_wrong_arc_inverse
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm16
+  title: Сведение к квадратному по одной функции
+  text: 'Если в уравнении встречается одна тригофункция (или $\sin^2,\cos^2$ через тождество $\sin^2+\cos^2=1$), сделай замену $t=f(x)$, где $f\in\{\sin,\cos,\tg,\ctg\}$. Получишь $at^2+bt+c=0$. Проверь, что найденные $t$ лежат в области значений: $|t|\le 1$ для $\sin,\cos$.
+
+    '
+  task_number: 13
+  subtypes:
+  - quadratic_in_one_func
+  error_tags:
+  - trig_substitution_no_check
+  prerequisites:
+  - t13_mm01
+  - t13_mm03
+  shared_skills:
+  - equation_setup
+  applicable_tasks:
+  - C4507A
+- id: t13_mm17
+  title: Однородное уравнение первой степени
+  text: 'Вид $a\sin x + b\cos x=0$. Делим на $\cos x$: $a\tg x+b=0$ → $\tg x=-b/a$. Деление законно: $\cos x=0$ не корень (тогда $\sin x=\pm 1\ne 0$, противоречие). Решение: $x=\arctg(-b/a)+\pi n$.
+
+    '
+  task_number: 13
+  subtypes:
+  - homogeneous_first
+  error_tags: []
+  prerequisites:
+  - t13_mm05
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm18
+  title: Однородное уравнение второй степени
+  text: 'Вид $a\sin^2 x + b\sin x\cos x + c\cos^2 x=0$. Делим на $\cos^2 x$ ($\cos x=0$ не корень): $a\tg^2 x+b\tg x+c=0$. Замена $t=\tg x$ даёт квадратное. Если правая часть не ноль, домножь на $\sin^2 x+\cos^2 x=1$, чтобы привести к однородному.
+
+    '
+  task_number: 13
+  subtypes:
+  - homogeneous_second
+  error_tags: []
+  prerequisites:
+  - t13_mm17
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm19
+  title: Уравнение a sin x + b cos x = c
+  text: 'Два пути: (1) формула вспомогательного аргумента $R\sin(x+\varphi)=c$ — далее простейшее по $\sin$; (2) приведение к однородному: $c=c(\sin^2(x/2)+\cos^2(x/2))$, после чего получаем квадратное по $\tg(x/2)$. Условие разрешимости: $|c|\le\sqrt{a^2+b^2}$.
+
+    '
+  task_number: 13
+  subtypes:
+  - non_homogeneous_first
+  error_tags: []
+  prerequisites:
+  - t13_mm13
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm20
+  title: Разложение на множители
+  text: 'Если уравнение приводится к виду $A\cdot B=0$, рассмотри две системы: $A=0$ или $B=0$ (с учётом ОДЗ обоих). Типичные приёмы: вынос общего множителя, формулы суммы/разности, $\sin 2x=2\sin x\cos x$ для выноса $\sin x$ или $\cos x$.
+
+    '
+  task_number: 13
+  subtypes:
+  - factorisation
+  error_tags: []
+  prerequisites:
+  - t13_mm11
+  - t13_mm08
+  shared_skills:
+  - sign_analysis
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm21
+  title: Дробь равна нулю
+  text: '$\frac{P(x)}{Q(x)}=0\Leftrightarrow P(x)=0$ И $Q(x)\ne 0$. После решения числителя обязательно подставь корни в знаменатель и отбрось те, при которых $Q=0$. Это самый частый источник «лишних» корней в задаче 13.
+
+    '
+  task_number: 13
+  subtypes:
+  - fractional_zero_numerator
+  error_tags:
+  - trig_forgot_odz_denominator
+  prerequisites: []
+  shared_skills:
+  - constraint_checking
+  applicable_tasks:
+  - A1A34D
+  - 0448F1
+  - 8413F6
+  - 3BB500
+  - 2D54B0
+  - 6CEDB3
+  - E6F116
+  - 685C13
+  - 1D3525
+  - E4EA28
+  - 24AAD1
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - 4EFD3D
+- id: t13_mm22
+  title: ОДЗ при наличии логарифма от тригофункции
+  text: 'В $\log_a f(x)$ требование $f(x)>0$ ограничивает область корней. Например, $\log_2(\sin x)$ — нужен $\sin x>0$, то есть $x\in(2\pi k;\pi+2\pi k)$. Это сразу отбрасывает половину тригонометрических корней.
+
+    '
+  task_number: 13
+  subtypes:
+  - log_trig
+  - fractional_zero_numerator
+  error_tags:
+  - trig_forgot_odz_function
+  prerequisites: []
+  shared_skills:
+  - constraint_checking
+  applicable_tasks:
+  - '638272'
+  - B2FAAF
+  - A1A34D
+  - 0448F1
+  - 8413F6
+  - 3BB500
+  - 92FD74
+  - 2D54B0
+  - 6CEDB3
+  - E6F116
+  - 685C13
+  - 1D3525
+  - E4EA28
+  - 24AAD1
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - 4EFD3D
+- id: t13_mm23
+  title: Замена в показательно-тригонометрическом уравнении
+  text: 'Уравнения вида $a^{2\sin x}+a^{\sin x}+c=0$ или $a\cdot b^{\sin x}+\dots=0$: замена $t=a^{\sin x}>0$. Решаем $At^2+Bt+C=0$, отбрасываем $t\le 0$. Затем по найденному $t$ переходим к простейшему $\sin x=\log_a t$.
+
+    '
+  task_number: 13
+  subtypes:
+  - exp_trig
+  error_tags:
+  - trig_substitution_no_check
+  prerequisites:
+  - t13_mm03
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - 1CAE46
+  - 54D407
+  - 53A21E
+  - F438D2
+  - 0C47ED
+  - 4FF160
+  - 51D289
+- id: t13_mm24
+  title: Замена в логарифмо-тригонометрическом уравнении
+  text: 'Уравнения вида $\log_a^2(\sin x)+B\log_a(\sin x)+C=0$: замена $t=\log_a(\sin x)$ при ОДЗ $\sin x>0$. Решаем квадратное по $t$, затем $\log_a(\sin x)=t_i\Rightarrow \sin x=a^{t_i}$, проверяем $\sin x\in(0;1]$.
+
+    '
+  task_number: 13
+  subtypes:
+  - log_trig
+  error_tags: []
+  prerequisites:
+  - t13_mm22
+  - t13_mm16
+  shared_skills: []
+  applicable_tasks:
+  - '638272'
+  - B2FAAF
+  - 92FD74
+- id: t13_mm25
+  title: Уравнения со смешанными формулами
+  text: 'Если в уравнении встречаются разные углы ($x$, $2x$, $x+\pi/3$): сначала формулы приведения и двойного угла приводят всё к одному углу $x$. Потом — стандартные методы. Типичная цепочка: $\sin 2x \to 2\sin x\cos x$, далее факторизация.
+
+    '
+  task_number: 13
+  subtypes:
+  - mixed_double_angle
+  error_tags: []
+  prerequisites:
+  - t13_mm07
+  - t13_mm08
+  - t13_mm20
+  shared_skills: []
+  applicable_tasks:
+  - 6671FD
+  - 712A7B
+  - 209e7e
+  - 2247B7
+  - DCD2BC
+  - B8F61F
+  - 2CCC19
+  - 9BA813
+  - 34BB16
+  - 015B20
+  - 858BD4
+  - 0000C3
+  - 9EB1CA
+  - A67297
+  - 72Beec
+  - 8A88E1
+  - 78516c
+  - D7FC6F
+  - '716236'
+- id: t13_mm26
+  title: Возведение в квадрат — лишние корни
+  text: 'Возведение в квадрат любой части уравнения может добавить корни (где левая и правая части равны по модулю, но с разными знаками). Все полученные корни обязательно подставь в исходное уравнение.
+
+    '
+  task_number: 13
+  subtypes:
+  - other
+  error_tags:
+  - trig_extra_solutions
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm27
+  title: Деление на функцию — потеря корней
+  text: 'Деление обеих частей на $f(x)$ корректно только если $f(x)\ne 0$ ни в одной точке. Иначе нужно отдельно рассмотреть случай $f(x)=0$ и проверить, не является ли он корнем исходного уравнения. Чаще всего это деление на $\cos x$ или $\sin x$.
+
+    '
+  task_number: 13
+  subtypes:
+  - homogeneous_first
+  - homogeneous_second
+  error_tags:
+  - trig_lost_solutions
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm28
+  title: Объединение и расщепление серий корней
+  text: 'Серии $x=\frac{\pi}{2}+2\pi k$ и $x=-\frac{\pi}{2}+2\pi k$ объединяются в $x=\frac{\pi}{2}+\pi k$. Серия $x=\frac{\pi n}{3}$ расщепляется на 3 серии шагом $2\pi$ со сдвигами $0,\frac{\pi}{3},\frac{2\pi}{3}$ (для каждой из трёх — ещё дополнительные при шаге $\pi/3$). Объединять — для краткости, расщеплять — для отбора.
+
+    '
+  task_number: 13
+  subtypes:
+  - simplest_trig
+  - interval_selection
+  error_tags:
+  - trig_merging_series_wrong
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm29
+  title: Метод единичной окружности для отбора корней
+  text: 'На круге отметь все полученные точки-корни (для каждой серии). Затем выдели дугу промежутка $[a;b]$: иди от $a$ к $b$ по обходу против часовой стрелки. Корни внутри дуги — ответ. Каждой точке на круге сопоставь конкретное значение $x=...+2\pi k$.
+
+    '
+  task_number: 13
+  subtypes:
+  - interval_selection
+  error_tags:
+  - trig_selection_circle_misread
+  prerequisites:
+  - t13_mm03
+  - t13_mm04
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm30
+  title: Двойное неравенство для отбора корней
+  text: 'Для серии $x=x_0+\pi k$ требуется $a\le x_0+\pi k\le b$. Решаем относительно $k\in\mathbb{Z}$: $\frac{a-x_0}{\pi}\le k\le\frac{b-x_0}{\pi}$. Считаем целые $k$ в этом промежутке и подставляем обратно. Способ универсальный, работает всегда.
+
+    '
+  task_number: 13
+  subtypes:
+  - interval_selection
+  error_tags: []
+  prerequisites:
+  - t13_mm03
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm31
+  title: Отбор по каждой серии независимо
+  text: 'Если у уравнения $m$ серий корней, то двойное неравенство решается ОТДЕЛЬНО для каждой серии. Нельзя «слить» серии и решить одно неравенство — потеряешь часть корней или возьмёшь чужие. Запиши все серии, обведи каждую и отбирай по очереди.
+
+    '
+  task_number: 13
+  subtypes:
+  - interval_selection
+  error_tags:
+  - trig_selection_per_series_skip
+  prerequisites:
+  - t13_mm30
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm32
+  title: Включение и исключение концов отрезка
+  text: '«Корни на отрезке $[a;b]$» — оба конца включены. «На интервале $(a;b)$» — оба исключены. «Полуинтервал $[a;b)$» — левый включён, правый нет. Подставь $a$ и $b$ в формулу серии: если получается целое $k$, корень есть, и его судьба зависит от типа промежутка.
+
+    '
+  task_number: 13
+  subtypes:
+  - interval_selection
+  error_tags:
+  - trig_interval_endpoint
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm33
+  title: Перебор k с проверкой выхода за границу
+  text: 'После двойного неравенства явно перечисли подходящие $k$ и подставь в формулу серии. Чтобы обосновать, что других корней нет, выпиши также соседние $k$ (на 1 меньше минимального и на 1 больше максимального) и покажи, что они дают значения вне отрезка.
+
+    '
+  task_number: 13
+  subtypes:
+  - interval_selection
+  error_tags:
+  - trig_enumeration_no_outside_check
+  prerequisites:
+  - t13_mm30
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm34
+  title: Графический способ отбора корней
+  text: 'На оси $Ox$ отметь концы отрезка и шаги периода серии (например, через $\pi$ или $2\pi$). Корни — равноотстоящие точки в каждой серии. Пересечение с отрезком — нужные корни. Метод нагляден для коротких отрезков ($1{-}2$ периода).
+
+    '
+  task_number: 13
+  subtypes:
+  - interval_selection
+  error_tags: []
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm35
+  title: Учёт ОДЗ при отборе корней
+  text: 'Перед отбором обязательно отбрось корни, нарушающие ОДЗ исходного уравнения (знаменатель $=0$, аргумент логарифма $\le 0$, $\cos x=0$ для $\tg x$). Только потом — отбор по отрезку. Иначе можешь включить в ответ корень, который вообще не корень.
+
+    '
+  task_number: 13
+  subtypes:
+  - interval_selection
+  error_tags: []
+  prerequisites:
+  - t13_mm21
+  - t13_mm22
+  shared_skills:
+  - constraint_checking
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm36
+  title: Метод оценки и мажорирования
+  text: 'Если $\sin\alpha+\sin\beta=2$ или $|f(x)|+|g(x)|=0$: сводится к системе равенств экстремумов. Например, $\sin\alpha+\sin\beta=2\Leftrightarrow \sin\alpha=\sin\beta=1$. Используется, когда стандартные приёмы не работают и в уравнении есть «подозрительные» сильные ограничения.
+
+    '
+  task_number: 13
+  subtypes:
+  - other
+  error_tags: []
+  prerequisites: []
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm37
+  title: Алгоритм решения 13-й задачи
+  text: '(1) Определи тип уравнения и ОДЗ. (2) Приведи к одному углу/одной функции (формулы приведения, двойного угла, тождества). (3) Реши: замена / факторизация / простейшее. (4) Проверь корни на ОДЗ. (5) Отбери корни на отрезке (круг или двойное неравенство). (6) Запиши ответ для каждого пункта а) и б).
+
+    '
+  task_number: 13
+  subtypes:
+  - other
+  error_tags: []
+  prerequisites:
+  - t13_mm16
+  - t13_mm20
+  - t13_mm29
+  - t13_mm30
+  - t13_mm35
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289
+- id: t13_mm38
+  title: Когда серий много — единичная окружность быстрее
+  text: 'Если серий 3 и более (например, при факторизации на 3 множителя), отбор двойным неравенством занимает много места. Тогда удобнее круг: расставь все точки сразу и пройди по дуге. Если серия одна-две — двойное неравенство быстрее и формальнее.
+
+    '
+  task_number: 13
+  subtypes:
+  - interval_selection
+  error_tags: []
+  prerequisites:
+  - t13_mm29
+  - t13_mm30
+  shared_skills: []
+  applicable_tasks:
+  - FDA042
+  - '638272'
+  - 617B18
+  - AD8FD9
+  - A6BC58
+  - B2FAAF
+  - F22045
+  - 1CAE46
+  - A1A34D
+  - 0448F1
+  - EE74FD
+  - 6671FD
+  - 8413F6
+  - 54D407
+  - 3BB500
+  - 712A7B
+  - 209e7e
+  - D1D574
+  - C4507A
+  - 92FD74
+  - 2D54B0
+  - 2247B7
+  - DCD2BC
+  - 6CEDB3
+  - B8F61F
+  - 2CCC19
+  - 53A21E
+  - 9BA813
+  - E6F116
+  - 685C13
+  - 34BB16
+  - 0BD320
+  - 015B20
+  - 1D3525
+  - E4EA28
+  - F438D2
+  - 24AAD1
+  - 858BD4
+  - 8EB2DA
+  - 0AD550
+  - 74C1A9
+  - 9D14AA
+  - 30EEA9
+  - 0000C3
+  - 9EB1CA
+  - E0B0CA
+  - 34CAC3
+  - 46249A
+  - A67297
+  - 0C47ED
+  - 72Beec
+  - 8A88E1
+  - 4FF160
+  - 78516c
+  - D7FC6F
+  - 4EFD3D
+  - '716236'
+  - 51D289

@@ -1,0 +1,21 @@
+{
+  "student_id": "archive_u4",
+  "generated_at_utc": "2026-05-04T06:18:33.792271+00:00",
+  "retrieved_titles": [],
+  "frontier_atoms": [
+    "Разложение производной произведения на множители"
+  ],
+  "top_errors": [
+    "critical_point_wrong_eq"
+  ],
+  "top_err": "Неверно решаешь уравнение $f'(x) = 0$",
+  "recent_wrong": [
+    {
+      "task_number": 12,
+      "task_text": "Найдите точку минимума функции $y=x^3 -12x^2 +36x+17.$",
+      "student_answer": null,
+      "correct_answer": null
+    }
+  ],
+  "n_err_items": 1
+}

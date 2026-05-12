@@ -1,0 +1,129 @@
+# JSON Schema (Draft 2020-12) для события, публикуемого платформой
+# в Kafka topic `ege.submissions.v1` при сохранении submission.
+#
+# Партиционирование: key = submission.user_id (для ordering per-student).
+# Сериализация: JSON, UTF-8.
+# Дедупликация на нашей стороне: по submission.submission_id (UNIQUE constraint
+# в submission_evaluations таблице).
+
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://generator.example.com/schemas/kafka/submission-event.v1.json
+title: SubmissionEvent
+description: Событие, публикуемое платформой при сохранении submission.
+
+type: object
+required:
+  - event_id
+  - event_type
+  - schema_version
+  - occurred_at
+  - submission
+
+properties:
+  event_id:
+    type: string
+    format: uuid
+    description: |
+      UUIDv4 события (для логов/трейсов). Уникален per-message.
+      На retry платформа должна генерировать новый event_id, но
+      submission.submission_id остаётся тем же — мы дедупим по нему.
+
+  event_type:
+    type: string
+    const: submission.created
+    description: |
+      Текущий MVP — только submission.created. В будущем возможны
+      submission.updated / submission.archived; адаптеры расширятся.
+
+  schema_version:
+    type: string
+    const: "1.0"
+    description: Bump при breaking change структуры.
+
+  occurred_at:
+    type: string
+    format: date-time
+    description: |
+      Когда произошло сохранение submission на платформе. Может отличаться
+      от submission.submitted_at (если сохранение отложено / batched).
+
+  submission:
+    $ref: "#/$defs/Submission"
+
+$defs:
+  Submission:
+    type: object
+    required:
+      - submission_id
+      - user_id
+      - task_id
+      - task_number
+      - task_text
+      - is_correct
+      - submitted_at
+    properties:
+      submission_id:
+        type: string
+        format: uuid
+        description: PK на платформе. Используется как ключ идемпотентности у нас.
+
+      user_id:
+        type: string
+        description: |
+          Идентификатор пользователя на платформе (UUID или строка).
+          Также служит partition key Kafka — обеспечивает ordering per-student.
+
+      task_id:
+        type: string
+        description: Идентификатор задачи на платформе.
+
+      task_number:
+        type: integer
+        enum: [6, 10, 12, 13, 16]
+        description: Номер задания ЕГЭ (поддерживаемые).
+
+      task_text:
+        type: string
+        description: |
+          Текст условия задачи (KaTeX/markdown/plain).
+          Нужен для классификации subtype и grounding'а LLM-диагноза.
+
+      is_correct:
+        type: boolean
+        description: |
+          Если true — диагноз LLM не запускается, теги пустые.
+          Если false — запускаем диагноз и шлём callback с тегами.
+
+      student_answer:
+        type: [string, "null"]
+        description: |
+          Ответ ученика. Желательно для is_correct=false (без него
+          LLM-диагноз вырождается в эвристику по тексту задачи).
+
+      correct_answer:
+        type: [string, "null"]
+        description: |
+          Правильный ответ. Обязателен для is_correct=false для качества
+          диагноза. Для is_correct=true может быть null.
+
+      submitted_at:
+        type: string
+        format: date-time
+        description: Когда ученик отправил ответ.
+
+examples:
+  - event_id: 7c9e6679-7425-40de-944b-e07fc1f90ae7
+    event_type: submission.created
+    schema_version: "1.0"
+    occurred_at: "2026-04-29T12:34:56Z"
+    submission:
+      submission_id: 06b9f5a8-1234-4d2b-aca2-ba9c6ff1765c
+      user_id: user-15
+      task_id: fipi-06B9F5
+      task_number: 10
+      task_text: |
+        Теплоход проходит по течению реки до пункта назначения 80 км ...
+      is_correct: false
+      student_answer: "-0.2222"
+      correct_answer: "18"
+      submitted_at: "2026-04-29T12:34:50Z"

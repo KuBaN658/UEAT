@@ -1,0 +1,49 @@
+# conspect-worker: polls conspect_jobs (DB queue) and runs RAG+LLM (Flow 2).
+# Stateless except for the DB queue, which provides claim semantics via
+# SELECT FOR UPDATE SKIP LOCKED. Scale freely.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ege-conspect-worker
+  namespace: ege
+  labels: {app: ege-conspect-worker}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: ege-conspect-worker}
+  template:
+    metadata:
+      labels: {app: ege-conspect-worker}
+    spec:
+      imagePullSecrets:
+        - name: ege-rag-registry
+      containers:
+        - name: worker
+          image: registry.gitlab.akhcheck.ru/ege-proryv/egenotesgenerator/notesreport:6786972
+          imagePullPolicy: Always
+          command: ["python", "-m", "app.workers.conspect_worker"]
+          envFrom:
+            - configMapRef: {name: ege-rag-config}
+            - secretRef:    {name: ege-rag-secrets}
+          resources:
+            requests: {cpu: "200m", memory: "512Mi"}
+            limits:   {cpu: "1500m", memory: "2Gi"}    # RAG + LLM is heavier
+      terminationGracePeriodSeconds: 60                # let the in-flight LLM call finish
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ege-conspect-worker
+  namespace: ege
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ege-conspect-worker
+  minReplicas: 1
+  maxReplicas: 4
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: 70}

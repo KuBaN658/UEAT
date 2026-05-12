@@ -1,0 +1,50 @@
+# Internal admin/monitoring panel.
+# Not exposed via Ingress — reach it with `kubectl port-forward svc/ege-admin 8100:80`.
+# Sends submissions to Kafka (platform simulator) and reads conspect_jobs for stats.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ege-admin
+  namespace: ege
+  labels: {app: ege-admin}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: ege-admin}
+  template:
+    metadata:
+      labels: {app: ege-admin}
+    spec:
+      imagePullSecrets:
+        - name: ege-rag-registry
+      containers:
+        - name: admin
+          image: registry.gitlab.akhcheck.ru/ege-proryv/egenotesgenerator/notesreport:6786972
+          imagePullPolicy: Always
+          command: ["uvicorn", "admin.app:app", "--host", "0.0.0.0", "--port", "8100"]
+          ports:
+            - containerPort: 8100
+              name: http
+          envFrom:
+            - configMapRef: {name: ege-rag-config}
+            - secretRef:    {name: ege-rag-secrets}
+          readinessProbe:
+            httpGet: {path: /readyz, port: http}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            requests: {cpu: "50m",  memory: "256Mi"}
+            limits:   {cpu: "500m", memory: "768Mi"}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ege-admin
+  namespace: ege
+spec:
+  selector: {app: ege-admin}
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8100
+  type: ClusterIP

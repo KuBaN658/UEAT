@@ -1,0 +1,54 @@
+# eval-worker: direct Kafka consumer for ege.submissions.v1 (Flow 1).
+# Multiple replicas share work via the consumer group `ege-eval-worker`.
+# Scale up by partition count (one consumer per partition is the upper bound).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ege-eval-worker
+  namespace: ege
+  labels: {app: ege-eval-worker}
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: ege-eval-worker}
+  template:
+    metadata:
+      labels: {app: ege-eval-worker}
+    spec:
+      imagePullSecrets:
+        - name: ege-rag-registry
+      containers:
+        - name: worker
+          image: registry.gitlab.akhcheck.ru/ege-proryv/egenotesgenerator/notesreport:6786972
+          imagePullPolicy: Always
+          command: ["python", "-m", "app.workers.eval_worker"]
+          envFrom:
+            - configMapRef: {name: ege-rag-config}
+            - secretRef:    {name: ege-rag-secrets}
+          resources:
+            requests: {cpu: "100m", memory: "256Mi"}
+            limits:   {cpu: "500m", memory: "512Mi"}
+      # Workers process Kafka messages without an HTTP listener;
+      # commit offset only after the platform callback succeeds, so a
+      # SIGTERM mid-batch causes replay (safe — diagnosis is deterministic).
+      terminationGracePeriodSeconds: 30
+---
+# HPA on CPU. For a more accurate signal you'd switch to KEDA (scale on
+# Kafka consumer lag) once you have it in the cluster.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ege-eval-worker
+  namespace: ege
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ege-eval-worker
+  minReplicas: 2
+  maxReplicas: 8                  # cap at #Kafka partitions for ege.submissions.v1
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: 70}

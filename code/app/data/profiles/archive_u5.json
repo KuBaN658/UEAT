@@ -1,0 +1,56 @@
+{
+  "student_id": "archive_u5",
+  "created_at": "2026-03-30T19:20:38.692007+00:00",
+  "updated_at": "2026-04-29T06:17:18.919484+00:00",
+  "attempts": {
+    "exponential_eq": 1,
+    "power_irrational": 1
+  },
+  "wrong": {
+    "power_irrational": 1
+  },
+  "error_scores": {
+    "minmax_wrong_sign_analysis": 1.15
+  },
+  "error_events": [
+    {
+      "tag": "minmax_wrong_sign_analysis",
+      "ts": "2026-04-29T06:17:18.919434+00:00",
+      "attempt_seq": 2,
+      "weight": 1.15,
+      "task_number": 12,
+      "task_id": "AC8783",
+      "subtype": "power_irrational",
+      "student_answer": "3.33333",
+      "correct_answer": "10",
+      "task_text": "Найдите точку минимума функции $y=x^3 -20x^2 +100x+23.$"
+    }
+  ],
+  "recent": [
+    {
+      "task_id": "28f4dde7-7bcf-49b8-acfa-946506222fdc",
+      "task_number": 6,
+      "subtype": "exponential_eq",
+      "ok": true,
+      "error_tags": [],
+      "ts": "2026-03-30T19:20:38.692007+00:00",
+      "problem_katex": "Найдите корень уравнения $3^{x – 8} =\\frac{1}{81}.$",
+      "solution": "**Условие задачи**  \nНайдите корень уравнения \\(3^{x – 8} =\\frac{1}{81}\\).\n\n**Инструкция по решению**  \n1. Запишите правую часть уравнения как степень тройки.  \n2. Сравните показатели степеней тройки.  \n3. Решите полученное линейное уравнение для \\(x\\).\n\n**Решение**  \n1. \\(\\displaystyle \\frac{1}{81}=3^{-4}\\).  \n2. Уравнение становится \\(3^{x-8}=3^{-4}\\).  \n3. Поскольку основания равны, показатели равны: \\(x-8=-4\\).  \n4. Отсюда \\(x=8-4=4\\).  \n\nОтвет: \\(x=4\\)."
+    },
+    {
+      "task_id": "AC8783",
+      "task_number": 12,
+      "subtype": "power_irrational",
+      "ok": false,
+      "error_tags": [
+        "minmax_wrong_sign_analysis"
+      ],
+      "ts": "2026-04-29T06:17:18.919481+00:00"
+    }
+  ],
+  "skill_scores": {
+    "sign_analysis": 0.345
+  },
+  "decay_half_life": 20.0,
+  "attempt_seq": 2
+}

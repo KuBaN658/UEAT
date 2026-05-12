@@ -1,0 +1,41 @@
+# Build inputs we never want baked into the image.
+.git
+.gitignore
+.gitattributes
+.github
+
+# Python local
+.venv
+.mypy_cache
+.pytest_cache
+.ruff_cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Local secrets and IDE/state
+.secret
+.env
+.env.local
+.claude
+.vscode
+.idea
+
+# Bulky data that doesn't belong in the image
+app/rag/qdrant_data
+qdrant_data
+postgres_data
+redpanda_data
+*.log
+
+# Build/CI artefacts
+node_modules
+dist
+build
+*.egg-info
+
+# k8s/docker config
+k8s
+docker-compose.yml
+Dockerfile.local

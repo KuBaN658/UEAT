@@ -1,0 +1,620 @@
+- id: t06_mm01
+  title: Показательное уравнение с одинаковым основанием
+  text: |
+    Если $a^{f(x)} = a^{g(x)}$ при $a>0$, $a\neq 1$, то $f(x)=g(x)$. Сначала приведи обе части к одному основанию:
+    $b = a^k \Rightarrow b^{h(x)} = a^{k h(x)}$. Пример: $4^x = 8^{x-1}$ → $(2^2)^x = (2^3)^{x-1}$ → $2^{2x}=2^{3x-3}$ → $2x=3x-3$.
+  task_number: 6
+  subtypes:
+  - exponential_eq
+  error_tags:
+  - wrong_base_reduction
+  shared_skills:
+  - equation_setup
+  applicable_tasks:
+  - 4CBD4E
+  - 71A34E
+  - 2D920F
+  - 06AF1F
+  - eA1217
+  - E22911
+  - FA7623
+  - B948D4
+  - BF9CD9
+  - B05656
+  - D14D52
+  - 3e8552
+  - 1E16A7
+  - A628Ae
+  - 971AA0
+  - 8CEAA5
+  - 19FBCF
+  - 37eA9D
+  - 673F60
+  - EAB432
+  - 2BDA84
+- id: t06_mm02
+  title: Показательное уравнение с разными основаниями
+  text: |
+    $a^{f(x)} = b$ с числом $b$: представь $b$ как степень того же основания $a$, или
+    логарифмируй: $f(x)= \log_a b$ (если $a>0$, $a\neq 1$, $b>0$). Пример: $3^x = 81$ → $3^x=3^4$ → $x=4$.
+  task_number: 6
+  subtypes:
+  - exponential_eq
+  error_tags:
+  - wrong_base_reduction
+  - exp_property_error
+  prerequisites:
+  - t06_mm01
+  applicable_tasks:
+  - 4CBD4E
+  - 71A34E
+  - 2D920F
+  - 06AF1F
+  - eA1217
+  - E22911
+  - FA7623
+  - B948D4
+  - BF9CD9
+  - B05656
+  - D14D52
+  - 3e8552
+  - 1E16A7
+  - A628Ae
+  - 971AA0
+  - 8CEAA5
+  - 19FBCF
+  - 37eA9D
+  - 673F60
+  - EAB432
+  - 17CF80
+  - 2BDA84
+  - AEEC8B
+- id: t06_mm03
+  title: Свойства степеней при решении уравнений
+  text: |
+    $(a^m)^n = a^{mn}$, $a^m \cdot a^n = a^{m+n}$, $a^m/a^n = a^{m-n}$. Не складывай показатели при умножении разных оснований.
+    $(ab)^n = a^n b^n$. Ошибка: писать $a^{m+n} = a^m + a^n$ — неверно.
+  task_number: 6
+  subtypes:
+  - exponential_eq
+  error_tags:
+  - exp_property_error
+  prerequisites:
+  - t06_mm01
+  applicable_tasks:
+  - 4CBD4E
+  - 71A34E
+  - 6A95F2
+  - 2D920F
+  - 06AF1F
+  - eA1217
+  - E22911
+  - FA7623
+  - 19E729
+  - B948D4
+  - B05656
+  - D14D52
+  - 3e8552
+  - 1E16A7
+  - A628Ae
+  - 971AA0
+  - 8CEAA5
+  - 19FBCF
+  - 12B3C9
+  - 37eA9D
+  - 673F60
+  - EAB432
+  - 2BDA84
+- id: t06_mm04
+  title: Замена в показательном уравнении
+  text: |
+    Вид $a^{2x} + a^x - 1 = 0$: положи $t = a^x > 0$, получи $t^2 + t - 1 = 0$. После решения по $t$
+    вернись к $x$: $a^x = t_1$ → $x = \log_a t_1$. Отбрасывай $t \le 0$.
+  task_number: 6
+  subtypes:
+  - exponential_eq
+  - combined_eq
+  error_tags:
+  - forgot_back_substitution
+  - quadratic_discriminant_error
+  shared_skills:
+  - equation_setup
+  applicable_tasks:
+  - 3e8552
+  - 1E16A7
+- id: t06_mm05
+  title: Область определения логарифма
+  text: |
+    $\log_a u(x)$ определён при $u(x) > 0$ и $a>0$, $a\neq 1$. Всегда записывай ОДЗ и проверяй корни
+    в исходном уравнении. Логарифм от нуля или отрицательного числа не определён.
+  task_number: 6
+  subtypes:
+  - logarithmic_eq
+  error_tags:
+  - log_domain_missed
+  applicable_tasks:
+  - 91CD43
+  - 586EF2
+  - E4F70F
+  - '517970'
+  - BF9CD9
+  - A628Ae
+  - 17CF80
+  - 5A7C8F
+  - AEEC8B
+- id: t06_mm06
+  title: Основные свойства логарифмов
+  text: |
+    $\log_a(xy) = \log_a x + \log_a y$, $\log_a(x/y) = \log_a x - \log_a y$, $\log_a x^k = k\log_a x$
+    (при $x>0$). Не путай: $\log(x+y) \neq \log x + \log y$.
+  task_number: 6
+  subtypes:
+  - logarithmic_eq
+  error_tags:
+  - log_property_error
+  prerequisites:
+  - t06_mm05
+  applicable_tasks:
+  - 71A34E
+  - 91CD43
+  - E4F70F
+  - '517970'
+  - BF9CD9
+  - 971AA0
+  - 8CEAA5
+  - 37eA9D
+  - EAB432
+  - 5A7C8F
+  - AEEC8B
+- id: t06_mm07
+  title: Логарифмическое уравнение с одинаковым основанием
+  text: |
+    Если $\log_a f(x) = \log_a g(x)$, то $f(x)=g(x)$ в пересечении ОДЗ: $f>0$, $g>0$.
+    Сначала приведи обе части к одному основанию через формулу перехода: $\log_a x = \frac{\ln x}{\ln a}$.
+  task_number: 6
+  subtypes:
+  - logarithmic_eq
+  error_tags:
+  - log_domain_missed
+  - log_property_error
+  prerequisites:
+  - t06_mm05
+  - t06_mm06
+  applicable_tasks:
+  - 4CBD4E
+  - 91CD43
+  - 586EF2
+  - E4F70F
+  - '517970'
+  - BF9CD9
+  - 8CEAA5
+  - 37eA9D
+  - AEEC8B
+- id: t06_mm08
+  title: Уравнение вида $\log_a f(x) = b$
+  text: |
+    Переход к показательной форме: $f(x) = a^b$. Проверь $f(x)$ на ОДЗ.
+    Пример: $\log_2 (x+3) = 4$ → $x+3 = 2^4 = 16$ → $x=13$, проверка $x+3>0$.
+  task_number: 6
+  subtypes:
+  - logarithmic_eq
+  error_tags:
+  - log_domain_missed
+  - log_property_error
+  prerequisites:
+  - t06_mm07
+  applicable_tasks:
+  - 91CD43
+  - 586EF2
+  - E4F70F
+  - '517970'
+  - BF9CD9
+  - 8CEAA5
+  - 17CF80
+  - AEEC8B
+- id: t06_mm09
+  title: Тригонометрические уравнения $\sin x = c$
+  text: |
+    $|c| \le 1$. На окружности: два угла в $[0,2\pi)$, затем $x = \pm \alpha + 2\pi k$ или
+    общая формула через $\arcsin$. Не теряй решения из-за периодичности.
+  task_number: 6
+  subtypes:
+  - trigonometric_eq
+  error_tags:
+  - trig_lost_solutions
+  - trig_extra_solutions
+  applicable_tasks: []
+- id: t06_mm10
+  title: Тригонометрические уравнения $\cos x = c$
+  text: |
+    $|c| \le 1$. На $[0,2\pi)$: два решения или одно при $c=\pm 1$. Общая формула:
+    $x = \pm \arccos c + 2\pi k$ (или комбинации в зависимости от выбора). Проверь отбор корней по
+    условию (например, отрезок).
+  task_number: 6
+  subtypes:
+  - trigonometric_eq
+  error_tags:
+  - trig_lost_solutions
+  - trig_extra_solutions
+  prerequisites:
+  - t06_mm09
+  applicable_tasks: []
+- id: t06_mm11
+  title: Сведение тригонометрии к квадратному уравнению
+  text: |
+    Уравнения вида $a\sin^2 x + b\sin x + c = 0$: положи $t = \sin x$, $|t| \le 1$.
+    После решения по $t$ решай $\sin x = t_1$ с учётом серий. Не забудь вернуться к $x$.
+  task_number: 6
+  subtypes:
+  - trigonometric_eq
+  - quadratic_eq
+  error_tags:
+  - forgot_back_substitution
+  - trig_lost_solutions
+  prerequisites:
+  - t06_mm09
+  applicable_tasks: []
+- id: t06_mm12
+  title: Формулы приведения и однородные уравнения
+  text: |
+    $a\sin x + b\cos x = 0$ → деление на $\cos x \neq 0$ или введение $t = \tan(x/2)$.
+    Осторожно с потерей корней при делении. Альтернатива: $\sqrt{a^2+b^2}\sin(x+\varphi)$.
+  task_number: 6
+  subtypes:
+  - trigonometric_eq
+  error_tags:
+  - trig_extra_solutions
+  - sign_error_in_equation
+  prerequisites:
+  - t06_mm09
+  applicable_tasks: []
+- id: t06_mm13
+  title: Иррациональные уравнения — возведение в квадрат
+  text: |
+    Если $\sqrt{f(x)} = g(x)$, то $f(x) = g^2(x)$ и обязательно $g(x) \ge 0$ и $f(x) \ge 0$.
+    После решения подставь проверку в исходное уравнение — появляются посторонние корни.
+  task_number: 6
+  subtypes:
+  - irrational_eq
+  error_tags:
+  - irrational_no_check
+  - log_domain_missed
+  applicable_tasks:
+  - 1FE24C
+  - 4C69F7
+  - BBFFF9
+  - 1E76F6
+  - 3599D1
+  - 59D451
+  - 2FB6C7
+  - 5CE2C6
+  - C6D0C4
+  - 8BE5C3
+  - ED6C96
+  - 5E753F
+  - E43E38
+- id: t06_mm14
+  title: Два радикала и изоляция корня
+  text: |
+    Перенеси один корень на другую сторону, возводи в квадрат по шагам, проверяй ОДЗ и подстановку.
+    Сложные случаи: $ \sqrt{f} + \sqrt{g} = h$ — после возведения в квадрат упрощай и снова проверяй корни.
+  task_number: 6
+  subtypes:
+  - irrational_eq
+  error_tags:
+  - irrational_no_check
+  - sign_error_in_equation
+  prerequisites:
+  - t06_mm13
+  applicable_tasks:
+  - 1FE24C
+  - 4C69F7
+  - BBFFF9
+  - 1E76F6
+  - 3599D1
+  - 59D451
+  - 2FB6C7
+  - 5CE2C6
+  - C6D0C4
+  - 8BE5C3
+  - ED6C96
+  - 5E753F
+  - E43E38
+- id: t06_mm15
+  title: Квадратное уравнение и дискриминант
+  text: |
+    $ax^2+bx+c=0$, $D = b^2 - 4ac$. Корни $x_{1,2} = \frac{-b \pm \sqrt{D}}{2a}$ при $a \neq 0$.
+    Проверь знаки при переносе слагаемых из одной части в другую.
+  task_number: 6
+  subtypes:
+  - quadratic_eq
+  error_tags:
+  - quadratic_discriminant_error
+  - sign_error_in_equation
+  shared_skills:
+  - equation_setup
+  applicable_tasks: []
+- id: t06_mm16
+  title: Биквадратное уравнение
+  text: |
+    $ax^4 + bx^2 + c = 0$: $t = x^2 \ge 0$, решаешь $at^2 + bt + c = 0$. Для каждого $t_i>0$
+    два значения $x = \pm\sqrt{t_i}$; если $t=0$ — один корень $x=0$.
+  task_number: 6
+  subtypes:
+  - quadratic_eq
+  error_tags:
+  - forgot_back_substitution
+  - quadratic_discriminant_error
+  prerequisites:
+  - t06_mm15
+  applicable_tasks: []
+- id: t06_mm17
+  title: Равносильность преобразований
+  text: |
+    Умножение на выражение может добавить корни: умножай на $>0$ или проверяй отдельно нули множителя.
+    Возведение в чётную степень — не всегда равносильно; проверяй подстановкой.
+  task_number: 6
+  subtypes:
+  - combined_eq
+  error_tags:
+  - irrational_no_check
+  - trig_extra_solutions
+  applicable_tasks:
+  - 1FE24C
+  - 4C69F7
+  - BBFFF9
+  - 1E76F6
+  - BF9CD9
+  - 3599D1
+  - 59D451
+  - 2FB6C7
+  - 5CE2C6
+  - C6D0C4
+  - 8BE5C3
+  - ED6C96
+  - 5E753F
+  - E43E38
+  - 3A5432
+  - 17CF80
+  - AEEC8B
+- id: t06_mm18
+  title: Системы простых уравнений
+  text: |
+    Подстановка или сложение уравнений. Вырази одну переменную и подставь в другое уравнение.
+    Проверь решение в обоих уравнениях.
+  task_number: 6
+  subtypes:
+  - combined_eq
+  error_tags:
+  - sign_error_in_equation
+  shared_skills:
+  - equation_setup
+  applicable_tasks: []
+- id: t06_mm19
+  title: Показательно-логарифмические смешанные типы
+  text: |
+    Уравнения вида $a^{\log_b x} = c$: логарифмируй по основанию $a$ или переходи к
+    $\log_b x = \log_a c$. Следи за ОДЗ ($x>0$ для $\log_b x$).
+  task_number: 6
+  subtypes:
+  - exponential_eq
+  - logarithmic_eq
+  error_tags:
+  - log_domain_missed
+  - exp_property_error
+  prerequisites:
+  - t06_mm02
+  - t06_mm08
+  applicable_tasks:
+  - 91CD43
+  - eA1217
+  - BF9CD9
+  - 37eA9D
+  - 17CF80
+- id: t06_mm20
+  title: Модуль в уравнении
+  text: |
+    $|f(x)| = g(x)$: $g(x) \ge 0$ и $f(x) = g(x)$ или $f(x) = -g(x)$. Разбивай на случаи по
+    знаку $f$ на интервалах.
+  task_number: 6
+  subtypes:
+  - combined_eq
+  error_tags:
+  - sign_error_in_equation
+  prerequisites:
+  - t06_mm18
+  applicable_tasks: []
+- id: t06_mm21
+  title: Рациональные уравнения
+  text: |
+    $\frac{P(x)}{Q(x)} = 0$ → $P(x)=0$ и $Q(x) \neq 0$. Приведение к общему знаменателю:
+    исключи значения, обращающие знаменатель в ноль.
+  task_number: 6
+  subtypes:
+  - combined_eq
+  error_tags:
+  - irrational_no_check
+  - sign_error_in_equation
+  applicable_tasks:
+  - 3A5432
+- id: t06_mm22
+  title: Степень с иррациональным показателем
+  text: |
+    $x^{p/q}$ при $x \ge 0$ для чётного $q$ в знаменателе дроби. ОДЗ: основание под корнем чётной степени $\ge 0$.
+  task_number: 6
+  subtypes:
+  - irrational_eq
+  - exponential_eq
+  error_tags:
+  - log_domain_missed
+  - exp_property_error
+  prerequisites:
+  - t06_mm13
+  applicable_tasks:
+  - BBFFF9
+  - FA7623
+  - 3599D1
+  - B05656
+  - 59D451
+  - ED6C96
+  - E43E38
+- id: t06_mm23
+  title: Уравнение $\log x + \log(x+k) = c$
+  text: |
+    $\log_a u + \log_a v = \log_a(uv)$ при $u,v>0$. ОДЗ: $x>0$ и $x+k>0$. После объединения
+    реши получившееся уравнение и проверь ОДЗ.
+  task_number: 6
+  subtypes:
+  - logarithmic_eq
+  error_tags:
+  - log_domain_missed
+  - log_property_error
+  prerequisites:
+  - t06_mm06
+  applicable_tasks: []
+- id: t06_mm24
+  title: Тригонометрия — разложение на множители
+  text: |
+    $\sin x \cos x = 0$ → $\sin x = 0$ или $\cos x = 0$. Собирай все серии решений по
+    периоду $2\pi$.
+  task_number: 6
+  subtypes:
+  - trigonometric_eq
+  error_tags:
+  - trig_lost_solutions
+  prerequisites:
+  - t06_mm09
+  applicable_tasks: []
+- id: t06_mm25
+  title: Уравнение вида $a^x + a^{-x} = b$
+  text: |
+    Умножь на $a^x$: $a^{2x} - b a^x + 1 = 0$, замена $t = a^x > 0$. Симметричные выражения
+    часто сводятся к квадрату.
+  task_number: 6
+  subtypes:
+  - exponential_eq
+  error_tags:
+  - forgot_back_substitution
+  - quadratic_discriminant_error
+  prerequisites:
+  - t06_mm04
+  applicable_tasks: []
+- id: t06_mm26
+  title: Проверка корней в исходном уравнении
+  text: |
+    После любых неравносильных шагов подставь все кандидаты в исходное уравнение — особенно
+    в логарифмах и радикалах.
+  task_number: 6
+  subtypes:
+  - combined_eq
+  error_tags:
+  - irrational_no_check
+  - log_domain_missed
+  prerequisites:
+  - t06_mm17
+  applicable_tasks:
+  - 4CBD4E
+  - 71A34E
+  - 1FE24C
+  - 91CD43
+  - 4C69F7
+  - BBFFF9
+  - 1E76F6
+  - 586EF2
+  - 6A95F2
+  - E4F70F
+  - '517970'
+  - 06AF1F
+  - eA1217
+  - E22911
+  - FA7623
+  - 19E729
+  - BF9CD9
+  - 3599D1
+  - D14D52
+  - 59D451
+  - 3e8552
+  - 1E16A7
+  - A628Ae
+  - 971AA0
+  - 8CEAA5
+  - 19FBCF
+  - 12B3C9
+  - 2FB6C7
+  - 5CE2C6
+  - C6D0C4
+  - 8BE5C3
+  - ED6C96
+  - 37eA9D
+  - 885E9A
+  - 673F60
+  - 5E753F
+  - EAB432
+  - E43E38
+  - 3A5432
+  - 17CF80
+  - AEEC8B
+- id: t06_mm27
+  title: Знак при переносе слагаемых
+  text: |
+    При переносе через знак равенства меняй знак: $a + b = c \Rightarrow a = c - b$.
+    Частая ошибка — знак минус при раскрытии скобок.
+  task_number: 6
+  subtypes:
+  - quadratic_eq
+  error_tags:
+  - sign_error_in_equation
+  applicable_tasks:
+  - 91CD43
+  - 4C69F7
+  - BBFFF9
+  - 1E76F6
+  - 586EF2
+  - 6A95F2
+  - E4F70F
+  - 19E729
+  - 12B3C9
+  - 2FB6C7
+  - C6D0C4
+  - 8BE5C3
+  - ED6C96
+  - 5E753F
+  - E43E38
+  - 3A5432
+  - AEEC8B
+- id: t06_mm28
+  title: Отбор корней по дополнительному условию
+  text: |
+    Если в условии задан отрезок или неравенство на $x$, отфильтруй корни после полного решения.
+    Для тригонометрии перечисли $k$ так, чтобы $x$ попало в отрезок.
+  task_number: 6
+  subtypes:
+  - trigonometric_eq
+  error_tags:
+  - trig_lost_solutions
+  - trig_extra_solutions
+  prerequisites:
+  - t06_mm10
+  applicable_tasks:
+  - 1FE24C
+  - 91CD43
+  - 4C69F7
+  - BBFFF9
+  - 1E76F6
+  - 586EF2
+  - 2D920F
+  - E4F70F
+  - '517970'
+  - BF9CD9
+  - 3599D1
+  - 59D451
+  - 12B3C9
+  - 2FB6C7
+  - 5CE2C6
+  - C6D0C4
+  - 8BE5C3
+  - ED6C96
+  - 5E753F
+  - E43E38
+  - 17CF80
+  - AEEC8B

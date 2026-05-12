@@ -1,0 +1,281 @@
+openapi: 3.1.0
+info:
+  title: Proryv Platform — Generator Integration Endpoints
+  version: 0.1.0
+  description: |
+    HTTP-ручки, которые **должна реализовать платформа** для интеграции
+    с conspect-generator'ом. Содержит только эндпоинты, которые вызываем мы.
+
+    UI-facing ручки платформы (например, `POST /personal-conspect/generate`,
+    `GET /personal-conspect/{id}` для фронта) сюда **не входят** — это
+    внутренняя зона ответственности платформы.
+
+    Контекст интеграции см. в README.md в этой же папке.
+
+servers:
+  - url: https://platform.example.com
+    description: Production
+  - url: http://localhost:8001
+    description: Local dev (mock)
+
+security:
+  - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: |
+        Service-to-service auth для callback'ов от нас на платформу.
+
+        ⚠ КОНКРЕТНЫЙ МЕХАНИЗМ ОЖИДАЕТ ОБСУЖДЕНИЯ С ПЛАТФОРМОЙ.
+
+        Передаётся в `Authorization: Bearer <token>`. Конкретный формат
+        токена (JWT/opaque/etc.) — на усмотрение платформы. Возможные
+        варианты см. в README.md → "Аутентификация (TBD)".
+
+  parameters:
+    IdempotencyKey:
+      in: header
+      name: Idempotency-Key
+      required: true
+      schema:
+        type: string
+      description: |
+        Ключ идемпотентности. Повторный запрос с тем же ключом должен
+        быть no-op (возврат успеха без двойной записи в БД).
+
+        Семантика:
+          - для /v1/submissions/{id}/diagnostic-tags: Idempotency-Key = submission_id
+          - для /v1/personal-conspect: Idempotency-Key = job_id
+
+  schemas:
+    DiagnosticTagsPayload:
+      type: object
+      required: [submission_id, tags, model, diagnosed_at]
+      properties:
+        submission_id:
+          type: string
+          format: uuid
+          description: |
+            Тот же submission_id, что был в Kafka-событии. Дублирует
+            path-параметр для удобства логирования.
+        tags:
+          type: array
+          items: { type: string }
+          example: [log_domain_missed, log_property_error]
+          description: |
+            Теги ошибок из нашего реестра (см. ERROR_TAGS в коде сервиса).
+            Может быть пустым если LLM не смогла выделить чёткую причину.
+        rationale:
+          type: string
+          nullable: true
+          description: Краткое объяснение LLM'а на русском (1-2 предложения)
+        model:
+          type: string
+          example: anthropic/claude-haiku-4-5
+          description: Идентификатор модели, которая поставила теги
+        diagnosed_at:
+          type: string
+          format: date-time
+
+    SourceSignalSnapshot:
+      type: object
+      description: |
+        Компактный fingerprint входных данных, по которым LLM сгенерил
+        этот конкретный конспект. НЕ полный снимок submissions (это было
+        бы ~100 KB), а отпечаток для:
+
+          1. **Дедупликации**: перед триггером новой генерации платформа
+             может сравнить snapshot с предыдущим — если submissions_hash
+             и top_error_tags те же, конспект не изменится, можно
+             переиспользовать старый.
+          2. **Reproducibility**: при смене модели/промпта можем заново
+             прогнать тот же сигнал.
+          3. **Audit / защита решений**: ответ на «почему этот конспект
+             такой?» — «вот сигнал, по которому LLM решала».
+          4. **A/B-тестирование**: одинаковый сигнал → две модели →
+             сравнимый бенчмарк.
+
+        Хранится в `personal_conspect.source_signal_snapshot JSONB`
+        (поле уже было в исходном дизайн-документе платформы).
+      properties:
+        schema_version:
+          type: string
+          example: "1.0"
+        snapshot_at:
+          type: string
+          format: date-time
+          description: Момент, на который зафиксировали сигнал
+        top_error_tags:
+          type: array
+          description: Топ-N ошибок ученика по decay-формуле на момент snapshot
+          items:
+            type: object
+            required: [tag, score]
+            properties:
+              tag:
+                type: string
+                example: log_domain_missed
+              score:
+                type: number
+                example: 4.2
+        submissions_count:
+          type: integer
+          description: Сколько submissions учли при материализации профиля
+          example: 287
+        submissions_hash:
+          type: string
+          description: |
+            sha256 от отсортированного списка submission_id'ов.
+            Для дедупа: тот же hash + те же top_error_tags = тот же конспект.
+          example: "sha256:abc123..."
+        model:
+          type: string
+          example: anthropic/claude-sonnet-4-7
+        prompt_version:
+          type: string
+          example: v3
+
+    PersonalConspectPayload:
+      type: object
+      required:
+        - job_id
+        - user_id
+        - text
+        - model_name
+        - prompt_version
+        - generated_at
+        - auto_check_status
+      properties:
+        job_id:
+          type: string
+          format: uuid
+          description: |
+            Идентификатор job'а, который платформа сгенерировала при создании
+            (см. JobCreateRequest.job_id в generator.openapi.yaml). Если
+            используется как PK personal_conspect, по нему UPDATE row'a.
+        user_id:
+          type: string
+        text:
+          type: string
+          description: Готовый конспект в markdown (KaTeX-совместимый)
+        source_signal_snapshot:
+          $ref: "#/components/schemas/SourceSignalSnapshot"
+        auto_check_status:
+          type: string
+          enum: [PASSED, REQUIRES_REVIEW, FAILED]
+          description: |
+            Результат LLM-judge проверки сгенерированного конспекта.
+            Семантика is_visible (на ваше усмотрение):
+              - PASSED: is_visible=true, показывать студенту
+              - REQUIRES_REVIEW: is_visible=true с badge или false до review
+              - FAILED: is_visible=false, в review-queue
+        auto_check_score:
+          type: number
+          nullable: true
+          minimum: 0
+          maximum: 1
+        auto_check_notes:
+          type: string
+          nullable: true
+        model_name:
+          type: string
+          example: anthropic/claude-sonnet-4-7
+        prompt_version:
+          type: string
+          example: v3
+        generated_at:
+          type: string
+          format: date-time
+
+  responses:
+    Accepted:
+      description: Принято, записано в БД
+    AcceptedNoBody:
+      description: Принято (без тела ответа)
+    PermanentError:
+      description: |
+        Постоянная ошибка (4xx). Мы помечаем submission/job как failed
+        и НЕ ретраим. Пример: 400 при невалидных тегах, 404 если
+        submission/job не найден.
+    TransientError:
+      description: |
+        Транзиентная ошибка (5xx). Мы ретраим с экспоненциальным backoff'ом
+        до 3 попыток в течение часа. После исчерпания — DLQ + alert.
+
+paths:
+  /v1/submissions/{submission_id}/diagnostic-tags:
+    post:
+      summary: Принять теги ошибок после диагностики submission'а
+      description: |
+        Этот endpoint вызываем **мы** после консьюма Kafka-события (Flow 1)
+        и LLM-диагностики submission'а с `is_correct=false`.
+
+        Платформа должна:
+          1. Найти submission по `submission_id` (path-параметр)
+          2. Записать `tags` в `submissions.diagnostic_tags JSONB` (или иное)
+          3. Поддержать idempotency: повторный POST с тем же `Idempotency-Key`
+             должен вернуть успех без двойной записи
+
+        Не вызываем для is_correct=true — у таких submissions тегов нет
+        по определению.
+      operationId: postDiagnosticTags
+      tags: [Flow 1 · Submission tagging]
+      parameters:
+        - in: path
+          name: submission_id
+          required: true
+          schema: { type: string, format: uuid }
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/DiagnosticTagsPayload" }
+      responses:
+        "200": { $ref: "#/components/responses/Accepted" }
+        "204": { $ref: "#/components/responses/AcceptedNoBody" }
+        "400": { $ref: "#/components/responses/PermanentError" }
+        "404":
+          description: submission_id не найден на платформе (постоянная — не ретраим)
+        "5XX": { $ref: "#/components/responses/TransientError" }
+
+  /v1/personal-conspect:
+    post:
+      summary: Принять готовый конспект
+      description: |
+        Этот endpoint вызываем **мы** после завершения LLM-генерации
+        конспекта (Flow 2).
+
+        URL берётся из `JobCreateRequest.callback.url` — обычно это
+        фиксированный путь, но может быть конфигурируемым.
+
+        Платформа должна:
+          1. Найти `personal_conspect` по `job_id` (UPDATE row'a)
+             ИЛИ создать новый row если используется async-flow без
+             предварительного INSERT'a при /generate
+          2. Записать `text`, `auto_check_*`, метаданные модели
+          3. Триггернуть notification ученику (через ваш notification service)
+          4. Поддержать idempotency: повторный POST с тем же `Idempotency-Key`
+             должен вернуть успех без двойной записи
+
+        После записи — UI получит конспект через ваш push-канал (notification
+        service / SSE / etc.).
+      operationId: postPersonalConspect
+      tags: [Flow 2 · Conspect generation]
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PersonalConspectPayload" }
+      responses:
+        "200": { $ref: "#/components/responses/Accepted" }
+        "204": { $ref: "#/components/responses/AcceptedNoBody" }
+        "400": { $ref: "#/components/responses/PermanentError" }
+        "404":
+          description: job_id не найден на платформе (если ожидается pre-existing row)
+        "5XX": { $ref: "#/components/responses/TransientError" }
